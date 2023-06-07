@@ -1,8 +1,12 @@
 <?php
-function hoge() {
-    echo "hogehoge";
+function hoge(int $num) : string{
+    $res = "";
+    for ($i = 1; $i <= $num; $i++) {
+        $res .= "hoge";
+    }
+    return $res;
 }
-hoge();
+echo hoge(3);
 
 function foo()
 {
