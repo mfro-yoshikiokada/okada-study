@@ -38,6 +38,50 @@ if (empty(0)) {
 if (empty([])) {
     echo "empty([])はtrue";
 }
+if (empty([ ])) {
+    echo "empty([スペースあり])はtrue";
+}
+if (empty([　])) { //エラーが出る
+    echo "empty([全角スペースあり])はtrue";
+}
 if (empty([1])) { //false
     echo "empty([1])はtrue";
+}
+//issetの場合
+echo("<br>");
+$a =1;
+if (isset($a)) { //false
+    echo "isset(1)はtrue";
+}
+$b='';
+if (isset($b)) {
+    echo "isset('')はtrue";
+}
+$c ='0';
+if (isset($c)) {
+    echo "isset('0')はtrue";
+}
+$d =NULL;
+if (isset($b)) {
+    echo "isset(NULL)はtrue";
+}
+$e =0;
+if (isset($e)) {
+    echo "isset(0)はtrue";
+}
+$f =[];
+if (isset($f)) {
+    echo "isset([])はtrue";
+}
+$g =[ ];
+if (isset($g)) {
+    echo "empty([スペースあり])はtrue";
+}
+$h = [　]; //エラーが出る
+if (isset($h)) {
+    echo "isset([全角スペースあり])はtrue";
+}
+$i =[1];
+if (isset($i)) { //false
+    echo "isset([1])はtrue";
 }
