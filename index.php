@@ -8,3 +8,7 @@
 <h1><? echo ("Docker test");?></h1>
 </body>
 </html>
+
+
+<?php
+phpinfo();
