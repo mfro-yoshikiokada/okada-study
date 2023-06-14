@@ -74,6 +74,7 @@ echo("<br>");
 
 var_dump(implode(",", $array));
 echo("<br>");
+
 //empty isset
 $var = 0;
 echo("<br>");
