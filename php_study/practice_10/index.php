@@ -7,6 +7,57 @@ if (preg_match('/ikura@yahoo.co.jp/', $str)) {
 } else {
     echo "マッチしません。";
 }
+$password = "MyP@ssw0rd!";
+$pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/';
+
+if (preg_match($pattern, $password)) {
+    echo "Strong password!";
+} else {
+    echo "Weak password.";
+}
+
+$html = '<div class="container">
+            <h1>Title</h1>
+            <p>Paragraph</p>
+        </div>';
+
+$pattern = '/<(\w+)(\s+[^>]*)?>.*?<\/\1>/s';
+
+preg_match_all($pattern, $html, $matches);
+
+$elements = $matches[0];
+var_dump($matches);
+
+foreach ($elements as $element) {
+    echo $element . "<br>";
+}
+
+$creditCardNumber = "1234-5678-9012-3456";
+$pattern = '/\b\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}\b/';
+
+if (preg_match($pattern, $creditCardNumber)) {
+    echo "Valid credit card number!";
+} else {
+    echo "Invalid credit card number.";
+}
+$date = "26/06/2023";
+$pattern = '/^\d{2}\/\d{2}\/\d{4}$/';
+
+if (preg_match($pattern, $date)) {
+    echo "Valid date!";
+} else {
+    echo "Invalid date.";
+}
+//最低でもひとつ大文字、ひとつ小文字、ひとつ数値を含むパスワード
+$password = "MyP@ssw0rd";
+$pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/';
+
+if (preg_match($pattern, $password)) {
+    echo "Valid password!";
+} else {
+    echo "Invalid password.";
+}
+
 
 preg_match('/@(.+)/', $str, $matches);
 $domain = $matches[1];
@@ -20,8 +71,40 @@ if (preg_match('/mfro/i', $replace)) {
 } else {
     echo "ヒットしません。";
 }
+//iオプション
+/** パターン */
+$pattern = '/hoge/i';
+/** 置換対象の文字列 */
+$subject = 'hoge HOge HOGE';
+/** 置換を行う文字列 */
+$replacement = 'PIYO';
 
+$subject = preg_replace( $pattern, $replacement, $subject );
+print_r( $subject );
+//PIYO PIYO PIYO
+//グループ化
+$subject = "Hello, 12345 World!";
+$pattern = '/(Hello), (\d+) (World)!/';
+preg_match($pattern, $subject, $matches);
+var_dump($matches);
+//array(4) {
+// [0]=> string(19) "Hello, 12345 World!"
+// [1]=> string(5) "Hello"
+// [2]=> string(5) "12345"
+// [3]=> string(5) "World"
+// }
 
+$phoneNumber = "+1-123-456-7890";
+$pattern = '/^\+(\d+)-(\d+)-(\d+)-(\d+)$/';
+
+preg_match($pattern, $phoneNumber, $matches);
+var_dump($matches);
+//array(5) { [0]=> string(15) "+1-123-456-7890"
+// [1]=> string(1) "1"
+// [2]=> string(3) "123"
+// [3]=> string(3) "456"
+// [4]=> string(4) "7890"
+// }
 // 正規表現パターンを定義します
 $pattern = '/^[a-z]{3}\d{3}$/';
 
@@ -89,7 +172,6 @@ if (preg_match_all("/([0-9]{3})-([0-9]{4})/", $string, $data, PREG_SET_ORDER)) {
     echo "マッチしていません。";
 }
 
-
 print_r($data);
 //マッチしました。
 //
@@ -104,7 +186,55 @@ print_r($data);
 //　　[0] => 162-2235 [1] => 162 [2] => 2235 )
 //
 //)
+/*
+ * パターン \r\n は改行文字を表し、[\r\n]+ は1回以上の改行文字の連続を表します。したがって、Hello, の後に改行文字が続き、最後に World が続く行がマッチします。
+ */
+$text = "Hello,\r\nWorld!";
+$pattern = '/Hello,[\r\n]+World/';
 
+if (preg_match($pattern, $text)) {
+    echo "Match found!";
+} else {
+    echo "No match found.";
+}
+
+$text = "Hello,\tWorld!";
+$pattern = '/Hello,\tWorld/';
+
+if (preg_match($pattern, $text)) {
+    echo "Match found!";
+} else {
+    echo "No match found.";
+}
+// \t はタブ文字を表し、Hello, の後にタブ文字があり、最後に World が続くテキストがマッチします。
+$text = "Hello, World!";
+$pattern = '/Hello,\sWorld/';
+
+if (preg_match($pattern, $text)) {
+    echo "Match found!";
+} else {
+    echo "No match found.";
+}
+// \s は空白文字を表し、Hello, の後に空白文字があり、最後に World が続く文字列がマッチします。
+$text = "Hello123World";
+$pattern = '/Hello\w+World/';
+
+if (preg_match($pattern, $text)) {
+    echo "Match found!";
+} else {
+    echo "No match found.";
+}
+//\w は単語文字（英数字とアンダースコア）を表し、Hello の後に1回以上の単語文字があり、最後に World が続く文字列がマッチします。
+
+$text = "Hello, World!";
+$pattern = '/Hello\W+World/';
+
+if (preg_match($pattern, $text)) {
+    echo "Match found!";
+} else {
+    echo "No match found.";
+}
+//\W は非単語文字（英数字とアンダースコア以外）を表し、Hello の後に1回以上の非単語文字があり、最後に World が続く文字列がマッチします。
 /*[ ]
  * 対象となる文字のパターンを指定する
  * ※自分で作成する／定義済み文字クラスの使用 の2種類がある
