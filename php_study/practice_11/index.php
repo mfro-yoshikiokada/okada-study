@@ -94,3 +94,23 @@ var_dump($result);
 $text = 'apple banana orange grape';
 $trans = ['apple' => 'red', 'banana' => 'yellow', 'e' => "e!!"];
 echo strtr($text, $trans); // red yellow orange!! grape!!
+
+// CSVデータ
+$csvData = 'John,Doe,JohnDoe@example.com
+Jane,Smith,JaneSmith@example.com
+Alex,Johnson,AlexJohnson@example.com';
+
+// 改行文字をカンマに置換してCSVデータを整形
+$csvData = preg_replace("/\r\n|\n|\r/", ",", $csvData);
+var_dump($csvData);
+
+// 特定の文字列の出現回数をカウントする
+$text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ipsum ipsum, sed eu ipsum. Ipsum dolor ipsum.";
+
+// カウントする文字列
+$targetString = "ipsum";
+
+$count = preg_match_all("/" . preg_quote($targetString, '/') . "/", $text, $matches);
+
+echo "Target String: $targetString\n";
+echo "Count: $count\n";

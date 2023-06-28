@@ -72,3 +72,199 @@ foreach ($fruits as $key => $val) {
 //1 = lemon
 //2 = banana
 //3 = apple
+
+$array = array('赤' => 'red', '青' => 'blue', '黄' => 'yellow', '緑' => 'green', '紫' => 'purple');
+
+$sort = asort($array);
+
+print_r($sort);
+echo "<br>";
+print_r($array);
+//Array ( [青] => blue [緑] => green [紫] => purple [赤] => red [黄] => yellow )
+
+
+
+$array = array('赤' => 'red', '青' => 'blue', '黄' => 'yellow', '緑' => 'green', '紫' => 'purple');
+
+$sort = arsort($array);
+
+print_r($sort);
+echo "<br>";
+print_r($array);
+//Array ( [黄] => yellow [赤] => red [紫] => purple [緑] => green [青] => blue )
+
+/*
+ * compactがなぜ必要なのか
+ * 他の人がコードを読んだときを考えてみます。
+$user[‘name’]と$nameという変数名だと、$user[‘name’]の方が「ユーザの名前」という意味を推測しやすいです。
+タイプミスを減らすことができます。
+ */
+$name = 'hoge';
+$email = 'hoge@hoge.com';
+$address = 'hoge city';
+
+$user = compact('name', 'email', 'address');
+print_r($user);
+
+// 出力結果↓
+//Array
+//(
+//    [name] => hoge
+//    [email] => hoge@hoge.com
+//[address] => hoge city
+//)
+//
+
+$fruits = ['apple', 'orange', 'melon', 'banana', 'pineapple'];
+
+//配列の長さを調べる
+$array_count = count($fruits);
+
+echo 'count : '.$array_count;
+//count : 5
+$fruits = ['apple', 'orange', 'melon', 'banana', 'pineapple'];
+//こんなふうにもつかえる
+for ($i = 0 ; $i < count($fruits); $i++){
+    echo $fruits[$i];
+    echo '<br>';
+}
+//in_arrayを使うときは黙って第三引数を付けること
+//参考サイト（https://qiita.com/ritukiii/items/3a6add378ae089ab5d70）
+$students = ['山本', '山下', '山田'];
+
+var_dump(in_array('山田', $students)); // trueを返すはず
+var_dump(in_array('山原', $students)); // falseを返すはず
+//bool(true)
+//bool(false)
+$numbers = [0, 1, 2, 3, 4, 5];
+
+var_dump(in_array(3,      $numbers)); // trueを返すはず
+var_dump(in_array('山原', $numbers)); // falseを返すはず
+//bool(true)
+//bool(true)
+
+/*
+ * なぜこうなるのか
+ * 第三引数のstrictはデフォルトでfalseになっているため、型比較までしない。
+  つまり、==で比較してる
+ */
+
+var_dump('山原' == 0);
+var_dump('山原' === 0);
+
+//bool(true)
+//bool(false)
+
+//じゃあどうすればよいのか
+$numbers = [0, 1, 2, 3, 4, 5];
+
+var_dump(in_array(3,      $numbers, true)); // true
+var_dump(in_array('山原', $numbers, true)); // false
+//配列内に値があるかどうかだけを知りたいならin_array()で十分です。
+//
+//ただ、検索した値のキーを取得したい場合は、検索した値のキーを取得するarray_search()が利用できます。
+$aryHoge = ['Japan', 'USA', 'China'];
+
+$key = array_search('USA', $aryHoge);
+
+echo 'USAのキーは'.$key;
+//USAのキーは1
+$value_array = ['A'=>100, 'B'=>200, 'C'=>300, 'D'=>400, 'E'=>500];
+
+//array_keysで配列のキーを取得する
+$value_key = array_keys($value_array);
+
+var_dump($value_key);
+
+
+$stack = array("orange", "banana", "apple", "raspberry");
+$fruit = array_shift($stack);
+print_r($stack);
+//Array
+//(
+//    [0] => banana
+//    [1] => apple
+//    [2] => raspberry
+//)
+
+$queue = [
+    "orange",
+    "banana"
+];
+
+array_unshift($queue, "apple", "raspberry");
+var_dump($queue);
+//array(4) {
+//  [0] =>
+//  string(5) "apple"
+//  [1] =>
+//  string(9) "raspberry"
+//  [2] =>
+//  string(6) "orange"
+//  [3] =>
+//  string(6) "banana"
+//}
+
+$stack = array("orange", "banana", "apple", "raspberry");
+$fruit = array_pop($stack);
+print_r($stack);
+//Array
+//(
+//    [0] => orange
+//    [1] => banana
+//    [2] => apple
+//)
+
+$stack = array("orange", "banana");
+array_push($stack, "apple", "raspberry");
+print_r($stack);
+//Array
+//(
+//    [0] => orange
+//    [1] => banana
+//    [2] => apple
+//    [3] => raspberry
+//)
+
+$value_array = ['A'=>100, 'B'=>200, 'C'=>300, 'D'=>400, 'E'=>500];
+
+//array_keysで配列のキーを取得する
+$value_key = array_keys($value_array);
+
+var_dump($value_key);
+
+
+//array_key_exists は指定したキー名が存在するか検索する。
+$fruits =
+    [
+        'apple'=>'100円',
+        'orange'=>'80円',
+        'pineapple'=>'300円'
+    ];
+
+//検索するキー
+$fruits_key = 'orange';
+
+//array_key_existsで配列のキーを検索する
+if (array_key_exists($fruits_key, $fruits)){
+    echo $fruits_key.'は存在します';
+}else{
+    echo $fruits_key.'は存在しません';
+}
+
+$input = array(4, "4", "3", 4, 3, "3");
+$result = array_unique($input);
+var_dump($result);
+//array(2) {
+//  [0] => int(4)
+//  [2] => string(1) "3"
+
+
+$ary = array();
+if (empty($ary)) {
+    echo "配列は空<br />";
+} else {
+    echo "配列は空ではない<br />";
+}
+
+//配列は空
