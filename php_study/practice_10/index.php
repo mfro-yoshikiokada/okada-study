@@ -139,6 +139,19 @@ print_r($matches);
     [3] => 789            ←3番目の3文字
 )
  */
+//URLとして成り立っているか
+$url = "https://example.com";
+
+// 正規表現パターンを定義
+$pattern = "/^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z0-9]+(\/[^\s]*)?$/";
+
+// URLの正規表現パターンにマッチするかを確認
+if (preg_match($pattern, $url)) {
+    echo "有効なURLです。";
+} else {
+    echo "無効なURLです。";
+}
+
 //パスワードが半角英数字のみで入力されているか
 $password = "Password123";
 $pattern = "/^[0-9A-Za-z]+$/";
@@ -186,9 +199,44 @@ print_r($data);
 //　　[0] => 162-2235 [1] => 162 [2] => 2235 )
 //
 //)
+
+// テストデータ
+$data1 = '{"name": "John", "age": 30}';
+$data2 = '{
+    "name": "Jane",
+    "age": 25,
+    "email": "jane@example.com"
+}';
+$data3 = 'This is not a valid JSON string';
+
+// JSONを見分けるための正規表現
+$pattern = '/^\s*(\{|\[).*(\}|\])\s*$/s';
+
+// データ1の検証
+if (preg_match($pattern, $data1)) {
+    echo "Data 1 is a valid JSON string.\n";
+} else {
+    echo "Data 1 is not a valid JSON string.\n";
+}
+
+// データ2の検証
+if (preg_match($pattern, $data2)) {
+    echo "Data 2 is a valid JSON string.\n";
+} else {
+    echo "Data 2 is not a valid JSON string.\n";
+}
+
+// データ3の検証
+if (preg_match($pattern, $data3)) {
+    echo "Data 3 is a valid JSON string.\n";
+} else {
+    echo "Data 3 is not a valid JSON string.\n";
+}
 /*
  * パターン \r\n は改行文字を表し、[\r\n]+ は1回以上の改行文字の連続を表します。したがって、Hello, の後に改行文字が続き、最後に World が続く行がマッチします。
  */
+
+
 $text = "Hello,\r\nWorld!";
 $pattern = '/Hello,[\r\n]+World/';
 
