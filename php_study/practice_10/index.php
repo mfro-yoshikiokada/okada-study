@@ -58,6 +58,10 @@ if (preg_match($pattern, $password)) {
     echo "Invalid password.";
 }
 
+// 同じ文字列のチェック
+if (preg_match("/(.)\\1{2,}/", $password)) {
+    echo "パスワードに同じ文字が3回以上続いています。\n";
+}
 
 preg_match('/@(.+)/', $str, $matches);
 $domain = $matches[1];
@@ -152,6 +156,35 @@ if (preg_match($pattern, $url)) {
     echo "無効なURLです。";
 }
 
+
+// テストデータ
+$ip1 = '192.168.0.1';
+$ip2 = '127.0.0.1';
+$ip3 = '256.0.0.1';
+$ip4 = 'not an IP address';
+function ipTest($ip) {
+    // 有効なIPアドレスか判定
+    $pattern = '/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/';
+
+    if (preg_match($pattern, $ip)) {
+        echo "$ip は有効なIPアドレスです。\n";
+    } else {
+        echo "$ip は無効なIPアドレスです。\n";
+    }
+}
+echo("<br>");
+echo ipTest($ip1);
+echo("<br>");
+echo ipTest($ip2);
+echo("<br>");
+echo ipTest($ip3);
+echo("<br>");
+echo ipTest($ip4);
+//192.168.0.1 は有効なIPアドレスです。
+//127.0.0.1 は有効なIPアドレスです。
+//256.0.0.1 は無効なIPアドレスです。
+//not an IP address は無効なIPアドレスです
+
 //パスワードが半角英数字のみで入力されているか
 $password = "Password123";
 $pattern = "/^[0-9A-Za-z]+$/";
@@ -235,6 +268,71 @@ if (preg_match($pattern, $data3)) {
 /*
  * パターン \r\n は改行文字を表し、[\r\n]+ は1回以上の改行文字の連続を表します。したがって、Hello, の後に改行文字が続き、最後に World が続く行がマッチします。
  */
+
+
+
+// テストデータ
+$string1 = 'こんにちは';
+$string2 = 'Hello, こんにちは';
+$string3 = '12345';
+$string4 = '日本語のみ';
+
+function japanese ($string) {
+    // 文字列が日本語のみで構成されているかの判断
+    $pattern = '/^[ぁ-んァ-ヶー一-龠]+$/u';
+    if (preg_match($pattern, $string)) {
+        echo "$string は日本語のみで構成されています。\n";
+    } else {
+        echo "$string は日本語以外の文字が含まれています。\n";
+    }
+}
+japanese($string1);
+japanese($string2);
+japanese($string3);
+japanese($string4);
+// こんにちは は日本語のみで構成されています。 Hello, こんにちは は日本語以外の文字が含まれています。 12345 は日本語以外の文字が含まれています。 日本語のみ は日本語のみで構成されています。
+
+// テストデータ
+$string1= 'This is a hello world example.';
+$string2 = 'Hello World!';
+$string3 = 'Greetings from around the world.';
+$string4 = 'Hello, beautiful world!';
+
+function hello ($string)
+{
+    // 英単語で構成された文字列の中から　hellow worldが記入されている文字列かどうかを判定
+    $pattern = '/\bhello\s+world\b/i';
+    if (preg_match($pattern, $string)) {
+        echo "$string には 'hello world' が含まれています。\n";
+    } else {
+        echo "$string には 'hello world' が含まれていません。\n";
+    }
+}
+hello($string1);
+
+hello($string2);
+
+hello($string3);
+
+hello($string4);
+// This is a hello world example. には 'hello world' が含まれています。 Hello World! には 'hello world' が含まれています。 Greetings from around the world. には 'hello world' が含まれていません。 Hello, beautiful world! には 'hello world' が含まれていません。
+
+//logからエラーを抽出する場合
+$log = "
+[2023-07-10 15:30:12] INFO: This is a log message.
+[2023-07-10 15:30:14] ERROR: An error occurred.
+[2023-07-10 15:30:16] INFO: Another log message.
+";
+
+$pattern = '/ERROR/';
+
+$lines = explode(PHP_EOL, $log); // ログを行ごとに分割
+
+foreach ($lines as $line) {
+    if (preg_match($pattern, $line)) {
+        echo $line . PHP_EOL;
+    }
+}
 
 
 $text = "Hello,\r\nWorld!";
