@@ -52,8 +52,11 @@ $trm = trim($str, 'He');
 var_dump($trm);
 //string(3) "llo"
 
-//str_replace 置換のときに利用したのでとばします。
-
+//preg_replace — 正規表現検索および置換を行う
+$string = 'April 15, 2003';
+$pattern = '/(\w+) (\d+), (\d+)/i';
+$replacement = '${1}1,$3';
+echo preg_replace($pattern, $replacement, $string);
 
 //strpos — 文字列内の部分文字列が最初に現れる場所を見つける
 
@@ -127,3 +130,173 @@ $str = strtolower($str);
 echo $str; // mary had a little lamb and she loved it so を返します
 
 //substr — 文字列の一部分を返す
+$rest = substr("abcdef", -1);    // "f" を返す
+echo $rest;
+$rest = substr("abcdef", -2);    // "ef" を返す
+echo $rest;
+$rest = substr("abcdef", -3, 1); // "d" を返す
+echo $rest;
+//また開始位置をマイナスの値で指定した場合、文字列の最後の位置から先頭に向かって何文字目かという意味になります。
+$rest =substr('abcde', -2, 2) ;
+echo $rest;
+$rest =substr('abcde', -3) ;
+echo $rest;
+
+//文字数で指定した場合には「mb_substr」関数を使います。半角文字も全角文字も1文字は1文字として扱います。
+echo mb_substr( "いろはにほ", 1, 6, "UTF-8" ) . "\n";//ろはに
+echo mb_substr( "いろはにほ", 1, 6 ) . "\n";//ろはに
+echo("<br>");
+
+//mb_convert_encoding — ある文字エンコーディングの文字列を、別の文字エンコーディングに変換する
+/* 内部文字エンコーディングからSJISに変換 */
+$str = mb_convert_encoding($str, "SJIS");
+echo $str;
+echo("<br>");
+/* EUC-JPからUTF-7に変換 */
+$str = mb_convert_encoding($str, "UTF-7", "EUC-JP");
+echo $str;
+echo("<br>");
+/* JIS, eucjp-win, sjis-winの順番で自動検出し、UCS-2LEに変換 */
+$str = mb_convert_encoding($str, "UCS-2LE", "JIS, eucjp-win, sjis-win");
+echo $str;
+echo("<br>");
+/* mbstring.language が "Japanese" の場合 "auto" は、"ASCII,JIS,UTF-8,EUC-JP,SJIS" に展開される */
+$str = mb_convert_encoding($str, "EUC-JP", "auto");
+echo $str;
+echo("<br>");
+
+//mb_split — マルチバイト文字列を正規表現により分割する
+print_r( mb_split("\s", "hello world") );
+//Array (
+//    [0] => hello
+//    [1] => world
+//   )
+$str = "あああ1いいい2ううう3えええ4おおお";
+$arr = mb_split("[0-9]", $str);
+
+foreach ($arr as $item) {
+    echo $item."<br />";
+}
+//あああ
+//いいい
+//ううう
+//えええ
+//
+
+//preg_match — 正規表現によるマッチングを行う
+preg_match('/(foo)(bar)(baz)/', 'foobarbaz', $matches, PREG_OFFSET_CAPTURE);
+print_r($matches);
+//Array
+//(
+//    [0] => Array
+//        (
+//            [0] => foobarbaz
+//            [1] => 0
+//        )
+//
+//    [1] => Array
+//        (
+//            [0] => foo
+//            [1] => 0
+//        )
+//
+//    [2] => Array
+//        (
+//            [0] => bar
+//            [1] => 3
+//        )
+//
+//    [3] => Array
+//        (
+//            [0] => baz
+//            [1] => 6
+//        )
+//
+//)
+
+//preg_replace — 正規表現検索および置換を行う
+$string = 'April 15, 2003';
+$pattern = '/(\w+) (\d+), (\d+)/i';
+$replacement = '${1}1,$3';
+echo preg_replace($pattern, $replacement, $string);
+//April1,2003
+
+//preg_quote — 正規表現文字をクオートする
+
+$str = '-._~%:/?#[]@!$&\'()*+,;=';
+$str = preg_quote( $str , '/');
+echo $str;// \-\._~%\:\/\?#\[\]@\!\$&'\(\)\*\+,;\=
+
+//number_format — 数字を千の位毎にグループ化してフォーマットする
+$money = 1000000;
+echo number_format($money); //1,000,000
+
+$money = 1000000;
+echo number_format($money,1, ',', '.');//1.000.000,0
+
+//sprintf — フォーマットされた文字列を返す
+//指定子	説明
+//%	文字通り、パーセント文字です。 引数は不要です。
+//b	引数は整数として扱われ、バイナリ値として表現されます。
+//c	引数は整数として扱われ、ASCII文字として表現されます。
+//d	引数は整数として扱われ、(符号付き)10進数値として表現されます。
+//e	引数は科学的記法で表現された値(e.g. 1.2e+2)として扱われます。
+//E	e 指定子に似ていますが、 大文字を使います(e.g. 1.2E+2)
+//f	引数は小数として扱われ、浮動小数点数値として表現されます(ロケールを考慮します)。
+//F	引数は小数として扱われ、浮動小数点数値として表現されます(ロケールを考慮しません)。
+//g 汎用フォーマット
+//
+//  P を精度を表す、ゼロでない値とします。 精度が省略された場合、Pの値は6です。 精度に0を指定した場合、Pの値は1になります。 この場合、 E 指定子の変換結果は、 X乗になります。
+//
+//  P > X ≥ −4 の場合、E 指定子の変換結果となり、精度は、P − (X + 1) になります。 そうでない場合、e 指定子の変換結果となり、 精度は、P - 1 になります。
+//
+//G	g 指定子に似ていますが、 E と f を使います。
+//h	g 指定子に似ていますが、 F を使います。 PHP 8.0.0 以降で利用可能です。
+//H	g 指定子に似ていますが、 E と F を使います。 PHP 8.0.0 以降で利用可能です。
+//o	引数は整数として扱われ、8進数値として表現されます。
+//s	引数は文字列として扱われ、文字列として表現されます。
+//u	引数は整数として扱われ、符号なし10進数値として表現されます。
+//x	引数は整数として扱われ、16進数値(小文字)として表現されます。
+//X	引数は整数として扱われ、16進数値(大文字)として表現されます。
+$num = 5;
+$location = 'tree';
+
+$format = 'There are %d monkeys in the %s';
+echo sprintf($format, $num, $location);//There are 5 monkeys in the tree
+
+
+//ceil — 端数の切り上げ
+echo ceil(4.3);    // 5
+echo ceil(9.999);  // 10
+echo ceil(-3.14);  // -3
+
+//floor — 端数の切り捨て
+echo floor(4.3);   // 4
+echo floor(9.999); // 9
+echo floor(-3.14); // -4
+
+//round — 浮動小数点数を丸める
+var_dump(round(3.4));
+var_dump(round(3.5));
+var_dump(round(3.6));
+//float(3)
+//float(4)
+//float(4)
+
+$number = 135.79;
+
+var_dump(round($number, 3));
+var_dump(round($number, 2));
+var_dump(round($number, 1));
+var_dump(round($number, 0));
+var_dump(round($number, -1));
+var_dump(round($number, -2));
+var_dump(round($number, -3));
+
+//float(135.79)
+//float(135.79)
+//float(135.8)
+//float(136)
+//float(140)
+//float(100)
+//float(0)
