@@ -113,5 +113,28 @@ $url = "https://www.xxxx.com/?word=dryer";
 $change = "/?word=change";
 echo("<br>");
 
-$csvData = preg_replace("/\/\?[a-z=]+/", $change, $url);
-var_dump($csvData);
+//メアドの@以降を取っ払う 11
+$email = "example@example.com";
+$maskedEmail = preg_replace("/@.*/", "", $email);
+echo "置き換え後のメールアドレス: $maskedEmail\n";
+
+//CSVを文字列にして空白に置き換える 12
+$csvData = 'John,Doe,JohnDoe@example.com';
+
+$replacedData = str_replace(',', ' ', $csvData);
+
+echo " $replacedData\n";
+//htmlでpタグをstrongタグに変更　13
+$html = "<p>Hello, <strong>World!</strong></p>";
+$plainText = str_replace(["<p>", "</p>", "<strong>", "</strong>"], "", $html);
+echo " $plainText\n";
+
+//hellowをHi!におきかえる 14
+$text = "Hello, world! How are you?";
+$newText = str_replace("hello", "Hi!", $text);
+echo " $newText\n";
+
+//IPアドレスを伏せる 15
+$text = "The IP address is 192.168.0.1";
+$maskedText = preg_replace("/\b(\d{1,3}\.\d{1,3}\.\d{1,3})\.\d{1,3}\b/", "***.***.***", $text);
+echo " $maskedText\n";
