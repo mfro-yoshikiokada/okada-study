@@ -1,12 +1,5 @@
 <?php
 
-try {
-    $result = 10 / 0;
-} catch (Exception $e) {
-    echo "エラーが発生しました\n";
-    echo $e->getMessage();
-}
-
 
 
 try {
