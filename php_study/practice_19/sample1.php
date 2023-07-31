@@ -4,13 +4,13 @@
 //以下にnamespaceを使用して、同一関数名を呼び出す方法を記述します。
 
 //place.php　に続く
-namespace name1;
+namespace Name1;
 
 function getName(){
     return 'melon';
 }
 
-namespace name2;
+namespace Name2;
 
 function getName(){
     return 'pan';
