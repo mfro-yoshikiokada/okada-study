@@ -26,3 +26,77 @@ try {
 //divideNumbers(10, 0) によって DivisionByZeroException がスローします。
 //その結果、catch (DivisionByZeroException $e) のブロックが実行され、例外の内容が表示されるはずです。
 //もし DivisionByZeroException 以外の例外がスローされた場合は、catch (Throwable $e) のブロックが実行され、その例外の内容が表示されることになります。
+
+
+$jsonFile = "";
+try {
+
+    $jsonData = jsonDecode($jsonFile);
+
+} catch (Throwable $e) {
+    // すべての例外（Error や Exception）をキャッチする
+    echo "Caught Throwable: " . $e->getMessage() . PHP_EOL;
+} finally {
+    echo "jsonDecode finished";
+}
+
+try {
+    $a="b";
+    if ($a!=="a") {
+        throw new \Exception("値が間違っています。");
+    }
+
+} catch (Exception $e) {
+    echo $e ;
+} finally {
+    echo "Exception data finished";
+}
+
+
+class MyClass {
+    private $property;
+    private $error;
+
+    // Setterメソッド
+    public function setProperty(int $value) {
+        $this->property = $value;
+    }
+
+    // Getterメソッド
+    public function getProperty() :int{
+        return $this->property;
+    }
+    public function setCustomValue($value)
+    {
+        $this->property = $value;
+    }
+
+
+    public function setCustomError(string $value)
+    {
+        $this->error = $value;
+    }
+
+
+    public function getCustomError() :string
+    {
+        return $this->error;
+    }
+}
+$object = new MyClass();
+try {
+
+    $object-> setProperty(1);
+    $value =$object->getCustomValue();
+    if ($value !== 0 ) {
+        throw new \Exception("値が０ではありません。");
+    }
+} catch (Exception $e) {
+    echo $e;
+    $object->setCustomError($e);
+
+    // 例外を再スローする
+    $object-> setProperty(0);
+    throw $e;
+}
+
