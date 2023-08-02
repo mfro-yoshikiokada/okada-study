@@ -18,12 +18,12 @@ echo $sample->var;
 //親クラス
 class ParentClass{
 
-    public function WorkItem1($str){
+    public function workItem1(string $str) :void{
         echo $str.'ParentClass <br>';
     }
 
-    public function WorkItem2(){
-        echo 'Processing of WorkItem2 of ParentClass. <br>';
+    public function workItem2():void{
+        echo 'Processing of workItem2 of ParentClass. <br>';
     }
 
 }
@@ -31,7 +31,7 @@ class ParentClass{
 //子クラス
 class ChildClass extends ParentClass{
 
-    public function WorkItem1($str){
+    public function workItem1($str) :void{
         echo $str.'ChildClass <br>';
     }
 
@@ -42,16 +42,16 @@ $parent = new ParentClass();
 $child = new ChildClass();
 
 //メソッドの呼出し
-$parent->WorkItem1('Processing of ');
-$child->WorkItem1('Processing of ');
+$parent->workItem1('Processing of ');
+$child->workItem1('Processing of ');
 
-$parent->WorkItem2();
-$child->WorkItem2();
+$parent->workItem2();
+$child->workItem2();
 
 //Processing of ParentClass
 //Processing of ChildClass
-//Processing of WorkItem2 of ParentClass.
-//Processing of WorkItem2 of ParentClass.
+//Processing of workItem2 of ParentClass.
+//Processing of workItem2 of ParentClass.
 
 //抽象クラスとは他のクラスを継承して使用するためのクラスです。
 //
@@ -61,8 +61,8 @@ $child->WorkItem2();
 abstract class AbstractClass
 {
     // 抽象メソッドの定義
-    abstract protected function getValue();
-    abstract protected function getText($str);
+    abstract protected function getValue(): string;
+    abstract protected function getText($str): string;
 
     // メソッドの定義
     public function thisClass() {
@@ -72,22 +72,23 @@ abstract class AbstractClass
 
 class SampleClass1 extends AbstractClass
 {
-    protected function getValue() {
+    protected function getValue() :string {
+
         return "SampleClass1";
     }
 
-    public function getText($str) {
+    public function getText($str) :string{
         return "{$str}SampleClass1";
     }
 }
 
 class SampleClass2 extends AbstractClass
 {
-    public function getValue() {
+    public function getValue() :string{
         return "SampleClass2";
     }
 
-    public function getText($str) {
+    public function getText($str) :string{
         return "{$str}SampleClass2";
     }
 }
