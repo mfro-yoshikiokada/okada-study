@@ -68,6 +68,20 @@ class MyClass {
     {
         return $this->jsonFile;
     }
+
+}
+class NullException extends Exception {
+    // 任意の追加のプロパティやメソッドを定義
+    // 例: エラーコード、エラーの詳細メッセージ、特定のデータなど
+
+    public function __construct($message, $code = 0, Throwable $previous = null) {
+        parent::__construct($message, $code, $previous);
+    }
+
+    // カスタムなメソッドを定義
+    public function intMethod() {
+        return 0;
+    }
 }
 $object = new MyClass();
 
@@ -77,6 +91,9 @@ try {
     $value =$object->getCustomValue();
     if ($value !== 0 ) {
         throw new \Exception("値が０ではありません。");
+    }
+    if ($value == null ) {
+        throw new \NullException();
     }
     $object-> setjsonFile(1);
     $json =$object->getjsonFile();
@@ -91,6 +108,10 @@ try {
 }catch (Throwable $e) {
     // すべての例外（Error や Exception）をキャッチする
     echo "Caught Throwable: " . $e->getMessage() . PHP_EOL;
+} catch (NullException $e) {
+    echo "値がNullです。" ;
+    //独自Exceptionで何かの処理をする場合。
+    $value = $e->intMethod();
 }finally {
     echo "jsonDecode finished";
 }
