@@ -2,14 +2,17 @@ version: '3'
 
 services:
   php:
-    image: php:7.2-apache
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
     ports:
       - 8000:80
     container_name: php7.2-trial2
+
   mysql:
-    platform: linux/x86_64 #Mac M1
+    platform: linux/x86_64 # Mac M1用
     image: mysql:5.7
     volumes:
       - /var/lib/mysql
@@ -24,7 +27,7 @@ services:
     image: phpmyadmin/phpmyadmin
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOST=mysql #mysqlサービス名を指定
+      - PMA_HOST=mysql # mysqlサービス名を指定
       - PMA_USER=test
       - PMA_PASSWORD=test
     links:
