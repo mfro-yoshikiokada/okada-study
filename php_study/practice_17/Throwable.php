@@ -28,35 +28,10 @@ try {
 //もし DivisionByZeroException 以外の例外がスローされた場合は、catch (Throwable $e) のブロックが実行され、その例外の内容が表示されることになります。
 
 
-$jsonFile = "";
-try {
-
-    $jsonData = jsonDecode($jsonFile);
-
-} catch (Throwable $e) {
-    // すべての例外（Error や Exception）をキャッチする
-    echo "Caught Throwable: " . $e->getMessage() . PHP_EOL;
-} finally {
-    echo "jsonDecode finished";
-}
-
-try {
-    $a="b";
-    if ($a!=="a") {
-        throw new \Exception("値が間違っています。");
-    }
-
-} catch (Exception $e) {
-    echo $e ;
-} finally {
-    echo "Exception data finished";
-}
-
-
 class MyClass {
     private $property;
     private $error;
-
+    private $jsonFile;
     // Setterメソッド
     public function setProperty(int $value) {
         $this->property = $value;
@@ -82,8 +57,20 @@ class MyClass {
     {
         return $this->error;
     }
+
+    public function setjsonFile(string $value)
+    {
+        $this->jsonFile = $value;
+    }
+
+
+    public function getjsonFile() :string
+    {
+        return $this->jsonFile;
+    }
 }
 $object = new MyClass();
+
 try {
 
     $object-> setProperty(1);
@@ -91,6 +78,9 @@ try {
     if ($value !== 0 ) {
         throw new \Exception("値が０ではありません。");
     }
+    $object-> setjsonFile(1);
+    $json =$object->getjsonFile();
+    $jsonData = jsonDecode($json);
 } catch (Exception $e) {
     echo $e;
     $object->setCustomError($e);
@@ -98,5 +88,12 @@ try {
     // 例外を再スローする
     $object-> setProperty(0);
     throw $e;
+}catch (Throwable $e) {
+    // すべての例外（Error や Exception）をキャッチする
+    echo "Caught Throwable: " . $e->getMessage() . PHP_EOL;
+}finally {
+    echo "jsonDecode finished";
 }
+
+
 
