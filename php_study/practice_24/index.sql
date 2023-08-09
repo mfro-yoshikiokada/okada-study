@@ -169,4 +169,83 @@ mysql> select * from user order by address desc, old asc;
 +----------+---------+------+
 8 rows in set (0.00 sec)
 
+/* inner join
+ */
+CREATE TABLE sample1_employees (
+    no int NOT NULL, -- 従業員番号
+    department_no char(5), -- 部署番号
+    last_name varchar(255), -- 名
+    first_name varchar(255), -- 姓
+    PRIMARY KEY (no)
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+-- テストデータ
+INSERT INTO sample1_employees VALUES('10001', 'A0001','yamada','taro');
+INSERT INTO sample1_employees VALUES('10002', 'A0001','yamada','jiro');
+INSERT INTO sample1_employees VALUES('10003', 'A0002','yamada','hanako');
+INSERT INTO sample1_employees VALUES('10004', 'A0003','yamada','saburou');
+select * from sample1_employees;
+
+CREATE TABLE sample1_departments (
+    department_no     char(5),     -- 部署番号
+    department_name varchar(255),  -- 部署名
+    PRIMARY KEY (department_no)
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+INSERT INTO sample1_departments VALUES('A0001', 'application dev');
+INSERT INTO sample1_departments VALUES('A0002', 'database dev');
+INSERT INTO sample1_departments VALUES('B0003', 'Web design');
+
+mysql> SELECT * FROM sample1_employees a INNER JOIN sample1_departments b ON a.department_no = b.department_no;
++-------+---------------+-----------+------------+---------------+-----------------+
+| no    | department_no | last_name | first_name | department_no | department_name |
++-------+---------------+-----------+------------+---------------+-----------------+
+| 10001 | A0001         | yamada    | taro       | A0001         | application dev |
+| 10002 | A0001         | yamada    | jiro       | A0001         | application dev |
+| 10003 | A0002         | yamada    | hanako     | A0002         | database dev    |
++-------+---------------+-----------+------------+---------------+-----------------+
+3 rows in set (0.00 sec)
+
+
+create table staff(id integer, name text, deptid integer);
+
+insert into staff values(1, 'Suzuki', 1);
+insert into staff values(2, 'Endou', 3);
+insert into staff values(3, 'Katou', 1);
+insert into staff values(4, 'Yamada', 2);
+insert into staff values(5, 'Takahashi', 4);
+insert into staff values(6, 'Honda', 3);
+
+create table dept(id integer, name text);
+
+insert into dept values(1, 'Sales');
+insert into dept values(2, 'Manage');
+insert into dept values(3, 'Dev');]
+
+select * from staff left outer join dept on staff.deptid = dept.id;
+
+mysql> select * from staff left outer join dept on staff.deptid = dept.id;
++------+-----------+--------+------+--------+
+| id   | name      | deptid | id   | name   |
++------+-----------+--------+------+--------+
+|    1 | Suzuki    |      1 |    1 | Sales  |
+|    3 | Katou     |      1 |    1 | Sales  |
+|    4 | Yamada    |      2 |    2 | Manage |
+|    2 | Endou     |      3 |    3 | Dev    |
+|    6 | Honda     |      3 |    3 | Dev    |
+|    5 | Takahashi |      4 | NULL | NULL   |
++------+-----------+--------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql>
+mysql> select * from dept left outer join staff on dept.id = staff.deptid;
++------+--------+------+--------+--------+
+| id   | name   | id   | name   | deptid |
++------+--------+------+--------+--------+
+|    1 | Sales  |    1 | Suzuki |      1 |
+|    3 | Dev    |    2 | Endou  |      3 |
+|    1 | Sales  |    3 | Katou  |      1 |
+|    2 | Manage |    4 | Yamada |      2 |
+|    3 | Dev    |    6 | Honda  |      3 |
++------+--------+------+--------+--------+
+5 rows in set (0.00 sec)
 
