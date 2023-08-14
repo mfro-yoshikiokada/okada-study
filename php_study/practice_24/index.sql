@@ -205,7 +205,9 @@ mysql> SELECT * FROM sample1_employees a INNER JOIN sample1_departments b ON a.d
 +-------+---------------+-----------+------------+---------------+-----------------+
 3 rows in set (0.00 sec)
 
-
+/*
+outer join
+ */
 create table staff(id integer, name text, deptid integer);
 
 insert into staff values(1, 'Suzuki', 1);
@@ -236,7 +238,7 @@ mysql> select * from staff left outer join dept on staff.deptid = dept.id;
 +------+-----------+--------+------+--------+
 6 rows in set (0.00 sec)
 
-mysql>
+
 mysql> select * from dept left outer join staff on dept.id = staff.deptid;
 +------+--------+------+--------+--------+
 | id   | name   | id   | name   | deptid |
@@ -249,3 +251,218 @@ mysql> select * from dept left outer join staff on dept.id = staff.deptid;
 +------+--------+------+--------+--------+
 5 rows in set (0.00 sec)
 
+create table staff(id integer, name text, deptid integer);
+
+insert into staff values(1, 'Suzuki', 1);
+insert into staff values(2, 'Endou', 3);
+insert into staff values(3, 'Katou', 1);
+insert into staff values(4, 'Yamada', 2);
+insert into staff values(5, 'Takahashi', 4);
+insert into staff values(6, 'Honda', 3);
+
+create table dept(id integer, name text);
+
+insert into dept values(1, 'Sales');
+insert into dept values(2, 'Manage');
+insert into dept values(3, 'Dev');
+
+mysql> select * from staff left outer join dept on staff.deptid = dept.id;
++------+-----------+--------+------+--------+
+| id   | name      | deptid | id   | name   |
++------+-----------+--------+------+--------+
+|    1 | Suzuki    |      1 |    1 | Sales  |
+|    3 | Katou     |      1 |    1 | Sales  |
+|    4 | Yamada    |      2 |    2 | Manage |
+|    2 | Endou     |      3 |    3 | Dev    |
+|    6 | Honda     |      3 |    3 | Dev    |
+|    5 | Takahashi |      4 | NULL | NULL   |
++------+-----------+--------+------+--------+
+6 rows in set (0.00 sec)
+
+
+
+
+/*
+limit offset
+ */
+create table user(id integer, name text, address text);
+insert into user values(1, 'Hanada', 'Tokyo');
+insert into user values(2, 'Sano', 'Osaka');
+insert into user values(3, 'Tanaka', 'Tokyo');
+insert into user values(4, 'Uede', 'Nagoya');
+insert into user values(5, 'Itou', 'Sapporo');
+insert into user values(6, 'Tsuda', 'Osaka');
+insert into user values(7, 'Okamoto', 'Kyoto');
+insert into user values(8, 'Endou', 'Nagoya');
+
+
+mysql> select * from user;
++------+---------+---------+
+| id   | name    | address |
++------+---------+---------+
+|    1 | Hanada  | Tokyo   |
+|    2 | Sano    | Osaka   |
+|    3 | Tanaka  | Tokyo   |
+|    4 | Uede    | Nagoya  |
+|    5 | Itou    | Sapporo |
+|    6 | Tsuda   | Osaka   |
+|    7 | Okamoto | Kyoto   |
+|    8 | Endou   | Nagoya  |
++------+---------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from user limit 4;
++------+--------+---------+
+| id   | name   | address |
++------+--------+---------+
+|    1 | Hanada | Tokyo   |
+|    2 | Sano   | Osaka   |
+|    3 | Tanaka | Tokyo   |
+|    4 | Uede   | Nagoya  |
++------+--------+---------+
+4 rows in set (0.00 sec)
+
+
+mysql> select * from user limit 3 offset 4;
++------+---------+---------+
+| id   | name    | address |
++------+---------+---------+
+|    5 | Itou    | Sapporo |
+|    6 | Tsuda   | Osaka   |
+|    7 | Okamoto | Kyoto   |
++------+---------+---------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from user limit 4, 3;
++------+---------+---------+
+| id   | name    | address |
++------+---------+---------+
+|    5 | Itou    | Sapporo |
+|    6 | Tsuda   | Osaka   |
+|    7 | Okamoto | Kyoto   |
++------+---------+---------+
+3 rows in set (0.00 sec)
+
+/*
+ORDER BY句を使って並べ替えた上で取得する行数を指定
+ */
+mysql> select * from user order by address limit 5;
++------+---------+---------+
+| id   | name    | address |
++------+---------+---------+
+|    7 | Okamoto | Kyoto   |
+|    4 | Uede    | Nagoya  |
+|    8 | Endou   | Nagoya  |
+|    2 | Sano    | Osaka   |
+|    6 | Tsuda   | Osaka   |
++------+---------+---------+
+5 rows in set (0.00 sec)
+/*
+サブクエリ
+ */
+CREATE TABLE students (
+                          id   INTEGER PRIMARY KEY,
+                          name VARCHAR(10) NOT NULL,
+                          age  INTEGER
+);
+
+CREATE TABLE courses (
+                         id   INTEGER PRIMARY KEY,
+                         name VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE enrollments (
+                             courseId  INTEGER REFERENCES courses(id),
+                             studentId INTEGER REFERENCES students(id),
+                             PRIMARY KEY(courseId, studentId)
+);
+
+select * from students ;
+
+# select * from students ;
+id |  name  | age
+----+--------+-----
+  1 | Sato   |  14
+  2 | Suzuki |  15
+  3 | Yamada |  12
+  4 | Tanaka |  14
+(4 rows)
+
+
+
+# select * from courses ;
+id |   name
+----+----------
+  1 | Math
+  2 | Japanese
+  3 | History
+(3 rows)
+
+
+# select * from enrollments ;
+courseid | studentid
+----------+-----------
+        1 |         1
+        1 |         2
+        3 |         1
+        3 |         3
+(4 rows)
+
+select * from students ;
+id |  name  | age
+----+--------+-----
+  1 | Sato   |  14
+  2 | Suzuki |  15
+  3 | Yamada |  12
+  4 | Tanaka |  14
+(4 rows)
+CREATE VIEW s1 AS
+SELECT age, COUNT(age) as age_count
+FROM students
+GROUP BY age;
+
+select age, age_count from s1;
+age | age_count
+-----+-----------
+  15 |         1
+  14 |         2
+  12 |         1
+(3 rows)
+/*
+FROM句
+ */
+SELECT s1.age, s1.age_count
+FROM (SELECT age, COUNT(age) as age_count
+      FROM students
+      GROUP BY age) as s1
+WHERE age_count = 2;
+
+age | age_count
+-----+-----------
+  14 |         2
+(1 row)
+/*
+WHERE句
+ */
+SELECT DISTINCT courseId
+FROM enrollments
+WHERE studentId IN (SELECT id
+                    FROM students
+                    WHERE age = 14);
+courseid
+----------
+        1
+        3
+(2 rows)
+
+SELECT DISTINCT courseId
+FROM enrollments, students
+WHERE enrollments.studentId = students.id
+  AND students.age = 14;
+
+courseid
+----------
+        1
+        3
+(2 rows)
