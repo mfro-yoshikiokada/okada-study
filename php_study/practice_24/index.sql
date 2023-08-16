@@ -3,10 +3,10 @@
 mysql> USE test;
 Database changed
 mysql> CREATE TABLE list(
-    ->     id INT(11) AUTO_INCREMENT NOT NULL,
-    ->     name VARCHAR(30) NOT NULL ,
-    ->     age INT(3) NOT NULL,
-    ->     PRIMARY KEY (id));
+    id INT(11)  NOT NULL,
+        name VARCHAR(30) NOT NULL ,
+       age INT(3) NOT NULL,
+    PRIMARY KEY (id));
 Query OK, 0 rows affected (0.02 sec)
 
 mysql>
