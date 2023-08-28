@@ -7,6 +7,19 @@ CREATE TABLE users (
 INSERT INTO
     users(name)
 VALUES
+('フグ田サザエ'),
+('フグ田マスオ'),
+('磯野波平'),
+('磯野フネ'),
+('磯野カツオ'),
+('磯野ワカメ'),
+('フグ田タラオ'),
+('タマ')
+;
+
+INSERT INTO
+    users(name)
+VALUES
 ('sazae'),
 ('masuo'),
 ('namihei'),
@@ -16,4 +29,3 @@ VALUES
 ('tarao'),
 ('tama')
 ;
-
