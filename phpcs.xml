@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="okada-study">
+    <description>okada-study Coding Rule</description>
+
+    <!-- 対象フォルダ -->
+    <file>./quiz</file>
+
+    <!-- PSR2をベースとする -->
+    <rule ref="PSR2"/>
+
+    <arg name="colors"/>
+    <arg value="p"/>
+    <arg name="parallel" value="4"/>
+</ruleset>
