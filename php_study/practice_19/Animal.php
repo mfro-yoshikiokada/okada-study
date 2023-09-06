@@ -1,5 +1,5 @@
+
 <?php
-// Animal.php
 
 namespace MyNamespace;
 
