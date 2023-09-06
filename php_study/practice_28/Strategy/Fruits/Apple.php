@@ -1,22 +1,22 @@
 <?php
 namespace Fruits;
 require_once('./Interfaces/FruitInterface.php');
-use Interfaces\FruitInterface;
+use Fruits\FruitInterface;
 
 class Apple implements FruitInterface {
-    public function getName(){
+    public function getName(): string{
         return 'リンゴ';
     }
 
-    public function getColor(){
+    public function getColor(): string{
         return 'red';
     }
 
-    public function getHasLike(){
+    public function getHasLike(): bool{
         return '好き';
     }
 
-    public function getOrderOfPopularity(){
+    public function getOrderOfPopularity(): int{
         return 3;
     }
 

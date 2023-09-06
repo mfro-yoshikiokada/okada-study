@@ -1,9 +1,8 @@
-
 <?php
 
 namespace Fruits;
 require_once('./Interfaces/FruitInterface.php');
-use Interfaces\FruitInterface;
+use Fruits\FruitInterface;
 
 class Fruit {
     private $fruit;
@@ -23,4 +22,7 @@ class Fruit {
         return $params;
     }
 }
+
+
+
 

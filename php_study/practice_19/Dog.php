@@ -1,17 +1,16 @@
-
 <?php
-
 namespace MyNamespace;
+
 require_once 'Animal.php';
 
 class Dog extends AbstractAnimal
 {
-    protected function getName(): string
+    public function getName(): string
     {
         return "Dog";
     }
 
-    protected function makeSound(): string
+    public function makeSound(): string
     {
         return "Woof!";
     }

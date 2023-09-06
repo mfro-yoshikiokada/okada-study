@@ -1,11 +1,10 @@
-
 <?php
+namespace Fruits;
 
-namespace Interfaces;
-interface FruitInterface{
-    public function getName();
-    public function getColor();
-    public function getHasLike();
-    public function getOrderOfPopularity();
+interface FruitInterface
+{
+    public function getName(): string;
+    public function getColor(): string;
+    public function getHasLike(): bool;
+    public function getOrderOfPopularity(): int;
 }
-

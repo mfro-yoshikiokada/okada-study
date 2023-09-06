@@ -2,8 +2,7 @@
 require_once('./Fruits/Fruit.php');
 require_once('./Fruits/Orange.php');
 require_once('./Fruits/Apple.php');
-require_once('./Fruits/Grape.php');
-require_once('./Fruits/NoneFruit.php');
+
 use Fruits\Fruit;
 use Fruits\Orange;
 use Fruits\Apple;
@@ -30,12 +29,8 @@ function getFruitInstance($fruitName) {
     switch ($fruitName) {
         case 'orange':
             return new Orange;
-        case 'apple':
-            return new Apple;
-        case 'grape':
-            return new Grape;
         default:
-            return new NoneFruit;
+            return new Apple;
     }
 }
 
