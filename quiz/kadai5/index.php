@@ -126,7 +126,6 @@ class Operator{
     }
 
 
-
 }
 $ope = new Operator();
 $ope->setAlly(new Brave('勇者', 300 , 100));
