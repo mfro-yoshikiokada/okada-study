@@ -2,7 +2,8 @@
 
 namespace Quiz\Kadai2;
 
-class Brave {
+class Brave
+{
     public $name;
     public $hp;
     public $power;
@@ -16,7 +17,9 @@ class Brave {
         if (empty($name) && empty($hp)&& empty($power))
         {
             $this->active= false;
-        } else {
+        }
+        else
+        {
             $this->active= true;
         }
     }
@@ -46,12 +49,12 @@ class Brave {
 }
 
 $c = new Brave('異世界転生マン', '1000', '500');
-if ($c->getActive()) {
+if ($c->getActive())
+{
     echo("私の名前は".$c->getName()."\n");
     echo("HPは".$c->getHp()."\n");
     echo("力は".$c->getPower()."\n");
-} else {
+} else
+{
     echo "matigai";
 }
-
-
