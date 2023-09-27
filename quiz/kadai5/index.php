@@ -40,7 +40,7 @@ abstract class Character {
 
 class Brave extends Character {
 
-    public function __construct($name, $hp, $power)
+    public function __construct(string $name, int $hp,  int $power)
     {
         $this->name = $name;
         $this->hp = $hp;
@@ -51,7 +51,7 @@ class Brave extends Character {
 
 }
 class Monster extends Character {
-    public function __construct($name, $hp, $power)
+    public function __construct(string $name, int $hp, int $power)
     {
         $this->name = $name;
         $this->hp = $hp;
@@ -66,18 +66,12 @@ class Operator{
     public $ally;
     protected $enemy;
     public function setAlly($arg) {
-        $name = $arg->getName();
-        $hp = $arg->getHp();
-        $power = $arg->getPower();
         $this->ally = $arg;
 
     }
     public function setEnemy($arg) {
-        $name = $arg->getName();
-        $hp = $arg->getHP();
-        $power = $arg->getPower();
+
         $this->enemy = $arg;
-        //$this->enemy = array('name' => $name, 'hp' => $hp, 'power'=> $power);
 
     }
     private function attackAlly($ally,$enemy) {
@@ -112,13 +106,18 @@ class Operator{
         $enemy = $this->enemy;
         if ($this->dataCheck($ally) &&  $this->dataCheck($ally)) {
             echo $ally->getHp();
-            while ($ally->getHp()>0) {
+            while ($ally->getHp()>=0) {
 
                 $this->attackAlly($ally,$enemy);
-                if ($enemy->getHp()<0){
+                if ($enemy->getHp()<=0){
+                    echo "てきは倒れた";
                     break;
                 }
                 $this->attackEnemy($ally,$enemy);
+
+            }
+            if ($ally->getHp()<=0) {
+                echo "勇者はたおれた";
             }
         }else {
             echo "データを入力してください";
