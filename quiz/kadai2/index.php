@@ -6,17 +6,18 @@ class Brave {
     public $name;
     public $hp;
     public $power;
-    public $active;
+    public $active=false;
 
     public function __construct($name, $hp, $power)
     {
         $this->name = $name;
         $this->hp = $hp;
         $this->power = $power;
-        $active= false;
         if (empty($name) && empty($hp)&& empty($power))
         {
-            $active= true;
+            $this->active= false;
+        } else {
+            $this->active= true;
         }
     }
     public function getActive()
@@ -49,6 +50,8 @@ if ($c->getActive()) {
     echo("私の名前は".$c->getName()."\n");
     echo("HPは".$c->getHp()."\n");
     echo("力は".$c->getPower()."\n");
+} else {
+    echo "matigai";
 }
 
 
