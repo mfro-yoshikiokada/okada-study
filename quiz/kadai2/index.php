@@ -1,7 +1,5 @@
 <?php
 
-namespace Kadai;
-
 class Brave {
     public $name;
     public $hp;
