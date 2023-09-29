@@ -9,7 +9,8 @@ class Brave
     public $power;
     public $active=false;
 
-    public function __construct ($name, $hp, $power) {
+    public function __construct($name, $hp, $power)
+    {
         $this->name = $name;
         $this->hp = $hp;
         $this->power = $power;
@@ -19,24 +20,32 @@ class Brave
             $this->active= true;
         }
     }
-    public function getActive () {
+
+    public function getActive()
+    {
         return $this->active;
     }
-    public function getName () {
+
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getHp () {
+    public function getHp()
+    {
         return $this->hp;
     }
 
-    public function getPower () {
+    public function getPower()
+    {
         return $this->power;
     }
 
-    public function attack () {
+    public function attack()
+    {
         echo "こうげきをした！";
     }
+
 }
 
 $c = new Brave('異世界転生マン', '1000', '500');
