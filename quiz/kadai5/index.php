@@ -39,7 +39,6 @@ abstract class Character
     {
         $this->hp = $hp;
     }
-
 }
 
 class Brave extends Character
@@ -125,7 +124,7 @@ class Operator
                     echo "てきは倒れた";
                     break;
                 }
-                $this->attackEnemy($ally,$enemy);
+                $this->attackEnemy($ally, $enemy);
             }
             if ($ally->getHp()<=0) {
                 echo "勇者はたおれた";
