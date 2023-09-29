@@ -41,4 +41,3 @@ abstract class Character
         $this->hp = $hp;
     }
 }
-
