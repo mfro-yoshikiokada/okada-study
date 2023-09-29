@@ -51,8 +51,6 @@ class Brave extends Character
         $this->hp = $hp;
         $this->power = $power;
     }
-
-
 }
 
 class Monster extends Character
@@ -116,12 +114,14 @@ class Operator
     {
         $ally = $this->ally;
         $enemy = $this->enemy;
-        if ($this->dataCheck($ally) &&  $this->dataCheck($ally)) {
+        if ($this->dataCheck($ally) && $this->dataCheck($ally))
+        {
             echo $ally->getHp();
-            while ($ally->getHp()>=0) {
-
+            while ($ally->getHp()>=0)
+            {
                 $this->attackAlly($ally,$enemy);
-                if ($enemy->getHp()<=0){
+                if ($enemy->getHp()<=0)
+                {
                     echo "てきは倒れた";
                     break;
                 }
