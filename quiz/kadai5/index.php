@@ -1,5 +1,9 @@
 <?php
-abstract class Character {
+
+namespace Quiz\Kadai5;
+
+abstract class Character
+{
     protected $name;
     protected $hp;
     protected $power;
@@ -38,9 +42,10 @@ abstract class Character {
 
 }
 
-class Brave extends Character {
+class Brave extends Character
+{
 
-    public function __construct(string $name, int $hp,  int $power)
+    public function __construct(string $name, int $hp, int $power)
     {
         $this->name = $name;
         $this->hp = $hp;
@@ -50,7 +55,8 @@ class Brave extends Character {
 
 
 }
-class Monster extends Character {
+class Monster extends Character
+{
     public function __construct(string $name, int $hp, int $power)
     {
         $this->name = $name;
@@ -65,16 +71,19 @@ class Monster extends Character {
 class Operator{
     public $ally;
     protected $enemy;
-    public function setAlly($arg) {
+    public function setAlly($arg)
+    {
         $this->ally = $arg;
 
     }
-    public function setEnemy($arg) {
+    public function setEnemy($arg)
+    {
 
         $this->enemy = $arg;
 
     }
-    private function attackAlly($ally,$enemy) {
+    private function attackAlly($ally, $enemy)
+    {
         $hp = $enemy->getHp();
 
         $hp = $hp - $ally->getPower();
@@ -84,7 +93,8 @@ class Operator{
         echo "てきの残りHP".$hp."<br>";
         return  $enemy;
     }
-    private function attackEnemy($ally,$enemy) {
+    private function attackEnemy($ally, $enemy)
+    {
         $hp = $ally->getHp();
 
         $hp = $hp - $enemy->getPower();
@@ -94,14 +104,16 @@ class Operator{
         echo "みかたの残りHP".$hp."<br>";
         return  $ally;
     }
-    private function dataCheck($e) {
+    private function dataCheck($e)
+    {
         if (empty($e->getName()) && empty($e->getPower()) && empty($e->getHp())) {
             return false;
         } else {
             return true;
         }
     }
-    public function fight() {
+    public function fight()
+    {
         $ally = $this->ally;
         $enemy = $this->enemy;
         if ($this->dataCheck($ally) &&  $this->dataCheck($ally)) {
