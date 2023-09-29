@@ -3,7 +3,6 @@
 
 namespace Quiz\Kadai2;
 
-
 class Brave
 {
     public $name;

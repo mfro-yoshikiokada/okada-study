@@ -3,7 +3,6 @@
 
 namespace Quiz\Kadai5;
 
-
 abstract class Character
 {
     protected $name;

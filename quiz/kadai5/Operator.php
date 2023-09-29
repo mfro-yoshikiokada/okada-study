@@ -3,8 +3,6 @@
 
 namespace Quiz\Kadai5;
 
-
-
 class Operator
 {
     public $ally;
