@@ -45,7 +45,6 @@ class Brave
     {
         echo "こうげきをした！";
     }
-
 }
 
 $c = new Brave('異世界転生マン', '1000', '500');
@@ -56,4 +55,3 @@ if ($c->getActive())  {
 } else {
     echo "matigai";
 }
-
