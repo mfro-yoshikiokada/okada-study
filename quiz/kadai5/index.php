@@ -50,11 +50,11 @@ class Brave extends Character
         $this->name = $name;
         $this->hp = $hp;
         $this->power = $power;
-
     }
 
 
 }
+
 class Monster extends Character
 {
     public function __construct(string $name, int $hp, int $power)
@@ -62,26 +62,23 @@ class Monster extends Character
         $this->name = $name;
         $this->hp = $hp;
         $this->power = $power;
-
     }
-
-
 }
 
-class Operator{
+class Operator
+{
     public $ally;
     protected $enemy;
     public function setAlly($arg)
     {
         $this->ally = $arg;
-
     }
+
     public function setEnemy($arg)
     {
-
         $this->enemy = $arg;
-
     }
+
     private function attackAlly($ally, $enemy)
     {
         $hp = $enemy->getHp();
@@ -93,6 +90,7 @@ class Operator{
         echo "てきの残りHP".$hp."<br>";
         return  $enemy;
     }
+
     private function attackEnemy($ally, $enemy)
     {
         $hp = $ally->getHp();
@@ -104,6 +102,7 @@ class Operator{
         echo "みかたの残りHP".$hp."<br>";
         return  $ally;
     }
+
     private function dataCheck($e)
     {
         if (empty($e->getName()) && empty($e->getPower()) && empty($e->getHp())) {
@@ -112,6 +111,7 @@ class Operator{
             return true;
         }
     }
+
     public function fight()
     {
         $ally = $this->ally;
@@ -135,9 +135,8 @@ class Operator{
             echo "データを入力してください";
         }
     }
-
-
 }
+
 $ope = new Operator();
 $ope->setAlly(new Brave('勇者', 300 , 100));
 $ope->setEnemy(new Monster('魔王', 400 , 120));
