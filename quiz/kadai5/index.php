@@ -126,18 +126,17 @@ class Operator
                     break;
                 }
                 $this->attackEnemy($ally,$enemy);
-
             }
             if ($ally->getHp()<=0) {
                 echo "勇者はたおれた";
             }
-        }else {
+        } else {
             echo "データを入力してください";
         }
     }
 }
 
 $ope = new Operator();
-$ope->setAlly(new Brave('勇者', 300 , 100));
-$ope->setEnemy(new Monster('魔王', 400 , 120));
+$ope->setAlly(new Brave('勇者', 300, 100));
+$ope->setEnemy(new Monster('魔王', 400, 120));
 $ope->fight();
