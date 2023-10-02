@@ -11,30 +11,30 @@ abstract class Character
 
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
     /**
-     * @return mixed
+     * @return int
      */
-    public function getPower()
+    public function getPower():int
     {
         return $this->power;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getHp()
+    public function getHp():int
     {
         return $this->hp;
     }
 
     /**
-     * @param mixed $hp
+     * @param int $hp
      */
     public function setHp($hp): void
     {

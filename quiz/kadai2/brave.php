@@ -10,7 +10,7 @@ class Brave
     public $power;
     public $active = false;
 
-    public function __construct(string $name,int $hp,int $power)
+    public function __construct(string $name, int $hp, int $power)
     {
         $this->name = $name;
         $this->hp = $hp;

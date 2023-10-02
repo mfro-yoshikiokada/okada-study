@@ -5,7 +5,7 @@ namespace Quiz\Kadai4;
 class Brave extends Character
 {
 
-    public function __construct($name, $hp, $power)
+    public function __construct(string $name, int $hp, int $power)
     {
         $this->name = $name;
         $this->hp = $hp;
@@ -13,22 +13,26 @@ class Brave extends Character
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getPower()
+    public function getPower():int
     {
         return $this->power;
     }
 
-    public function attack($monster)
+    /**
+     * @param object
+     * @return object
+     */
+    public function attack(object $monster):object
     {
         $hp = $monster->hp;
 

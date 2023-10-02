@@ -8,7 +8,7 @@ class Brave
     public $hp;
     public $power;
 
-    public function __construct( string $name, int $hp, int $power)
+    public function __construct(string $name, int $hp, int $power)
     {
         $this->name = $name;
         $this->hp = $hp;
@@ -31,7 +31,7 @@ class Brave
         return $this->power;
     }
     /**
-     * @return string
+     * @return object
      */
     public function attack(object $monster):object
     {

@@ -7,17 +7,29 @@ class Operator
 {
     public $ally;
     protected $enemy;
-    public function setAlly($arg)
+
+    /**
+     * @param object
+     */
+    public function setAlly(object $arg)
     {
         $this->ally = $arg;
     }
 
-    public function setEnemy($arg)
+    /**
+     * @param object
+     */
+    public function setEnemy(object $arg)
     {
         $this->enemy = $arg;
     }
 
-    private function attackAlly($ally, $enemy)
+    /**
+     * @param object $ally
+     * @param object $enemy
+     * @return object
+     */
+    private function attackAlly(object $ally, object $enemy)
     {
         $hp = $enemy->getHp();
 
@@ -29,7 +41,12 @@ class Operator
         return  $enemy;
     }
 
-    private function attackEnemy($ally, $enemy)
+    /**
+     * @param object $ally
+     * @param object $enemy
+     * @return object
+     */
+    private function attackEnemy(object $ally, object $enemy)
     {
         $hp = $ally->getHp();
 
@@ -41,7 +58,10 @@ class Operator
         return  $ally;
     }
 
-    private function dataCheck($e)
+    /**
+     * @param object
+     */
+    private function dataCheck(object $e)
     {
         if (empty($e->getName()) && empty($e->getPower()) && empty($e->getHp())) {
             return false;

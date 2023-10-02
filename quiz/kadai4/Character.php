@@ -4,7 +4,7 @@ namespace Quiz\Kadai4;
 
 abstract class Character
 {
-    protected $name;
+    protected $name="";
     protected $hp;
     protected $power;
 
@@ -12,14 +12,14 @@ abstract class Character
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
     /**
      * @return mixed
      */
-    public function getPower()
+    public function getPower():int
     {
         return $this->power;
     }
@@ -27,15 +27,15 @@ abstract class Character
     /**
      * @return mixed
      */
-    public function getHp()
+    public function getHp():int
     {
         return $this->hp;
     }
 
     /**
-     * @param mixed $hp
+     * @param int $hp
      */
-    public function setHp($hp): void
+    public function setHp(int $hp): void
     {
         $this->hp = $hp;
     }

@@ -5,23 +5,23 @@ namespace Quiz\Kadai4;
 class Monster extends Character
 {
 
-    public function __construct($hp)
+    public function __construct(int $hp)
     {
         $this->hp = $hp;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getHp()
+    public function getHp():int
     {
         return $this->hp;
     }
 
     /**
-     * @param mixed $hp
+     * @param int $hp
      */
-    public function setHp($hp): void
+    public function setHp(int $hp): void
     {
         $this->hp = $hp;
     }
