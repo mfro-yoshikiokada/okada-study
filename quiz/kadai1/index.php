@@ -1,8 +1,8 @@
 <?php
-class Brave {
-    public function attack () {
-        echo "こうげきをした！";
-    }
-}
+
+require_once 'Brave.php';
+
+use Quiz\Kadai1\Brave;
+
 $c = new Brave();
 $c->attack();
