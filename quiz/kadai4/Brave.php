@@ -2,10 +2,6 @@
 
 namespace Quiz\Kadai4;
 
-require_once 'Character.php';
-
-use Quiz\Kadai4\Character;
-
 class Brave extends Character
 {
 
