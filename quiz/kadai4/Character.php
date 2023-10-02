@@ -2,7 +2,8 @@
 
 namespace Quiz\Kadai4;
 
-abstract class Character {
+abstract class Character
+{
     protected $name;
     protected $hp;
     protected $power;
@@ -38,5 +39,4 @@ abstract class Character {
     {
         $this->hp = $hp;
     }
-
 }

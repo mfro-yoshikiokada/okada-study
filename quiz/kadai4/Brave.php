@@ -6,14 +6,14 @@ require_once 'Character.php';
 
 use Quiz\Kadai4\Character;
 
-class Brave extends Character {
+class Brave extends Character
+{
 
     public function __construct($name, $hp, $power)
     {
         $this->name = $name;
         $this->hp = $hp;
         $this->power = $power;
-
     }
 
     /**
@@ -42,5 +42,4 @@ class Brave extends Character {
 
         return $monster;
     }
-
 }

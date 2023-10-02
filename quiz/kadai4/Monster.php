@@ -6,10 +6,10 @@ require_once 'Character.php';
 
 use Quiz\Kadai4\Character;
 
-class Monster extends Character {
-    // 実装する
+class Monster extends Character
+{
 
-    public function __construct( $hp)
+    public function __construct($hp)
     {
         $this->hp = $hp;
     }
