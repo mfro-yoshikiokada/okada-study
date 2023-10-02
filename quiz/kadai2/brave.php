@@ -8,9 +8,9 @@ class Brave
     public $name;
     public $hp;
     public $power;
-    public $active=false;
+    public $active = false;
 
-    public function __construct($name, $hp, $power)
+    public function __construct(string $name,int $hp,int $power)
     {
         $this->name = $name;
         $this->hp = $hp;
@@ -22,27 +22,27 @@ class Brave
         }
     }
 
-    public function getActive()
+    public function getActive():bool
     {
         return $this->active;
     }
 
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
 
-    public function getHp()
+    public function getHp():int
     {
         return $this->hp;
     }
 
-    public function getPower()
+    public function getPower():int
     {
         return $this->power;
     }
 
-    public function attack()
+    public function attack():void
     {
         echo "こうげきをした！";
     }

@@ -6,7 +6,7 @@ class Monster
 {
     public $hp;
 
-    public function __construct($hp)
+    public function __construct(int $hp)
     {
         $this->hp = $hp;
     }
@@ -14,7 +14,7 @@ class Monster
     /**
      * @return mixed
      */
-    public function getHp()
+    public function getHp():int
     {
         return $this->hp;
     }

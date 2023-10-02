@@ -8,7 +8,7 @@ class Brave
     public $hp;
     public $power;
 
-    public function __construct($name, $hp, $power)
+    public function __construct( string $name, int $hp, int $power)
     {
         $this->name = $name;
         $this->hp = $hp;
@@ -16,22 +16,24 @@ class Brave
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName():string
     {
         return $this->name;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPower()
+    public function getPower():string
     {
         return $this->power;
     }
-
-    public function attack($monster)
+    /**
+     * @return string
+     */
+    public function attack(object $monster):object
     {
         $hp = $monster->hp;
 
