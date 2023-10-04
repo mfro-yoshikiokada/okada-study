@@ -29,10 +29,10 @@ class Brave extends Character
     }
 
     /**
-     * @param object
-     * @return object
+     * @param Monster
+     * @return Monster
      */
-    public function attack(object $monster):object
+    public function attack(Monster $monster):Monster
     {
         $hp = $monster->hp;
 

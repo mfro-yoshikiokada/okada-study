@@ -39,11 +39,11 @@ class Brave
      * @param Monster $monster
      * @return Monster
      */
-    public function attack(Monster $monster): Monster {
+    public function attack(Monster $monster): Monster
+    {
         $hp = $monster->getHp();
         $hp -= $this->power;
         $monster->setHp($hp);
         return $monster;
     }
-
 }

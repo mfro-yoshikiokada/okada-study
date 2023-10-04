@@ -10,14 +10,14 @@ abstract class Character
 
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName():string
     {
         return $this->name;
     }
     /**
-     * @return mixed
+     * @return int
      */
     public function getPower():int
     {
@@ -25,7 +25,7 @@ abstract class Character
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getHp():int
     {
