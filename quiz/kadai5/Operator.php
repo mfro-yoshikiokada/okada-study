@@ -46,7 +46,7 @@ class Operator
      * @param Monster $enemy
      * @return Brave
      */
-    private function attackEnemy(Brave $ally,  Monster $enemy)
+    private function attackEnemy(Brave $ally, Monster $enemy)
     {
         $hp = $ally->getHp();
 

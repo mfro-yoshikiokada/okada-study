@@ -2,10 +2,6 @@
 
 namespace Quiz\Kadai3;
 
-require_once 'Monster.php';
-
-use Quiz\Kadai3\Monster;
-
 class Brave
 {
     public string $name;
