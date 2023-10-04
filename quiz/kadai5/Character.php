@@ -11,7 +11,7 @@ abstract class Character
 
 
     /**
-     * @return int
+     * @return string
      */
     public function getName():string
     {

@@ -8,7 +8,6 @@ abstract class Character
     protected int $hp;
     protected int $power;
 
-
     /**
      * @return string
      */
@@ -16,6 +15,7 @@ abstract class Character
     {
         return $this->name;
     }
+
     /**
      * @return int
      */

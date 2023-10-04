@@ -7,7 +7,7 @@ class Brave
     /**
      * @return string
      */
-    public function attack()
+    public function attack():string
     {
         return "こうげきをした！";
     }

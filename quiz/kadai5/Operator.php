@@ -58,18 +58,6 @@ class Operator
         return  $ally;
     }
 
-    /**
-     * @param object
-     */
-    private function dataCheck(object $e)
-    {
-        if (empty($e->getName()) && empty($e->getPower()) && empty($e->getHp())) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public function fight()
     {
         $ally = $this->ally;
