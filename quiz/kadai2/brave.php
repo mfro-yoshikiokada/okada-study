@@ -15,7 +15,6 @@ class Brave
         $this->name = $name;
         $this->hp = $hp;
         $this->power = $power;
-
     }
 
     public function getName():string
