@@ -9,7 +9,6 @@ class Brave
     private int $hp;
     private int $power;
 
-
     public function __construct(string $name, int $hp, int $power)
     {
         $this->name = $name;
