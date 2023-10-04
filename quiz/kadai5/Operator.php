@@ -5,8 +5,8 @@ namespace Quiz\Kadai5;
 
 class Operator
 {
-    protected $ally;
-    protected $enemy;
+    protected Brave $ally;
+    protected Monster $enemy;
 
     /**
      * @param Brave

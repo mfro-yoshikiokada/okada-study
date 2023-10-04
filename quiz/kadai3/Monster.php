@@ -4,7 +4,7 @@ namespace Quiz\Kadai3;
 
 class Monster
 {
-    public $hp;
+    public int $hp;
 
     public function __construct(int $hp)
     {

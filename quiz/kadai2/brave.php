@@ -5,9 +5,9 @@ namespace Quiz\Kadai2;
 
 class Brave
 {
-    private $name;
-    private $hp;
-    private $power;
+    private string $name;
+    private int $hp;
+    private int $power;
 
 
     public function __construct(string $name, int $hp, int $power)

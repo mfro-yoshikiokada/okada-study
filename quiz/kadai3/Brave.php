@@ -8,9 +8,9 @@ use Quiz\Kadai3\Monster;
 
 class Brave
 {
-    public $name;
-    public $hp;
-    public $power;
+    public string $name;
+    public int $hp;
+    public int $power;
 
     public function __construct(string $name, int $hp, int $power)
     {
