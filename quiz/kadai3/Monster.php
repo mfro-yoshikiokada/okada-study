@@ -12,7 +12,7 @@ class Monster
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getHp():int
     {
@@ -20,7 +20,7 @@ class Monster
     }
 
     /**
-     * @param mixed $hp
+     * @param int $hp
      */
     public function setHp($hp): void
     {

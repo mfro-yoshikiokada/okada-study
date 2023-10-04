@@ -37,7 +37,7 @@ class Brave
     {
         $hp = $monster->hp;
 
-        $hp = $hp - $this->power;
+        $hp -= $this->power;
 
         $monster->setHp($hp);
 
