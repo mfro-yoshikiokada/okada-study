@@ -2,6 +2,10 @@
 
 namespace Quiz\Kadai3;
 
+require_once 'Monster.php';
+
+use Quiz\Kadai3\Monster;
+
 class Brave
 {
     public $name;
@@ -30,17 +34,16 @@ class Brave
     {
         return $this->power;
     }
+
     /**
-     * @return object
+     * @param Monster $monster
+     * @return Monster
      */
-    public function attack(object $monster):object
-    {
-        $hp = $monster->hp;
-
+    public function attack(Monster $monster): Monster {
+        $hp = $monster->getHp();
         $hp -= $this->power;
-
         $monster->setHp($hp);
-
         return $monster;
     }
+
 }

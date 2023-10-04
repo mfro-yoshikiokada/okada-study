@@ -5,31 +5,31 @@ namespace Quiz\Kadai5;
 
 class Operator
 {
-    public $ally;
+    protected $ally;
     protected $enemy;
 
     /**
-     * @param object
+     * @param Brave
      */
-    public function setAlly(object $arg)
+    public function setAlly(Brave $arg)
     {
         $this->ally = $arg;
     }
 
     /**
-     * @param object
+     * @param Monster
      */
-    public function setEnemy(object $arg)
+    public function setEnemy(Monster $arg)
     {
         $this->enemy = $arg;
     }
 
     /**
-     * @param object $ally
-     * @param object $enemy
-     * @return object
+     * @param Brave $ally
+     * @param Monster $enemy
+     * @return Monster
      */
-    private function attackAlly(object $ally, object $enemy)
+    private function attackAlly(Brave $ally, Monster $enemy)
     {
         $hp = $enemy->getHp();
 
@@ -42,11 +42,11 @@ class Operator
     }
 
     /**
-     * @param object $ally
-     * @param object $enemy
-     * @return object
+     * @param Brave $ally
+     * @param Monster $enemy
+     * @return Brave
      */
-    private function attackEnemy(object $ally, object $enemy)
+    private function attackEnemy(Brave $ally,  Monster $enemy)
     {
         $hp = $ally->getHp();
 
@@ -74,21 +74,18 @@ class Operator
     {
         $ally = $this->ally;
         $enemy = $this->enemy;
-        if ($this->dataCheck($ally) && $this->dataCheck($ally)) {
-            echo $ally->getHp();
-            while ($ally->getHp()>=0) {
-                $this->attackAlly($ally, $enemy);
-                if ($enemy->getHp()<=0) {
-                    echo "てきは倒れた";
-                    break;
-                }
-                $this->attackEnemy($ally, $enemy);
+
+        echo $ally->getHp();
+        while ($ally->getHp()>=0) {
+            $this->attackAlly($ally, $enemy);
+            if ($enemy->getHp()<=0) {
+                echo "てきは倒れた";
+                break;
             }
-            if ($ally->getHp()<=0) {
-                echo "勇者はたおれた";
-            }
-        } else {
-            echo "データを入力してください";
+            $this->attackEnemy($ally, $enemy);
+        }
+        if ($ally->getHp()<=0) {
+            echo "勇者はたおれた";
         }
     }
 }
