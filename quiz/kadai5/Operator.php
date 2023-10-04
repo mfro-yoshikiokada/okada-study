@@ -5,8 +5,8 @@ namespace Quiz\Kadai5;
 
 class Operator
 {
-    protected Brave $ally;
-    protected Monster $enemy;
+    private Brave $ally;
+    private Monster $enemy;
 
     /**
      * @param Brave
@@ -29,7 +29,7 @@ class Operator
      * @param Monster $enemy
      * @return Monster
      */
-    private function attackAlly(Brave $ally, Monster $enemy)
+    private function attackAlly(Brave $ally, Monster $enemy):Monster
     {
         $hp = $enemy->getHp();
 
@@ -46,7 +46,7 @@ class Operator
      * @param Monster $enemy
      * @return Brave
      */
-    private function attackEnemy(Brave $ally, Monster $enemy)
+    private function attackEnemy(Brave $ally, Monster $enemy):Brave
     {
         $hp = $ally->getHp();
 
@@ -62,11 +62,9 @@ class Operator
     {
         $ally = $this->ally;
         $enemy = $this->enemy;
-
-        echo $ally->getHp();
-        while ($ally->getHp()>=0) {
+        while ($ally->getHp()>0) {
             $this->attackAlly($ally, $enemy);
-            if ($enemy->getHp()<=0) {
+            if ($enemy->getHp()<0) {
                 echo "てきは倒れた";
                 break;
             }

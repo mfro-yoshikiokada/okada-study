@@ -22,7 +22,7 @@ class Monster
     /**
      * @param int $hp
      */
-    public function setHp($hp): void
+    public function setHp(int $hp): void
     {
         $this->hp = $hp;
     }

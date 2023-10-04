@@ -10,19 +10,4 @@ class Monster extends Character
         $this->hp = $hp;
     }
 
-    /**
-     * @return int
-     */
-    public function getHp():int
-    {
-        return $this->hp;
-    }
-
-    /**
-     * @param int $hp
-     */
-    public function setHp(int $hp): void
-    {
-        $this->hp = $hp;
-    }
 }

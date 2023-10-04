@@ -1,5 +1,5 @@
 # ベースとなるイメージを指定
-FROM php:7.2-apache
+FROM php:7.4-apache
 
 # 必要なパッケージのインストール
 RUN apt-get update && apt-get install -y libonig-dev unzip git \

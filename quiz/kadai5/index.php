@@ -12,5 +12,5 @@ use Quiz\Kadai5\Operator;
 
 $ope = new Operator();
 $ope->setAlly(new Brave('勇者', 300, 100));
-$ope->setEnemy(new Monster('魔王', 400, 120));
+$ope->setEnemy(new Monster('魔王', 400, 100));
 $ope->fight();

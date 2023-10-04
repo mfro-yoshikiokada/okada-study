@@ -2,6 +2,7 @@ version: '3'
 
 services:
   php:
+    image: php:7.4-apache
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,7 +10,7 @@ services:
       - .:/var/www/html
     ports:
       - 8000:80
-    container_name: php7.2-trial2
+    container_name: php7.4-trial2
 
   mysql:
     platform: linux/x86_64 # Mac M1用

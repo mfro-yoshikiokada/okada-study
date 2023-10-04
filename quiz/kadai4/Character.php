@@ -9,25 +9,9 @@ abstract class Character
     protected int $power;
 
     /**
-     * @return string
-     */
-    public function getName():string
-    {
-        return $this->name;
-    }
-
-    /**
      * @return int
      */
-    public function getPower():int
-    {
-        return $this->power;
-    }
-
-    /**
-     * @return int
-     */
-    public function getHp():int
+    public function getHp(): int
     {
         return $this->hp;
     }
