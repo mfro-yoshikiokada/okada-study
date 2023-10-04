@@ -31,9 +31,4 @@ class Brave
     {
         return $this->power;
     }
-
-    public function attack():void
-    {
-        echo "こうげきをした！";
-    }
 }

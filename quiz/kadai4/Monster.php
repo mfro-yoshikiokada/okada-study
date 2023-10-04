@@ -9,5 +9,4 @@ class Monster extends Character
     {
         $this->hp = $hp;
     }
-
 }
