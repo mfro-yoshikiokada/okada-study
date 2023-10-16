@@ -5,8 +5,8 @@ namespace Quiz\Kadai4;
 class Brave extends Character
 {
 
-    protected string $name;
-    protected int $power;
+    private string $name;
+    private int $power;
 
     public function __construct(string $name, int $hp, int $power)
     {
