@@ -4,9 +4,7 @@ namespace Quiz\Kadai4;
 
 abstract class Character
 {
-    protected string $name;
     protected int $hp;
-    protected int $power;
 
     /**
      * @return int
