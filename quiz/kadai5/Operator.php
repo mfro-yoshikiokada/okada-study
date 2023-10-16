@@ -64,7 +64,7 @@ class Operator
         $enemy = $this->enemy;
         while ($ally->getHp()>0) {
             $this->attackAlly($ally, $enemy);
-            if ($enemy->getHp()<0) {
+            if ($enemy->getHp()<=0) {
                 echo "てきは倒れた";
                 break;
             }
