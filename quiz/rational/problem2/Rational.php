@@ -1,11 +1,13 @@
 <?php
+namespace Rational\problem2;
+
+
 class Rational
 {
-    // この中を実装する
     private int $numerator;
     private int $denominator;
 
-    public function __construct(int $numerator,int $denominator)
+    public function __construct(int $numerator, int $denominator)
     {
         $this->numerator= $numerator;
         $this->denominator=$denominator;
@@ -26,8 +28,3 @@ class Rational
         }
     }
 }
-
-$quarter = new Rational(1, 4);
-echo $quarter->display(); // 「1/4」が出力される
-echo $quarter->number(1); // 「0.3」が出力される
-echo $quarter->number();  // 「0.25」が出力される
