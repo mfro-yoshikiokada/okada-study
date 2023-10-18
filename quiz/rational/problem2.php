@@ -11,19 +11,20 @@ class Rational
         $this->denominator=$denominator;
     }
 
-    public function display () {
+    public function display()
+    {
 
         return "$this->numerator / $this->denominator";
     }
 
-    public function number($precision = null) {
+    public function number($precision = null)
+    {
         if ($precision === null) {
             return round($this->numerator / $this->denominator, 2);
         } else {
             return round($this->numerator / $this->denominator, $precision);
         }
     }
-
 }
 
 $quarter = new Rational(1, 4);

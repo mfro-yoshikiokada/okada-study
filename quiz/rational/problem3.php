@@ -7,18 +7,17 @@ class Rational
     public function __construct($numerator, $denominator)
     {
         try {
-
-            if ($numerator==0 || $denominator==0) {
+            if($numerator==0 || $denominator==0)
+            {
                 throw new \Exception();
 
             }
-            if(is_int($numerator) || is_int($denominator)) {
+            if(is_int($numerator) || is_int($denominator))
+            {
                 throw new \Exception();
             }
             $this->numerator= $numerator;
             $this->denominator=$denominator;
-
-
         }catch (Exception $e) {
             exit();
         }

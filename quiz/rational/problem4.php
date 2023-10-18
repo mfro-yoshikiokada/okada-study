@@ -12,13 +12,16 @@ class Rational {
         $remainder = 1;
         $newNumerator= 0;
         $newDenominator = 0;
-        while ($remainder != 0) {
+        while($remainder != 0)
+        {
             $remainder = $denominator% $numerator;
-            if ($remainder==0) {
+            if($remainder==0)
+            {
                 $greatestCommonDivisor=$numerator;
                 $newNumerator= $originalNumerator/$greatestCommonDivisor;
                 $newDenominator= $originalDenominator/$greatestCommonDivisor;
-            } else {
+            }else
+            {
                 $denominator=$numerator;
                 $numerator=$remainder;
             }
@@ -27,7 +30,8 @@ class Rational {
         $this->denominator=$newDenominator;
     }
 
-    public function display () {
+    public function display()
+    {
         return "$this->numerator / $this->denominator";
     }
 }
