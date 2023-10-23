@@ -1,7 +1,6 @@
 <?php
 namespace Rational\problem2;
 
-
 class Rational
 {
     private int $numerator;

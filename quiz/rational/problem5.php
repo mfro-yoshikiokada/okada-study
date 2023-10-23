@@ -30,7 +30,7 @@ class Rational {
                 $numerator=$remainder;
             }
         }
-        return "$newNumerator/$newDenominator";
+        return [$newNumerator,$newDenominator];
     }
 
     public function display () {
@@ -38,9 +38,18 @@ class Rational {
         return "$this->numerator / $this->denominator";
     }
 
-    public function add($num){
-        echo $num;
-
+    public function add($other){
+        if ($other instanceof Rational) {
+            $denominatorMultiplied=$this->denominator * $other->denominator;
+            $moleculeMultiplied=$denominatorMultiplied*$other->numerator+$denominatorMultiplied*$this->numerator;
+            $result= $this->approx( $moleculeMultiplied, $denominatorMultiplied);
+            $this->numerator=$result[1];
+            echo $result[1];
+            echo "<br/>";
+            $this->denominator=$result[0];
+            echo $result[0];
+            echo "<br/>";
+        }
     }
 }
 
