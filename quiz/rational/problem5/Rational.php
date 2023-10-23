@@ -1,6 +1,9 @@
 <?php
 
-class Rational {
+namespace Rational\problem5;
+
+class Rational
+{
     private int $numerator;
     private int $denominator;
 
@@ -38,26 +41,15 @@ class Rational {
         return "$this->numerator / $this->denominator";
     }
 
-    public function add($other){
+    public function add($other)
+    {
         if ($other instanceof Rational) {
             $denominatorMultiplied=$this->denominator * $other->denominator;
-            $moleculeMultiplied=$denominatorMultiplied*$other->numerator+$denominatorMultiplied*$this->numerator;
+            $moleculeMultiplied=$this->denominator*$other->numerator+$other->denominator*$this->numerator;
             $result= $this->approx( $moleculeMultiplied, $denominatorMultiplied);
-            $this->numerator=$result[1];
-            echo $result[1];
-            echo "<br/>";
-            $this->denominator=$result[0];
-            echo $result[0];
-            echo "<br/>";
+            return new Rational($result[0], $result[1]);
+        } else {
+            echo "error";
         }
     }
 }
-
-$half = new Rational(1, 2);
-$quarter = new Rational(1, 4);
-
-$result = $half->add($quarter);
-
-echo $half->display();    // 「1/2」が出力される
-echo $quarter->display(); // 「1/4」が出力される
-echo $result->display();  // 「3/4」が出力される
