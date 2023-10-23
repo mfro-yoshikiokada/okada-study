@@ -12,7 +12,7 @@ class Rational
         $this->numerator= $numerator;
         $this->denominator=$denominator;
     }
-    private function approx(int $numerator,int $denominator)
+    private function approx(int $numerator, int $denominator)
     {
         $originalNumerator=$numerator;
         $originalDenominator=$denominator;
