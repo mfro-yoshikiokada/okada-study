@@ -1,7 +1,6 @@
 <?php
 namespace Rational\problem6;
 
-require_once "Rational.php";
 require_once "RationalInterface.php";
 
 use Rational\problem6\RationalInterface;
@@ -25,7 +24,7 @@ class MutableRational implements RationalInterface
 
     public function add($other)
     {
-        if ($other instanceof Rational || $other instanceof MutableRational) {
+        if ( $other instanceof MutableRational) {
             $denominatorMultiplied = $this->denominator * $other->denominator;
             $moleculeMultiplied = $this->denominator * $other->numerator + $other->denominator * $this->numerator;
             $result = $this->approx($moleculeMultiplied, $denominatorMultiplied);
