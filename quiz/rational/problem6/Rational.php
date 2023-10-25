@@ -2,11 +2,15 @@
 
 namespace Rational\problem6;
 
-require_once "RationalInterface.php";
 require_once "MutableRational.php";
 
-use Rational\problem6\RationalInterface;
 use Rational\problem6\MutableRational;
+
+interface RationalInterface
+{
+    public function display();
+    public function add($other);
+}
 
 class Rational implements RationalInterface
 {

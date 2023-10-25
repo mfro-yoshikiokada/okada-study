@@ -2,9 +2,11 @@
 
 namespace Rational\problem6;
 
-require_once "RationalInterface.php";
-
-use Rational\problem6\RationalInterface;
+interface RationalInterface
+{
+    public function display();
+    public function add($other);
+}
 
 class MutableRational implements RationalInterface
 {
@@ -16,6 +18,7 @@ class MutableRational implements RationalInterface
         $this->numerator= $numerator;
         $this->denominator=$denominator;
     }
+
     private function approx(int $numerator, int $denominator)
     {
         $originalNumerator=$numerator;
