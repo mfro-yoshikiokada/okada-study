@@ -1,5 +1,6 @@
 <?php
 require_once "Rational.php";
+require_once "MutableRational.php";
 require_once "RationalInterface.php";
 
 use Rational\problem6\RationalInterface;

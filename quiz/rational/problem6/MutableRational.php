@@ -3,12 +3,11 @@
 namespace Rational\problem6;
 
 require_once "RationalInterface.php";
-require_once "MutableRational.php";
 
 use Rational\problem6\RationalInterface;
-use Rational\problem6\MutableRational;
 
-class Rational implements RationalInterface
+
+class MutableRational implements RationalInterface
 {
     public int $numerator;
     public int $denominator;
@@ -46,11 +45,13 @@ class Rational implements RationalInterface
 
     public function add($other)
     {
-        if ($other instanceof Rational) {
+        if ($other instanceof Rational || $other instanceof MutableRational) {
             $denominatorMultiplied=$this->denominator * $other->denominator;
             $moleculeMultiplied=$this->denominator*$other->numerator+$other->denominator*$this->numerator;
             $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
-            return new Rational($result[0], $result[1]);
+            $this->numerator= $result[0];
+            $this->denominator=$result[1];
+            return new MutableRational($result[0], $result[1]);
         } else {
             echo "error";
         }
