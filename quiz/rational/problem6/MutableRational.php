@@ -1,12 +1,9 @@
 <?php
-
 namespace Rational\problem6;
 
-interface RationalInterface
-{
-    public function display();
-    public function add($other);
-}
+require_once "RationalInterface.php";
+
+use Rational\problem6\RationalInterface;
 
 class MutableRational implements RationalInterface
 {
@@ -18,8 +15,7 @@ class MutableRational implements RationalInterface
         $this->numerator= $numerator;
         $this->denominator=$denominator;
     }
-
-    private function approx(int $numerator, int $denominator)
+    private function approx(int $numerator, int $denominator):array
     {
         $originalNumerator=$numerator;
         $originalDenominator=$denominator;
@@ -40,22 +36,18 @@ class MutableRational implements RationalInterface
         return [$newNumerator,$newDenominator];
     }
 
-    public function display()
+    public function display():string
     {
         return "$this->numerator / $this->denominator";
     }
 
-    public function add($other)
+    public function add($other):MutableRational
     {
-        if ($other instanceof Rational || $other instanceof MutableRational) {
             $denominatorMultiplied=$this->denominator * $other->denominator;
             $moleculeMultiplied=$this->denominator*$other->numerator+$other->denominator*$this->numerator;
             $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
             $this->numerator= $result[0];
             $this->denominator=$result[1];
             return new MutableRational($result[0], $result[1]);
-        } else {
-            echo "error";
-        }
     }
 }
