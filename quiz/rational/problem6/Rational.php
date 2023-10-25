@@ -2,13 +2,9 @@
 
 namespace Rational\problem6;
 
-use MongoDB\BSON\RegexInterface;
+require_once "RationalInterface.php";
 
-interface RationalInterface
-{
-    public function display();
-    public function add($other);
-}
+use Rational\problem6\RationalInterface;
 
 class Rational implements RationalInterface
 {

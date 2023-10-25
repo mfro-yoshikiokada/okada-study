@@ -1,6 +1,7 @@
 <?php
 
 namespace Rational\problem5;
+
 use MongoDB\BSON\RegexInterface;
 
 class Rational
