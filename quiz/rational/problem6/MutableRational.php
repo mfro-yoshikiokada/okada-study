@@ -12,42 +12,47 @@ class MutableRational implements RationalInterface
 
     public function __construct(int $numerator, int $denominator)
     {
-        $this->numerator= $numerator;
-        $this->denominator=$denominator;
-    }
-    private function approx(int $numerator, int $denominator):array
-    {
-        $originalNumerator=$numerator;
-        $originalDenominator=$denominator;
-        $remainder = 1;
-        $newNumerator= 0;
-        $newDenominator = 0;
-        while ($remainder != 0) {
-            $remainder = $denominator% $numerator;
-            if ($remainder==0) {
-                $greatestCommonDivisor=$numerator;
-                $newNumerator= $originalNumerator/$greatestCommonDivisor;
-                $newDenominator= $originalDenominator/$greatestCommonDivisor;
-            } else {
-                $denominator=$numerator;
-                $numerator=$remainder;
-            }
-        }
-        return [$newNumerator,$newDenominator];
+        $this->numerator = $numerator;
+        $this->denominator = $denominator;
     }
 
-    public function display():string
+    public function display()
     {
         return "$this->numerator / $this->denominator";
     }
 
-    public function add($other):MutableRational
+    public function add($other)
     {
-            $denominatorMultiplied=$this->denominator * $other->denominator;
-            $moleculeMultiplied=$this->denominator*$other->numerator+$other->denominator*$this->numerator;
-            $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
-            $this->numerator= $result[0];
-            $this->denominator=$result[1];
+        if ($other instanceof Rational || $other instanceof MutableRational) {
+            $denominatorMultiplied = $this->denominator * $other->denominator;
+            $moleculeMultiplied = $this->denominator * $other->numerator + $other->denominator * $this->numerator;
+            $result = $this->approx($moleculeMultiplied, $denominatorMultiplied);
+            $this->numerator = $result[0];
+            $this->denominator = $result[1];
             return new MutableRational($result[0], $result[1]);
+        } else {
+            echo "error";
+        }
+    }
+
+    private function approx(int $numerator, int $denominator)
+    {
+        $originalNumerator = $numerator;
+        $originalDenominator = $denominator;
+        $remainder = 1;
+        $newNumerator = 0;
+        $newDenominator = 0;
+        while ($remainder != 0) {
+            $remainder = $denominator % $numerator;
+            if ($remainder == 0) {
+                $greatestCommonDivisor = $numerator;
+                $newNumerator = $originalNumerator / $greatestCommonDivisor;
+                $newDenominator = $originalDenominator / $greatestCommonDenominator;
+            } else {
+                $denominator = $numerator;
+                $numerator = $remainder;
+            }
+        }
+        return [$newNumerator, $newDenominator];
     }
 }
