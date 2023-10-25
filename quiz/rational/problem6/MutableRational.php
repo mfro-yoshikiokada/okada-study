@@ -35,7 +35,7 @@ class MutableRational implements RationalInterface
         }
     }
 
-    private function approx(int $numerator, int $denominator)
+    public function approx(int $numerator, int $denominator)
     {
         $originalNumerator = $numerator;
         $originalDenominator = $denominator;
