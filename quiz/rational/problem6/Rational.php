@@ -2,13 +2,7 @@
 
 namespace Rational\problem6;
 
-require_once "RationalInterface.php";
-require_once "MutableRational.php";
-
-use Rational\problem6\RationalInterface;
-use Rational\problem6\MutableRational;
-
-class Rational implements RationalInterface
+class Rational
 {
     public int $numerator;
     public int $denominator;
