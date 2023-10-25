@@ -1,8 +1,6 @@
 <?php
 namespace Rational\problem6;
 
-require_once "RationalInterface.php";
-
 use Rational\problem6\RationalInterface;
 use Rational\problem6\Rational;
 
