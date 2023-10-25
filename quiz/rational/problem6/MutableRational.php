@@ -6,7 +6,6 @@ require_once "RationalInterface.php";
 
 use Rational\problem6\RationalInterface;
 
-
 class MutableRational implements RationalInterface
 {
     public int $numerator;
