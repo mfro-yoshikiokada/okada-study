@@ -33,12 +33,12 @@ class Rational implements RationalInterface
         return [$newNumerator,$newDenominator];
     }
 
-    public function display()
+    public function display():string
     {
         return "$this->numerator / $this->denominator";
     }
 
-    public function add($other)
+    public function add(Rational $other):Rational
     {
             $denominatorMultiplied=$this->denominator * $other->denominator;
             $moleculeMultiplied=$this->denominator*$other->numerator+$other->denominator*$this->numerator;

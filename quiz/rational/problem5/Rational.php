@@ -14,7 +14,7 @@ class Rational
         $this->numerator= $numerator;
         $this->denominator=$denominator;
     }
-    private function approx(int $numerator, int $denominator)
+    private function approx(int $numerator, int $denominator):array
     {
         $originalNumerator=$numerator;
         $originalDenominator=$denominator;
@@ -35,7 +35,7 @@ class Rational
         return [$newNumerator,$newDenominator];
     }
 
-    public function display()
+    public function display():string
     {
         return "$this->numerator / $this->denominator";
     }

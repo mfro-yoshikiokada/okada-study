@@ -32,7 +32,7 @@ class MutableRational implements RationalInterface
         return [$newNumerator,$newDenominator];
     }
 
-    public function display()
+    public function display():string
     {
         return "$this->numerator / $this->denominator";
     }

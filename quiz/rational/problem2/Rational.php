@@ -14,7 +14,6 @@ class Rational
 
     public function display()
     {
-
         return "$this->numerator / $this->denominator";
     }
 
