@@ -2,7 +2,7 @@
 
 namespace Rational\problem6;
 
-class Rational
+class Rational implements RationalInterface
 {
     public int $numerator;
     public int $denominator;
