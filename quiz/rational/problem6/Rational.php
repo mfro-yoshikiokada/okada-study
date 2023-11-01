@@ -49,7 +49,6 @@ class Rational implements RationalInterface
         $moleculeMultiplied = $this->denominator * $other->numerator + $other->denominator * $this->numerator;
         $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
         return new Rational($result[0], $result[1]);
-
     }
 
     public function sub($other):Rational
