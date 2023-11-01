@@ -3,8 +3,8 @@ namespace Rational\problem6;
 
 interface RationalInterface
 {
-    public function display();
-    public function number();
-    public function add(Rational|MutableRational $other);
-    public function sub(Rational|MutableRational $other);
+    public function display():string;
+    public function number():int;
+    public function add($other);
+    public function sub($other);
 }

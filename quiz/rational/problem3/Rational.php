@@ -6,7 +6,7 @@ class Rational
     private int $numerator;
     private int $denominator;
 
-    public function __construct($numerator, $denominator)
+    public function __construct(int $numerator, int $denominator)
     {
         if ($denominator == 0 || !is_int($numerator) || !is_int($denominator)) {
             throw new \Exception("Invalid input");

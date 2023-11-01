@@ -40,7 +40,7 @@ class Rational
         return "$this->numerator / $this->denominator";
     }
 
-    public function add($other):Rational
+    public function add(Rational $other):Rational
     {
             $denominatorMultiplied=$this->denominator * $other->denominator;
             $moleculeMultiplied=$this->denominator*$other->numerator+$other->denominator*$this->numerator;
