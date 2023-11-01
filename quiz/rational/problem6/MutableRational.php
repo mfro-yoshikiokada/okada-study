@@ -48,13 +48,8 @@ class MutableRational implements RationalInterface
         $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
         $this->numerator= $result[0];
         $this->denominator=$result[1];
-        if ($other instanceof MutableRational) {
-            $this->numerator = $result[0];
-            $this->denominator = $result[1];
-            return $this;
-        } else {
-            return new Rational($result[0], $result[1]);
-        }
+        return $this;
+
     }
 
     public function sub($other):Rational|MutableRational
@@ -64,12 +59,6 @@ class MutableRational implements RationalInterface
         $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
         $this->numerator= $result[0];
         $this->denominator=$result[1];
-        if ($other instanceof MutableRational) {
-            $this->numerator = $result[0];
-            $this->denominator = $result[1];
-            return $this;
-        } else {
-            return new Rational($result[0], $result[1]);
-        }
+        return $this;
     }
 }

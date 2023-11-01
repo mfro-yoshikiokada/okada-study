@@ -43,31 +43,20 @@ class Rational implements RationalInterface
         return $this->numerator % $this->denominator;
     }
 
-    public function add($other):Rational|MutableRational
+    public function add($other):Rational
     {
         $denominatorMultiplied = $this->denominator * $other->denominator;
         $moleculeMultiplied = $this->denominator * $other->numerator + $other->denominator * $this->numerator;
         $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
-        if ($other instanceof MutableRational) {
-            $this->numerator = $result[0];
-            $this->denominator = $result[1];
-            return $this;
-        } else {
-            return new Rational($result[0], $result[1]);
-        }
+        return new Rational($result[0], $result[1]);
+
     }
 
-    public function sub($other):Rational|MutableRational
+    public function sub($other):Rational
     {
         $denominatorMultiplied = $this->denominator * $other->denominator;
         $moleculeMultiplied = $this->denominator * $other->numerator - $other->denominator * $this->numerator;
         $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
-        if ($other instanceof MutableRational) {
-            $this->numerator = $result[0];
-            $this->denominator = $result[1];
-            return $this;
-        } else {
-            return new Rational($result[0], $result[1]);
-        }
+        return new Rational($result[0], $result[1]);
     }
 }

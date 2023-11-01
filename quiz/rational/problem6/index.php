@@ -20,3 +20,4 @@ echo "<br/>";
 echo $result1->display();     // 「3/4」が出力される
 echo "<br/>";
 echo $result2->display();     // 「3/4」が出力される
+echo "<br/>";echo "<br/>";echo "<br/>";
