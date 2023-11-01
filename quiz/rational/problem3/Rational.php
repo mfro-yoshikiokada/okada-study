@@ -8,7 +8,8 @@ class Rational
 
     public function __construct($numerator, $denominator)
     {
-            if ($denominator == 0 || !is_int($numerator) || !is_int($denominator)) {
+            if ($denominator == 0 || !is_int($numerator) || !is_int($denominator))
+            {
                 throw new \Exception("Invalid input");
             }
             $this->numerator = $numerator;
