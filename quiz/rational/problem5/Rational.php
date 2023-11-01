@@ -40,15 +40,11 @@ class Rational
         return "$this->numerator / $this->denominator";
     }
 
-    public function add($other)
+    public function add($other):Rational
     {
-        if ($other instanceof Rational) {
             $denominatorMultiplied=$this->denominator * $other->denominator;
             $moleculeMultiplied=$this->denominator*$other->numerator+$other->denominator*$this->numerator;
             $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
             return new Rational($result[0], $result[1]);
-        } else {
-            echo "error";
-        }
     }
 }

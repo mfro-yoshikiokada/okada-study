@@ -9,27 +9,28 @@ class Rational
 
     public function __construct(int $numerator, int $denominator)
     {
-        $originalNumerator=$numerator;
-        $originalDenominator=$denominator;
+        $originalNumerator = $numerator;
+        $originalDenominator = $denominator;
         $remainder = 1;
-        $newNumerator= 0;
+        $newNumerator = 0;
         $newDenominator = 0;
         while ($remainder != 0) {
-            $remainder = $denominator%$numerator;
-            if ($remainder==0) {
-                $greatestCommonDivisor=$numerator;
-                $newNumerator= $originalNumerator/$greatestCommonDivisor;
-                $newDenominator= $originalDenominator/$greatestCommonDivisor;
+            $remainder = $denominator % $numerator;
+            if ($remainder == 0) {
+                $greatestCommonDivisor = $numerator;
+                $newNumerator = $originalNumerator / $greatestCommonDivisor;
+                $newDenominator = $originalDenominator / $greatestCommonDivisor;
             } else {
-                $denominator=$numerator;
-                $numerator=$remainder;
+                $denominator = $numerator;
+                $numerator = $remainder;
             }
         }
-        $this->numerator= $newNumerator;
-        $this->denominator=$newDenominator;
+        $this->numerator = $newNumerator;
+        $this->denominator = $newDenominator;
     }
 
-    public function display()
+
+    public function display():string
     {
         return "$this->numerator / $this->denominator";
     }

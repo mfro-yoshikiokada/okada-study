@@ -11,7 +11,7 @@ class MutableRational implements RationalInterface
         $this->numerator= $numerator;
         $this->denominator=$denominator;
     }
-    private function approx(int $numerator, int $denominator)
+    private function approx(int $numerator, int $denominator):array
     {
         $originalNumerator=$numerator;
         $originalDenominator=$denominator;
@@ -31,6 +31,10 @@ class MutableRational implements RationalInterface
         }
         return [$newNumerator,$newDenominator];
     }
+    public function number():string
+    {
+        return $this->numerator % $this->denominator;
+    }
 
     public function display():string
     {
@@ -39,15 +43,33 @@ class MutableRational implements RationalInterface
 
     public function add($other)
     {
-        if ($other instanceof Rational || $other instanceof MutableRational) {
-            $denominatorMultiplied=$this->denominator * $other->denominator;
-            $moleculeMultiplied=$this->denominator*$other->numerator+$other->denominator*$this->numerator;
-            $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
-            $this->numerator= $result[0];
-            $this->denominator=$result[1];
-            return new MutableRational($result[0], $result[1]);
+        $denominatorMultiplied = $this->denominator * $other->denominator;
+        $moleculeMultiplied = $this->denominator * $other->numerator + $other->denominator * $this->numerator;
+        $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
+        $this->numerator= $result[0];
+        $this->denominator=$result[1];
+        if ($other instanceof MutableRational) {
+            $this->numerator = $result[0];
+            $this->denominator = $result[1];
+            return $this;
         } else {
-            echo "error";
+            return new Rational($result[0], $result[1]);
+        }
+    }
+
+    public function sub($other)
+    {
+        $denominatorMultiplied = $this->denominator * $other->denominator;
+        $moleculeMultiplied = $this->denominator * $other->numerator - $other->denominator * $this->numerator;
+        $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
+        $this->numerator= $result[0];
+        $this->denominator=$result[1];
+        if ($other instanceof MutableRational) {
+            $this->numerator = $result[0];
+            $this->denominator = $result[1];
+            return $this;
+        } else {
+            return new Rational($result[0], $result[1]);
         }
     }
 }

@@ -12,17 +12,13 @@ class Rational
         $this->denominator=$denominator;
     }
 
-    public function display()
+    public function display():string
     {
         return "$this->numerator / $this->denominator";
     }
 
-    public function number($precision = null)
+    public function number(int $precision = 2):float
     {
-        if ($precision === null) {
-            return round($this->numerator / $this->denominator, 2);
-        } else {
             return round($this->numerator / $this->denominator, $precision);
-        }
     }
 }
