@@ -49,7 +49,6 @@ class MutableRational implements RationalInterface
         $this->numerator= $result[0];
         $this->denominator=$result[1];
         return $this;
-
     }
 
     public function sub($other):Rational|MutableRational
