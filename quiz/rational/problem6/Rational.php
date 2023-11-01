@@ -2,7 +2,7 @@
 
 namespace Rational\problem6;
 
-class Rational
+class Rational implements RationalInterface
 {
     public int $numerator;
     public int $denominator;
@@ -43,7 +43,7 @@ class Rational
         return $this->numerator % $this->denominator;
     }
 
-    public function add($other)
+    public function add($other):Rational|MutableRational
     {
         $denominatorMultiplied = $this->denominator * $other->denominator;
         $moleculeMultiplied = $this->denominator * $other->numerator + $other->denominator * $this->numerator;
@@ -57,7 +57,7 @@ class Rational
         }
     }
 
-    public function sub($other)
+    public function sub($other):Rational|MutableRational
     {
         $denominatorMultiplied = $this->denominator * $other->denominator;
         $moleculeMultiplied = $this->denominator * $other->numerator - $other->denominator * $this->numerator;

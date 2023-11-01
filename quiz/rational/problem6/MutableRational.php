@@ -41,7 +41,7 @@ class MutableRational implements RationalInterface
         return "$this->numerator / $this->denominator";
     }
 
-    public function add($other)
+    public function add($other):Rational|MutableRational
     {
         $denominatorMultiplied = $this->denominator * $other->denominator;
         $moleculeMultiplied = $this->denominator * $other->numerator + $other->denominator * $this->numerator;
@@ -57,7 +57,7 @@ class MutableRational implements RationalInterface
         }
     }
 
-    public function sub($other)
+    public function sub($other):Rational|MutableRational
     {
         $denominatorMultiplied = $this->denominator * $other->denominator;
         $moleculeMultiplied = $this->denominator * $other->numerator - $other->denominator * $this->numerator;
