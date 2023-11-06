@@ -20,11 +20,9 @@ class Rational implements RationalInterface
             $denominator = $numerator % $denominator;
             $numerator = $temp;
             return $this->eugrit2($numerator, $denominator);
-
         } else {
             return $numerator;
         }
-
     }
 
     private function approx(int $numerator, int $denominator) :array
