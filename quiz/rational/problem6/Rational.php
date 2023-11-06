@@ -12,18 +12,42 @@ class Rational implements RationalInterface
         $this->numerator= $numerator;
         $this->denominator=$denominator;
     }
-    private function eugrit(int $numerator, int $denominator) :int
+
+    private function eugrit2(int $numerator, int $denominator) :int
     {
-        while ($denominator !== 0) {
+        if ($denominator !== 0) {
             $temp = $denominator;
             $denominator = $numerator % $denominator;
             $numerator = $temp;
+            return $this->eugrit($numerator, $denominator);
+
+        } else {
+            return $numerator;
+        }
+
+    }
+    private function eugrit(int $numerator, int $denominator) :int
+    {
+
+
+        while ($denominator !== 0) {
+            echo $numerator;
+            echo "分子";
+            echo $denominator;
+            echo "分母";
+            echo "whileなう";
+            echo "<br/>";
+            $temp = $denominator;
+            $denominator = $numerator % $denominator;
+            $numerator = $temp;
+            echo $denominator;
+            echo "分母";
         }
         return $numerator;
     }
     private function approx(int $numerator, int $denominator) :array
     {
-        $res= $this->eugrit($numerator, $denominator);
+        $res = $this->eugrit2($numerator, $denominator);
         $newNumerator = $numerator / $res;
         $newDenominator = $denominator / $res;
         return [$newNumerator, $newDenominator];
