@@ -19,7 +19,7 @@ class Rational implements RationalInterface
             $temp = $denominator;
             $denominator = $numerator % $denominator;
             $numerator = $temp;
-            return $this->eugrit($numerator, $denominator);
+            return $this->eugrit2($numerator, $denominator);
 
         } else {
             return $numerator;
