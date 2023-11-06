@@ -56,7 +56,7 @@ class MutableRational implements RationalInterface
         $denominatorMultiplied = $this->denominator * $other->denominator;
         $moleculeMultiplied = $this->denominator * $other->numerator - $other->denominator * $this->numerator;
         $result= $this->approx($moleculeMultiplied, $denominatorMultiplied);
-        $this->numerator = $result[0];
+        $this->numerator =$result[0];
         $this->denominator = $result[1];
         return $this;
     }
