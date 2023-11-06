@@ -12,7 +12,7 @@ class Rational implements RationalInterface
         $this->numerator= $numerator;
         $this->denominator=$denominator;
     }
-    private function eugrit(int $numerator, int $denominator)
+    private function eugrit(int $numerator, int $denominator) :array
     {
         $originalNumerator = $numerator;
         $originalDenominator = $denominator;
