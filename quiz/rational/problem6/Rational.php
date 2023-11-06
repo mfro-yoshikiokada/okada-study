@@ -12,28 +12,21 @@ class Rational implements RationalInterface
         $this->numerator= $numerator;
         $this->denominator=$denominator;
     }
-    private function eugrit(int $numerator, int $denominator) :array
+    private function eugrit(int $numerator, int $denominator) :int
     {
-        $originalNumerator = $numerator;
-        $originalDenominator = $denominator;
-        $remainder = 1;
-        while ($remainder != 0) {
-            $remainder = $denominator % $numerator;
-            if ($remainder==0) {
-                $greatestCommonDivisor = $numerator;
-                $numerator = $originalNumerator / $greatestCommonDivisor;
-                $denominator = $originalDenominator / $greatestCommonDivisor;
-            } else {
-                $denominator = $numerator;
-                $numerator = $remainder;
-            }
+        while ($denominator !== 0) {
+            $temp = $denominator;
+            $denominator = $numerator % $denominator;
+            $numerator = $temp;
         }
-        return [$numerator,$denominator];
+        return $numerator;
     }
     private function approx(int $numerator, int $denominator) :array
     {
-        $result = $this->eugrit($numerator, $denominator);
-        return $result;
+        $res= $this->eugrit($numerator, $denominator);
+        $newNumerator = $numerator / $res;
+        $newDenominator = $denominator / $res;
+        return [$newNumerator, $newDenominator];
     }
 
     public function display():string
