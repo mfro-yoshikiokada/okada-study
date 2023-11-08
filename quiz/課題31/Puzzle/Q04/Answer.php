@@ -10,7 +10,7 @@ class Answer
         $cutNum = [1];
         $result = 0;
         for ($i = 0; $i <= $cutTimes; $i++) {
-            array_push($cutNum,$cutNum[$i]*2);
+            array_push($cutNum, $cutNum[$i]*2);
         }
         $whileCount = 0;
         while ($cutTimes >= 0) {
