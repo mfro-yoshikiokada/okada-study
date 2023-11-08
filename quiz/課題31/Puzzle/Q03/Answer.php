@@ -13,7 +13,7 @@ class Answer implements AnswerInterface
         for ($num = 1; $num <= 100; $num++) {
             array_push($result, true);
         }
-        for ($calculationNum = 2; $calculationNum <= $calculationUpperLimit; $calculationNum++){
+        for ($calculationNum = 2; $calculationNum <= $calculationUpperLimit; $calculationNum++) {
             for ($arrayNum = 1; $arrayNum < 100; $arrayNum++) {
                 if (($arrayNum%$calculationNum) ==0) {
                     if ($result[$arrayNum]) {
