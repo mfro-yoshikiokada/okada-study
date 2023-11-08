@@ -3,7 +3,6 @@
 
 namespace Quiz\Puzzle\Q03;
 
-
 class Answer implements AnswerInterface
 {
 
@@ -11,16 +10,14 @@ class Answer implements AnswerInterface
     {
         $result = [];
         $calculationUpperLimit = 100;
-        for ($num = 1; $num <= 100; $num++){
-            array_push($result,true);
+        for ($num = 1; $num <= 100; $num++) {
+            array_push($result, true);
         }
         echo "<br/>";
         var_dump($result);
         for ($calculationNum = 2; $calculationNum <= $calculationUpperLimit; $calculationNum++){
             for ($arrayNum = 1; $arrayNum <= 100; $arrayNum++){
-
                 if (($arrayNum%$calculationNum) ==0) {
-
                     if ($result[$arrayNum]) {
                         $result[$arrayNum]=false;
                     } else {
@@ -28,12 +25,11 @@ class Answer implements AnswerInterface
                     }
                 }
             }
-
         }
         $resultArray=[];
-        for ($num = 1; $num <= 100; $num++){
+        for ($num = 1; $num <= 100; $num++) {
             if ($result[$num]) {
-                array_push( $resultArray,$num);
+                array_push($resultArray, $num);
             }
         }
         return  $resultArray;
