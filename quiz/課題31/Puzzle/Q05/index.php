@@ -9,4 +9,3 @@ $answer= new Answer();
 $answer->setCoinTypes([10, 50, 100, 500]) ;
 
 var_dump($answer->exec(1000));
-
