@@ -2,9 +2,9 @@
 
 namespace Quiz\Puzzle\Q04;
 
-class Answer
+class Answer implements AnswerInterface
 {
-    public function exec($stickSize, $people)
+    public function exec(int $stickSize, int $people):int
     {
         $cutTimes = $stickSize - 1 ;
         $cutNum = [1];
