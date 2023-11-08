@@ -25,5 +25,4 @@ class Answer implements AnswerInterface
         }
         return $result;
     }
-
 }
