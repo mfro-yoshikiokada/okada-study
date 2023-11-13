@@ -21,13 +21,11 @@ class Answer implements AnswerInterface
     {
         $total=0;
         for ($count = 0; $count < count($this->coins); $count++) {
-            $total= $total+ $coinCount[$count] * $this->coins[$count];
+            if ($coinCount[$count] !== 0) {
+                $total= $total+ $coinCount[$count] * $this->coins[$count];
+            }
         }
-        if ($total === $bill) {
-            return true;
-        } else {
-            return false;
-        }
+        return $total === $bill;
     }
 
     private function upperLimitConfirmation(array $coinCount): array
@@ -36,6 +34,8 @@ class Answer implements AnswerInterface
             if ($coinCount[$count]==$this->maxCoins+1) {
                 $coinCount[$count]=0;
                 $coinCount[$count+1]=$coinCount[$count+1]+1;
+            } else {
+                break;
             }
         }
         return $coinCount;
@@ -50,10 +50,8 @@ class Answer implements AnswerInterface
         }
         while ($coinCount[count($this->coins)-1]!==$this->maxCoins) {
             $coinCount[0]++;
-            $coinCount = $this->UpperLimitConfirmation($coinCount);
-            if ($this->totalCalculation($coinCount, $bill)) {
-                $result++;
-            }
+            $coinCount = $this->upperLimitConfirmation($coinCount);
+            $result += $this->totalCalculation($coinCount, $bill);
         }
         return $result;
     }

@@ -3,7 +3,7 @@
 
 namespace Quiz\Puzzle\Q03;
 
-class Answer
+class Answer implements AnswerInterface
 {
 
     public function exec():array
@@ -15,15 +15,13 @@ class Answer
         }
         for ($calculationNum = 2; $calculationNum <= $calculationUpperLimit; $calculationNum++) {
             for ($arrayNum = 0; $arrayNum < 100; $arrayNum = $arrayNum + $calculationNum) {
-                if (($arrayNum % $calculationNum) ==0) {
                     $result[$arrayNum] = !$result[$arrayNum];
-                }
             }
         }
         $resultArray=[];
-        foreach ($result as $nam => $res) {
-            if ($res && $nam !== 0) {
-                $resultArray[]= $nam;
+        foreach ($result as $num => $res) {
+            if ($res && $num !== 0) {
+                $resultArray[]= $num;
             }
         }
         return  $resultArray;

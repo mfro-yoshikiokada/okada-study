@@ -10,17 +10,12 @@ class Answer implements AnswerInterface
         $cutNum = [1];
         $result = 0;
         for ($i = 0; $i <= $cutTimes; $i++) {
-            array_push($cutNum, $cutNum[$i]*2);
+            $cutNum[] = $cutNum[$i] * 2;
         }
         $whileCount = 0;
         while ($cutTimes >= 0) {
-            if ($cutNum[$whileCount] >= $people) {
-                $cutTimes = $cutTimes-$people;
-                $result++;
-            } else {
-                $cutTimes = $cutTimes - $cutNum[$whileCount];
-                $result++;
-            }
+            $cutTimes -= ($cutNum[$whileCount] >= $people) ? $people : $cutNum[$whileCount];
+            $result++;
             $whileCount++;
         }
         return $result;
