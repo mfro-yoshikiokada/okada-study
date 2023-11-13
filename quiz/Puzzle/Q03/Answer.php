@@ -18,12 +18,11 @@ class Answer
                 if (($arrayNum % $calculationNum) ==0) {
                     $result[$arrayNum] = !$result[$arrayNum];
                 }
-
             }
         }
         $resultArray=[];
         foreach ($result as $nam =>$res) {
-            if ($res && $nam!==0) {
+            if ($res && $nam !== 0) {
                 $resultArray[]= $nam;
             }
         }
