@@ -21,7 +21,7 @@ class Answer
             }
         }
         $resultArray=[];
-        foreach ($result as $nam =>$res) {
+        foreach ($result as $nam => $res) {
             if ($res && $nam !== 0) {
                 $resultArray[]= $nam;
             }
