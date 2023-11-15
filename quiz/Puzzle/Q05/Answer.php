@@ -28,13 +28,13 @@ class Answer implements AnswerInterface
     {
         $total=0;
         $totalCoins=0;
-        for ($count = 0; $count < count($this->coins); $count++) {
+        for($count = 0; $count < count($this->coins); $count++) {
 
                 $total= $total+ $coinCount[$count] * $this->coins[$count];
             $totalCoins +=$coinCount[$count];
         }
 
-        if ( $totalCoins <= $this->maxCoins) {
+        if ($totalCoins <= $this->maxCoins) {
             if ($total === $bill) {
                 var_dump($coinCount);
                 echo "<br/>";
@@ -47,7 +47,6 @@ class Answer implements AnswerInterface
         } else {
             return false;
         }
-
     }
 
 
@@ -69,15 +68,17 @@ class Answer implements AnswerInterface
     {
         $result = 0;
         $forCun = 0;
-        for ($count = 0; $count < pow($this->maxCoins,  count($this->coinCount)); $count++) {
+        for ($count = 0; $count < pow($this->maxCoins, count($this->coinCount)); $count++) {
             $this->coinCount[0]++;
-            $this->coinCount = $this->upperLimitConfirmation($this->coinCount,$bill);
+            $this->coinCount = $this->upperLimitConfirmation($this->coinCount, $bill);
             $result += $this->totalCalculation($this->coinCount, $bill);
             $CountCoin = 0;
             foreach ($this->coinCount as $coin) {
                 $CountCoin=+$coin;
             }
-            if($CountCoin > $this->maxCoins) break;
+            if ($CountCoin > $this->maxCoins) {
+                break;
+            }
             $forCun++;
         }
         echo $forCun;
