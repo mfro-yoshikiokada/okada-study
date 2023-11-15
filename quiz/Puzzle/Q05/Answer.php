@@ -57,7 +57,6 @@ class Answer implements AnswerInterface
     public function exec(int $bill): int
     {
         $result = 0;
-        $forCun = 0;
         for ($count = 0; $count < pow($this->maxCoins, count($this->coinCount)); $count++) {
             $this->coinCount[0]++;
             $this->coinCount = $this->upperLimitConfirmation($this->coinCount, $bill);
@@ -69,7 +68,7 @@ class Answer implements AnswerInterface
             if ($CountCoin > $this->maxCoins) {
                 break;
             }
-            $forCun++;
         }
+        return $result;
     }
 }
