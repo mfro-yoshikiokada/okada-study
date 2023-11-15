@@ -34,14 +34,6 @@ class Answer implements AnswerInterface
         }
 
         if ($totalCoins <= $this->maxCoins) {
-            if ($total === $bill) {
-                var_dump($coinCount);
-                echo "<br/>";
-                echo $total;
-                echo "<br/>";
-                echo "<br/>";
-            }
-
             return $total === $bill;
         } else {
             return false;
@@ -51,7 +43,6 @@ class Answer implements AnswerInterface
 
     private function upperLimitConfirmation(array $coinCount, int $bill): array
     {
-
         for ($count = 0; $count < count($this->coins)-1; $count++) {
             if ($coinCount[$count]==$this->maxCoins+1 || $coinCount[$count]*$this->coins[$count] > $bill) {
                 $coinCount[$count]=0;
@@ -80,9 +71,5 @@ class Answer implements AnswerInterface
             }
             $forCun++;
         }
-        echo $forCun;
-        echo "ループ数";
-        echo "<br/>";
-        return $result;
     }
 }
