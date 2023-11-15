@@ -24,7 +24,7 @@ class Answer implements AnswerInterface
         }
     }
 
-    private function totalCalculation(array $coinCount, int $bill): bool
+    private function totalCalculation(array $coinCount, int $bill): array
     {
         $total=0;
         $totalCoins=0;
@@ -32,11 +32,10 @@ class Answer implements AnswerInterface
             $total= $total+ $coinCount[$count] * $this->coins[$count];
             $totalCoins +=$coinCount[$count];
         }
-
         if ($totalCoins <= $this->maxCoins) {
-            return $total === $bill;
+            return array ($total === $bill, $totalCoins);
         } else {
-            return false;
+            return array (false, $totalCoins);
         }
     }
 
@@ -60,12 +59,9 @@ class Answer implements AnswerInterface
         for ($count = 0; $count < pow($this->maxCoins, count($this->coinCount)); $count++) {
             $this->coinCount[0]++;
             $this->coinCount = $this->upperLimitConfirmation($this->coinCount, $bill);
-            $result += $this->totalCalculation($this->coinCount, $bill);
-            $CountCoin = 0;
-            foreach ($this->coinCount as $coin) {
-                $CountCoin=+$coin;
-            }
-            if ($CountCoin > $this->maxCoins) {
+            $calculation = $this->totalCalculation($this->coinCount, $bill);
+            $result += $calculation[0];
+            if ($this->coinCount[count($this->coins)-1] > $this->maxCoins) {
                 break;
             }
         }
