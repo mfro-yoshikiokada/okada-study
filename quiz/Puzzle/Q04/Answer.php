@@ -9,14 +9,10 @@ class Answer implements AnswerInterface
         $cutTimes = $stickSize - 1 ;
         $cutNum = [1];
         $result = 0;
-        for ($i = 0; $i <= $cutTimes; $i++) {
-            $cutNum[] = $cutNum[$i] * 2;
-        }
-        $whileCount = 0;
         while ($cutTimes >= 0) {
-            $cutTimes -= ($cutNum[$whileCount] >= $people) ? $people : $cutNum[$whileCount];
+            $cutNum[] = $cutNum[$result] * 2;
+            $cutTimes -= ($cutNum[$result] >= $people) ? $people : $cutNum[$result];
             $result++;
-            $whileCount++;
         }
         return $result;
     }
