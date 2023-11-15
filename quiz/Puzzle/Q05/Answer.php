@@ -28,9 +28,8 @@ class Answer implements AnswerInterface
     {
         $total=0;
         $totalCoins=0;
-        for($count = 0; $count < count($this->coins); $count++) {
-
-                $total= $total+ $coinCount[$count] * $this->coins[$count];
+        for ($count = 0; $count < count($this->coins); $count++) {
+            $total= $total+ $coinCount[$count] * $this->coins[$count];
             $totalCoins +=$coinCount[$count];
         }
 
