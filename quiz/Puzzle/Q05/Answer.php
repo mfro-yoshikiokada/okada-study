@@ -54,12 +54,10 @@ class Answer implements AnswerInterface
     {
 
         for ($count = 0; $count < count($this->coins)-1; $count++) {
-
             if ($coinCount[$count]==$this->maxCoins+1 || $coinCount[$count]*$this->coins[$count] > $bill) {
                 $coinCount[$count]=0;
                 $coinCount[$count+1]=$coinCount[$count+1]+1;
             }
-
         }
         return $coinCount;
     }
