@@ -16,7 +16,7 @@ class Answer implements AnswerInterface
 
     public function setCoinTypes(array $coins): void
     {
-        rsort($coins);
+        sort($coins);
         $this->coins = $coins;
         $this->coinCount = [];
         for ($count = 0; $count < count($this->coins); $count++) {
@@ -28,14 +28,18 @@ class Answer implements AnswerInterface
     {
         $total=0;
         $totalCoins=0;
+        $calculatorRoundUp = false;
         for ($count = 0; $count < count($this->coins); $count++) {
             $total= $total+ $coinCount[$count] * $this->coins[$count];
             $totalCoins +=$coinCount[$count];
+            if ($coinCount[$count] * $this->coins[$count] > $bill) {
+                $calculatorRoundUp = true;
+            }
         }
         if ($totalCoins <= $this->maxCoins) {
-            return array ($total === $bill, $totalCoins);
+            return array ($total === $bill, $totalCoins, $calculatorRoundUp);
         } else {
-            return array (false, $totalCoins);
+            return array (false, $totalCoins, $calculatorRoundUp);
         }
     }
 
@@ -62,6 +66,9 @@ class Answer implements AnswerInterface
             $calculation = $this->totalCalculation($this->coinCount, $bill);
             $result += $calculation[0];
             if ($this->coinCount[count($this->coins)-1] > $this->maxCoins) {
+                break;
+            }
+            if ($calculation[2]) {
                 break;
             }
         }
