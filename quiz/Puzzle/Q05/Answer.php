@@ -31,17 +31,13 @@ class Answer implements AnswerInterface
         $totalCoins=0;
         $calculatorRoundUp = false;
         for ($count = 0; $count < count($this->coins); $count++) {
-            if ($coinCount[$count]==$this->maxCoins+1 || $coinCount[$count]*$this->coins[$count] > $bill) {
-                $coinCount[$count]=0;
-                $coinCount[$count+1]=$coinCount[$count+1]+1;
-            }
-
             $total= $total+ $coinCount[$count] * $this->coins[$count];
             $totalCoins +=$coinCount[$count];
             $this->loop_count++;
             if ($coinCount[$count] * $this->coins[$count] > $bill) {
                 $calculatorRoundUp = true;
             }
+            $this->loop_count++;
         }
         if ($totalCoins <= $this->maxCoins) {
             return array ($total === $bill, $totalCoins, $calculatorRoundUp);
@@ -57,6 +53,8 @@ class Answer implements AnswerInterface
             if ($coinCount[$count]==$this->maxCoins+1 || $coinCount[$count]*$this->coins[$count] > $bill) {
                 $coinCount[$count]=0;
                 $coinCount[$count+1]=$coinCount[$count+1]+1;
+            } else {
+                break;
             }
         }
         return $coinCount;
@@ -78,6 +76,7 @@ class Answer implements AnswerInterface
                 break;
             }
         }
+        var_dump($this->loop_count++);
         return $result;
     }
 }
