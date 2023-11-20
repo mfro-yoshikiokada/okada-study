@@ -30,9 +30,12 @@ class Answer implements AnswerInterface
         $total=0;
         $totalCoins=0;
         $calculatorRoundUp = false;
-        echo "<br/>";
-        var_dump($coinCount);
         for ($count = 0; $count < count($this->coins); $count++) {
+            if ($coinCount[$count]==$this->maxCoins+1 || $coinCount[$count]*$this->coins[$count] > $bill) {
+                $coinCount[$count]=0;
+                $coinCount[$count+1]=$coinCount[$count+1]+1;
+            }
+
             $total= $total+ $coinCount[$count] * $this->coins[$count];
             $totalCoins +=$coinCount[$count];
             $this->loop_count++;
@@ -40,14 +43,12 @@ class Answer implements AnswerInterface
                 $calculatorRoundUp = true;
             }
         }
-        echo $total;
         if ($totalCoins <= $this->maxCoins) {
             return array ($total === $bill, $totalCoins, $calculatorRoundUp);
         } else {
             return array (false, $totalCoins, $calculatorRoundUp);
         }
     }
-
 
     private function upperLimitConfirmation(array $coinCount, int $bill): array
     {
@@ -57,9 +58,8 @@ class Answer implements AnswerInterface
             if ($coinCount[$count]==$this->maxCoins+1 || $coinCount[$count]*$this->coins[$count] > $bill) {
                 $coinCount[$count]=0;
                 $coinCount[$count+1]=$coinCount[$count+1]+1;
-            } else {
-                break;
             }
+
         }
         return $coinCount;
     }
@@ -67,7 +67,6 @@ class Answer implements AnswerInterface
     public function exec(int $bill): int
     {
         $result = 0;
-        $a=0;
         for ($count = 0; $count < pow($this->maxCoins, count($this->coinCount)); $count++) {
             $this->coinCount[0]++;
             $this->coinCount = $this->upperLimitConfirmation($this->coinCount, $bill);
@@ -80,10 +79,7 @@ class Answer implements AnswerInterface
             if ($this->coinCount[count($this->coins)-1] > $this->maxCoins) {
                 break;
             }
-            $a++;
         }
-        echo "<br/>";
-        var_dump($a);
         return $result;
     }
 }
