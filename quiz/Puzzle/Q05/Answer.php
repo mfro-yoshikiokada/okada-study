@@ -8,6 +8,7 @@ class Answer implements AnswerInterface
     private array $coins;
     private int $maxCoins;
     private array $coinCount;
+    private int $loop_count = 0;
 
     public function __construct()
     {
@@ -29,13 +30,17 @@ class Answer implements AnswerInterface
         $total=0;
         $totalCoins=0;
         $calculatorRoundUp = false;
+        echo "<br/>";
+        var_dump($coinCount);
         for ($count = 0; $count < count($this->coins); $count++) {
             $total= $total+ $coinCount[$count] * $this->coins[$count];
             $totalCoins +=$coinCount[$count];
+            $this->loop_count++;
             if ($coinCount[$count] * $this->coins[$count] > $bill) {
                 $calculatorRoundUp = true;
             }
         }
+        echo $total;
         if ($totalCoins <= $this->maxCoins) {
             return array ($total === $bill, $totalCoins, $calculatorRoundUp);
         } else {
@@ -46,7 +51,9 @@ class Answer implements AnswerInterface
 
     private function upperLimitConfirmation(array $coinCount, int $bill): array
     {
+
         for ($count = 0; $count < count($this->coins)-1; $count++) {
+
             if ($coinCount[$count]==$this->maxCoins+1 || $coinCount[$count]*$this->coins[$count] > $bill) {
                 $coinCount[$count]=0;
                 $coinCount[$count+1]=$coinCount[$count+1]+1;
@@ -60,18 +67,23 @@ class Answer implements AnswerInterface
     public function exec(int $bill): int
     {
         $result = 0;
+        $a=0;
         for ($count = 0; $count < pow($this->maxCoins, count($this->coinCount)); $count++) {
             $this->coinCount[0]++;
             $this->coinCount = $this->upperLimitConfirmation($this->coinCount, $bill);
             $calculation = $this->totalCalculation($this->coinCount, $bill);
             $result += $calculation[0];
+
+            if ($this->coinCount[count($this->coins)-1]* $this->coins[count($this->coins)-1]>= $bill) {
+                break;
+            }
             if ($this->coinCount[count($this->coins)-1] > $this->maxCoins) {
                 break;
             }
-            if ($calculation[2]) {
-                break;
-            }
+            $a++;
         }
+        echo "<br/>";
+        var_dump($a);
         return $result;
     }
 }
