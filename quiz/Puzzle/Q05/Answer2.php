@@ -6,6 +6,7 @@ namespace Quiz\Puzzle\Q05;
 class Answer2 implements AnswerInterface
 {
     const COIN_500 = 500;
+    const COIN_100 = 100;
 
     private int $maxCoins;
 
