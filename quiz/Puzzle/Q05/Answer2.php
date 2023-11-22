@@ -28,12 +28,15 @@ class Answer2 implements AnswerInterface
     }
 
 
-    private function Calculate(): array {
+    private function calculate(): array
+    {
         $total=0;
         $totalCoins=0;
         $calculatorRoundUp = false;
         for ($count = 0; $count < count($this->coins); $count++) {
-            if ($this->coinCount[$count]==$this->maxCoins+1 || $this->coinCount[$count]*$this->coins[$count] > $this->bill) {
+            if ($this->coinCount[$count]==$this->maxCoins+1 ||
+                $this->coinCount[$count]*$this->coins[$count] > $this->bill
+            ) {
                 $this->coinCount[$count]=0;
                 $this->coinCount[$count+1]=$this->coinCount[$count+1]+1;
             }
@@ -59,7 +62,7 @@ class Answer2 implements AnswerInterface
         $result = 0;
         for ($count = 0; $count < pow($this->maxCoins, count($this->coinCount)); $count++) {
             $this->coinCount[0]++;
-            $calculation = $this->Calculate();
+            $calculation = $this->calculate();
             $result += $calculation[0];
 
             if ($this->coinCount[count($this->coins)-1]* $this->coins[count($this->coins)-1]>= $this->bill) {
