@@ -16,6 +16,15 @@ class Answer2 implements AnswerInterface
 
     public function exec(int $bill): int
     {
-
+        $total =0;
+        $result=0;
+        while ($bill>=$total) {
+            $total = $total+ self::COIN_500;
+            if ($bill == $total) {
+                $result++;
+            }
+            echo $total;
+        }
+        return $result;
     }
 }
