@@ -18,7 +18,7 @@ class Answer2 implements AnswerInterface
     {
         $total =0;
         $result=0;
-        while ($bill>=$total) {
+        while ($bill>$total) {
             $total = $total+ self::COIN_500;
             if ($bill == $total) {
                 $result++;
