@@ -17,9 +17,11 @@ class Answer2 implements AnswerInterface
     public function exec(int $bill): int
     {
         $total =0;
+        $coinCount = 0;
         $result=0;
-        while ($bill>$total) {
+        while ($bill > $total && $this->maxCoins > $coinCount) {
             $total = $total+ self::COIN_500;
+            $coinCount++;
             if ($bill == $total) {
                 $result++;
             }
