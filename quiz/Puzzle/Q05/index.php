@@ -6,5 +6,4 @@ use Quiz\Puzzle\Q05\AnswerInterface;
 use Quiz\Puzzle\Q05\Answer2;
 
 $answer= new Answer2();
-$answer->setCoinTypes([500]);
 var_dump($answer->exec(1000));

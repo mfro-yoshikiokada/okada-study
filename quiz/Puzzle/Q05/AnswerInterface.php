@@ -8,11 +8,11 @@ namespace Quiz\Puzzle\Q05;
  */
 interface AnswerInterface
 {
-    /**
-     * @param int[] $coins 両替するコインの種類
-     * この問題であれば、`$coins = [10, 50, 100, 500];` になる
-     */
-    public function setCoinTypes(array $coins): void;
+//    /**
+//     * @param int[] $coins 両替するコインの種類
+//     * この問題であれば、`$coins = [10, 50, 100, 500];` になる
+//     */
+//    public function setCoinTypes(array $coins): void;
 
     /**
      * @param   int $bill 両替するお札の金額
