@@ -18,15 +18,20 @@ class Answer2 implements AnswerInterface
     public function exec(int $bill): int
     {
         $total =0;
-        $coinCount = 0;
+        $coinCount = [0,0];
         $result=0;
-        while ($bill > $total && $this->maxCoins > $coinCount) {
-            $total = $total+ self::COIN_500;
-            $coinCount++;
+        while ($coinCount[1] * self::COIN_500 < $bill) {
+            if ($coinCount[0] * self::COIN_100 >= $bill) {
+                $total = $total - $coinCount[0] * self::COIN_100 +self::COIN_500;
+                $coinCount[0] = 0;
+                $coinCount[1]++;
+            }  else {
+                $total = $total+ self::COIN_100;
+                $coinCount[0]++;
+            }
             if ($bill == $total) {
                 $result++;
             }
-            echo $total;
         }
         return $result;
     }
