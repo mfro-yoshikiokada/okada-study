@@ -29,7 +29,6 @@ class Answer2 implements AnswerInterface
         }
         for ($count = -1; $count < $numberOfLoops500; $count++) {
             for ($count100 = -1; $count100 < $numberOfLoops100; $count100++) {
-                echo  $total;
                 if ($bill ==$total) {
                     $result++;
                 }
