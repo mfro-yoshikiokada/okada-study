@@ -20,8 +20,8 @@ class Answer2 implements AnswerInterface
         $total =0;
         $coinCount = [0,0];
         $result=0;
-        while ($coinCount[1] * self::COIN_500 < $bill) {
-            if ($coinCount[0] * self::COIN_100 >= $bill) {
+        while ($coinCount[1] * self::COIN_500 < $bill ) {
+            if ($coinCount[0] * self::COIN_100>= $bill || $coinCount[0] == $this->maxCoins) {
                 $total = $total - $coinCount[0] * self::COIN_100 +self::COIN_500;
                 $coinCount[0] = 0;
                 $coinCount[1]++;
