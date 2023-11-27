@@ -25,7 +25,7 @@ class Answer2 implements AnswerInterface
                 $total = $total - $coinCount[0] * self::COIN_100 +self::COIN_500;
                 $coinCount[0] = 0;
                 $coinCount[1]++;
-            }  else {
+            } else {
                 $total = $total+ self::COIN_100;
                 $coinCount[0]++;
             }
