@@ -20,15 +20,9 @@ class Answer2 implements AnswerInterface
         $total =0;
         $result=0;
         $numberOfLoops500 =$bill / self::COIN_500;
-        if ($numberOfLoops500 > $this->maxCoins*self::COIN_500) {
-            $numberOfLoops500 = $this->maxCoins*self::COIN_500;
-        }
         $numberOfLoops100 =$bill / self::COIN_100;
-        if ($numberOfLoops100 > $this->maxCoins*self::COIN_100) {
-            $numberOfLoops100 = $this->maxCoins*self::COIN_100;
-        }
-        for ($count = -1; $count < $numberOfLoops500; $count++) {
-            for ($count100 = -1; $count100 < $numberOfLoops100; $count100++) {
+        for ($count = -1; $count < $numberOfLoops500 && $total <= $bill; $count++) {
+            for ($count100 = -1; $count100 < $numberOfLoops100 && $total <= $bill; $count100++) {
                 if ($bill ==$total) {
                     $result++;
                 }
