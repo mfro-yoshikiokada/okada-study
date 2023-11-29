@@ -28,24 +28,21 @@ class Answer2 implements AnswerInterface
         $numberOfLoops10 =$bill / self::COIN_10+1;
         for ($count = -1; $count < $numberOfLoops500 && $total <= $bill; $count++) {
             $cnt100=0;
-            for (
-                $count100 = -1;
-                $count100 < $numberOfLoops100 && $total <= $bill && $coinCount-1 <$this->maxCoins;
-                $count100++
+            for ($count100 = -1; $count100 < $numberOfLoops100
+            && $total <= $bill
+            && $coinCount-1 <$this->maxCoins; $count100++
             ) {
                 $cnt50=0;
                 $cnt100++;
-                for (
-                    $count50 = -1;
-                    $count50 < $numberOfLoops50 && $total <= $bill && $coinCount-1 <$this->maxCoins;
-                    $count50++
+                for ($count50 = -1; $count50 < $numberOfLoops50
+                && $total <= $bill
+                && $coinCount-1 <$this->maxCoins; $count50++
                 ) {
                     $cnt10=0;
                     $cnt50++;
-                    for (
-                        $count10 = -2;
-                        $count10 < $numberOfLoops10 && $total <= $bill && $coinCount-1 <$this->maxCoins;
-                        $count10++
+                    for ($count10 = -2; $count10 < $numberOfLoops10
+                    && $total <= $bill
+                    && $coinCount-1 <$this->maxCoins; $count10++
                     ) {
                         $cnt10++;
                         if ($bill ==$total) {
