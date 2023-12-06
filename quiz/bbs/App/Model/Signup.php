@@ -18,6 +18,7 @@ class Signup extends Model
     {
         $sql = 'insert into users values (?,?, 21)';
         $stmt = $dbh->prepare($sql);
+
         $flag = $stmt->execute(array($id, $value));
     }
 }
