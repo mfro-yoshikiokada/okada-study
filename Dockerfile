@@ -1,5 +1,5 @@
 # ベースとなるイメージを指定
-FROM php:8.0-apache
+FROM php:8.2-apache
 
 # 必要なパッケージのインストール
 RUN apt-get update && apt-get install -y libonig-dev unzip git \
@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y libonig-dev unzip git \
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
+
+# Node.jsとnpmのインストール
+RUN apt-get install -y nodejs npm
 
 # panique/php-sassの追加
 RUN composer require panique/php-sass
