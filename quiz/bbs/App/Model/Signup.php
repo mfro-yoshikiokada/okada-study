@@ -16,9 +16,9 @@ class Signup extends Model
 
     public function createAccount($body): void
     {
-        $sql = 'insert into users values (?,?, 21)';
-        $stmt = $dbh->prepare($sql);
+        $sql = 'insert into users values (?,?,?)';
+        $stmt = $this->pdo->prepare($sql);
 
-        $flag = $stmt->execute(array($id, $value));
+        $flag = $stmt->execute($body);
     }
 }
