@@ -16,7 +16,6 @@ class Signup extends Model
 
     public function createAccount($body): void
     {
-
         $sql = 'insert into users values (?,?, 21)';
         $stmt = $dbh->prepare($sql);
         $flag = $stmt->execute(array($id, $value));
