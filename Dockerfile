@@ -1,6 +1,6 @@
 # ベースとなるイメージを指定
 FROM php:8.0-apache
-
+RUN docker-php-ext-install pdo_mysql
 # 必要なパッケージのインストール
 RUN apt-get update && apt-get install -y libonig-dev unzip git \
     && docker-php-ext-install pdo_mysql mysqli mbstring
