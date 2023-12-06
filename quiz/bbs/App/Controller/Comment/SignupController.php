@@ -8,14 +8,14 @@ use bbs\App\Model\Signup;
 
 class SignupController extends BaseController
 {
-    public function create(signup $signupModel): void
+    public function create(signup $signupModel)
     {
 
         $body = $_POST['body'];
         var_dump($body);
 
     }
-    public function show(signup $signupModel): void
+    public function show(signup $signupModel)
     {
         $comments =  $signupModel->getComments();
 

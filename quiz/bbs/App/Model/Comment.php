@@ -2,20 +2,26 @@
 
 namespace bbs\App\Model;
 
+use PDO;
+
 class Comment extends Model
 {
     public function getComments(): array
     {
-//        $this->pdo->prepare('コメント取得のSQL');
+        $stmt = $this->pdo->query("SELECT * FROM comments");
 
-        // コメントを取得する処理
-
-        // コメントを返す
-        return ['コメント1', 'コメント2'];
+        $aryItem = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+        var_dump($aryItem);
+        return  $aryItem;
     }
 
-    public function createComments(): void
+    public function createComments($body): void
     {
-        // DBにコメントを保存
+        $sql = 'INSERT INTO comments (user_id, comment_text) VALUES (?, ?);';
+        $id = 1;
+        $stmt = $this->pdo->prepare($sql);
+        $flag = $stmt->execute([$id, $body]);
+
     }
+
 }

@@ -7,12 +7,11 @@ use bbs\App\Model\Comment;
 
 class CreateController extends BaseController
 {
-    public function create(Comment $commentModel): void
+    public function create(Comment $commentModel,$postData): void
     {
         // ここでリクエストから送信されたデータを取得
         $body = $_POST['body'];
-        $commentModel->createComments($body);
+        $commentModel->createComments($postData);
 
-        $this->redirect('/comment/index.php');
     }
 }
