@@ -12,13 +12,14 @@ class SignupController extends BaseController
     {
         $signupModel->createAccount($postData);
         session_start();
-        $_SESSION['id'] = 1;
-        header('Location:http://'.$_SERVER['HTTP_HOST'].'/quiz/bbs/public/comment/index.php');
-        exit;
+        $Id = $signupModel->searchUserId($postData["mailAddress"]);
+        unset($_SESSION);
+        $_SESSION['id'] = $Id;
+        header('Location:http://'.$_SERVER['HTTP_HOST'].'/quiz/bbs/public/comment/index.php?='.$Id);
+
     }
     public function show(signup $signupModel)
     {
-
         $this->view(__DIR__ . '/../../View/signup.php');
 
     }

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +10,8 @@
 </head>
 <body>
  <p>コメントがたくさんのページだよー</p>   
-<?
-
+<?php
+var_dump($_SESSION);
 echo '<ul>';
 foreach ($comments as $pref){
     echo '<li><p>id:'.$pref ["user_id"].'</p><p>'.$pref ["comment_text"].'</p><p>time:'.$pref ["created_at"].'</p></li>';
