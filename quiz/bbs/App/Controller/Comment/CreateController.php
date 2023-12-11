@@ -9,9 +9,8 @@ class CreateController extends BaseController
 {
     public function create(Comment $commentModel,$postData): void
     {
-        // ここでリクエストから送信されたデータを取得
-        $body = $_POST['body'];
         $commentModel->createComments($postData);
-
+        header('Location:http://'.$_SERVER['HTTP_HOST'].'/quiz/bbs/public/comment/index.php');
+        exit;
     }
 }

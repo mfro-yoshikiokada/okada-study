@@ -11,7 +11,6 @@ class Comment extends Model
         $stmt = $this->pdo->query("SELECT * FROM comments");
 
         $aryItem = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-        var_dump($aryItem);
         return  $aryItem;
     }
 
@@ -20,8 +19,7 @@ class Comment extends Model
         $sql = 'INSERT INTO comments (user_id, comment_text) VALUES (?, ?);';
         $id = 1;
         $stmt = $this->pdo->prepare($sql);
-        $flag = $stmt->execute([$id, $body]);
-
+        $stmt->execute([$id, $body["body"]]);
     }
 
 }

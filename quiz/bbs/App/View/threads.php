@@ -9,7 +9,12 @@
 <body>
  <p>コメントがたくさんのページだよー</p>   
 <?
-var_dump($comments);
+
+echo '<ul>';
+foreach ($comments as $pref){
+    echo '<li><p>id:'.$pref ["user_id"].'</p><p>'.$pref ["comment_text"].'</p><p>time:'.$pref ["created_at"].'</p></li>';
+}
+echo '</ul>';
 ?>
 
 <form action="../../public/comment/create.php" method="POST" style="margin-top: 20px">

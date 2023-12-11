@@ -4,9 +4,6 @@ namespace bbs\App\Model;
 
 class Signup extends Model
 {
-    protected PDO $pdo;
-
-
 
     public function createAccount($body)
     {
