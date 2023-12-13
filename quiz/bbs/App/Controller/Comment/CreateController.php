@@ -10,7 +10,7 @@ class CreateController extends BaseController
     public function create(Comment $commentModel,$postData): void
     {
         $commentModel->createComments($postData);
-        header('Location:http://'.$_SERVER['HTTP_HOST'].'/quiz/bbs/public/comment/index.php');
+        header('Location:/quiz/bbs/public/comment/');
         exit;
     }
 }
