@@ -10,11 +10,7 @@ header("Pragma:no-cache");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous"
-    >
+    <link href="./../../style/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -49,29 +45,31 @@ header("Pragma:no-cache");
     </nav>
 </header>
 <body>
- <p>コメントがたくさんのページだよー</p>   
-<?php
-
-
-    var_dump($_SESSION);
-echo '<ul>';
-foreach ($comments as $pref) {
-    echo '<li>
-            <p>id:'.$pref ["user_id"].'</p>
-            <p>'.$pref ["comment_text"].'</p>
-            <p>time:'.$pref ["created_at"].'</p>
-        </li>';
-}
-echo '</ul>';
-?>
 
 <form action="../../public/comment/create.php" method="POST" style="margin-top: 20px">
     <input type="text" name="body">
     <button type="submit">送信</button>
 </form>
+ <p>コメントがたくさんのページだよー</p>
+ <?php
+ echo "<p>ぽまえID".$_SESSION["id"]."番な</p>";
+echo '<ol class="list-group list-group-numbered">';
+foreach ($comments as $pref) {
+    echo '<li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+             <div class="fw-bold">'.$pref ["nickname"].'</div>
+             '.$pref ["comment_text"].'
+         </div>
+         <span class="badge bg-primary rounded-pill">'.$pref ["created_at"].'</span>
+            
+        </li>';
+}
+echo ' </ol>';
+?>
+
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+<script src="./../../style/js/bootstrap.bundle.min.js"
+       ></script>
 </html>
 

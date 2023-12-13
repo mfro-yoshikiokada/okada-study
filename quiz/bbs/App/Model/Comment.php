@@ -8,16 +8,16 @@ class Comment extends Model
 {
     public function getComments(): array
     {
-        $stmt = $this->pdo->query("SELECT * FROM comments");
-
+        $sql = 'SELECT nickname, comment_text ,created_at FROM users JOIN comments ON users.id = comments.user_id;
+            ';
+        $stmt = $this->pdo->query($sql);
         $aryItem = $stmt -> fetchAll(PDO::FETCH_ASSOC);
         return  $aryItem;
     }
 
-    public function createComments(Array $body): void
+    public function createComments(Array $body, int $id): void
     {
         $sql = 'INSERT INTO comments (user_id, comment_text) VALUES (?, ?);';
-        $id = 1;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id, $body["body"]]);
     }

@@ -9,7 +9,9 @@ class CreateController extends BaseController
 {
     public function create(Comment $commentModel, Array $postData): void
     {
-        $commentModel->createComments($postData);
+        session_start();
+        $id = (int)$_SESSION["id"];
+        $commentModel->createComments($postData, $id);
         header('Location:/quiz/bbs/public/comment/');
         exit;
     }
