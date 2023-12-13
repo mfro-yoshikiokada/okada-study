@@ -7,7 +7,7 @@ use bbs\App\Model\Comment;
 
 class CreateController extends BaseController
 {
-    public function create(Comment $commentModel, $postData): void
+    public function create(Comment $commentModel, Array $postData): void
     {
         $commentModel->createComments($postData);
         header('Location:/quiz/bbs/public/comment/');

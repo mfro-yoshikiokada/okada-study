@@ -14,7 +14,7 @@ class Comment extends Model
         return  $aryItem;
     }
 
-    public function createComments($body): void
+    public function createComments(Array $body): void
     {
         $sql = 'INSERT INTO comments (user_id, comment_text) VALUES (?, ?);';
         $id = 1;

@@ -8,7 +8,7 @@ use bbs\App\Model\Signup;
 
 class SignupController extends BaseController
 {
-    public function create(signup $signupModel, $postData)
+    public function create(signup $signupModel, Array $postData): void
     {
         $signupModel->createAccount($postData);
         session_start();
@@ -17,7 +17,7 @@ class SignupController extends BaseController
         header('Location:/quiz/bbs/public/comment/');
     }
 
-    public function show(signup $signupModel)
+    public function show(signup $signupModel): void
     {
         $this->view(__DIR__ . '/../../View/signup.php');
     }

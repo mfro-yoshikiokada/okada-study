@@ -8,7 +8,7 @@ class Login extends Model
 {
     protected PDO $pdo;
 
-    public function email($mail)
+    public function email(string $mail) :string|null
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
 

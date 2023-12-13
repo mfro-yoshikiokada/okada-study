@@ -6,7 +6,7 @@ use PDO;
 
 class Signup extends Model
 {
-    public function createAccount($body)
+    public function createAccount($body): void
     {
         $sql = 'insert into users (nickname, email, password) values (?, ?, ?)';
         $nickname = $body["nickname"];
