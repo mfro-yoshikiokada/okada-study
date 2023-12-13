@@ -9,8 +9,7 @@ use bbs\App\Model\Comment;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $postData = $_POST;
-
 }
 
 $controller = new CreateController();
-$controller->create(new Comment(),$postData);
+$controller->create(new Comment(), $postData);

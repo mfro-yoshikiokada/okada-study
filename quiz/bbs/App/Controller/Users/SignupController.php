@@ -15,8 +15,8 @@ class SignupController extends BaseController
         $Id = $signupModel->searchUserId($postData["mailAddress"]);
         $_SESSION['id'] = $Id;
         header('Location:/quiz/bbs/public/comment/');
-
     }
+
     public function show(signup $signupModel)
     {
         $this->view(__DIR__ . '/../../View/signup.php');

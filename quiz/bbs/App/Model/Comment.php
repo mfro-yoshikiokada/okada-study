@@ -21,5 +21,4 @@ class Comment extends Model
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id, $body["body"]]);
     }
-
 }

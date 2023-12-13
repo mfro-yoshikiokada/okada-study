@@ -22,5 +22,4 @@ class Model
             die();
         }
     }
-
 }
