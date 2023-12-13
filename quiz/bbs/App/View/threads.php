@@ -55,7 +55,7 @@ header("Pragma:no-cache");
     <button type="submit">送信</button>
 </form>
  <p>コメントがたくさんのページだよー</p>
- <?php
+    <?php
     echo "<p>ぽまえID".$_SESSION["id"]."番な</p>";
     echo '<ol class="list-group list-group-numbered">';
     foreach ($comments as $pref) {
@@ -70,7 +70,7 @@ header("Pragma:no-cache");
             ';
     }
     echo '</ol>';
-?>
+    ?>
 
 </body>
 <script src="./../../style/js/bootstrap.bundle.min.js"
