@@ -4,11 +4,10 @@ namespace bbs\App\Controller;
 
 use bbs\App\Controller\BaseController;
 use bbs\App\Model\Login;
-use bbs\App\Model\Signup;
 
 class LoginController extends BaseController
 {
-    public function login(Signup $loginModel, Array $data): void
+    public function login(Login $loginModel, Array $data): void
     {
         $email=$loginModel->email($data["mailAddress"]);
         if ($email!==null && $data["password"]==$email["password"]) {
