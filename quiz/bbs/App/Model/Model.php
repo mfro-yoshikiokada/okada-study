@@ -3,6 +3,7 @@
 namespace bbs\App\Model;
 
 use PDO;
+
 abstract class Model
 {
     protected PDO $pdo;
