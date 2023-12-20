@@ -49,22 +49,19 @@
     <button type="submit">送信</button>
 </form>
  <p>コメントがたくさんのページだよー</p>
-    <?php
-    echo "<p>ぽまえID".$_SESSION["id"]."番な</p>";
-    echo '<ol class="list-group list-group-numbered">';
-    foreach ($comments as $pref) {
-        echo '
+
+    <?php echo "<p>ぽまえID".$_SESSION["id"]."番な</p>" ?>
+    <ol class="list-group list-group-numbered">
+        <?php foreach ($comments as $pref): ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
-                    <div class="fw-bold">'.$pref ["nickname"].'</div>
-                 '.$pref ["comment_text"].'
+                    <div class="fw-bold"><?php echo $pref["nickname"]; ?></div>
+                    <?php echo $pref["comment_text"]; ?>
                 </div>
-                <span class="badge bg-primary rounded-pill">'.$pref ["created_at"].'</span>   
+                <span class="badge bg-primary rounded-pill"><?php echo $pref["created_at"]; ?></span>
             </li>
-            ';
-    }
-    echo '</ol>';
-    ?>
+        <?php endforeach; ?>
+    </ol>
 
 </body>
 </html>

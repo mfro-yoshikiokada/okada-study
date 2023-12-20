@@ -9,6 +9,9 @@ class ShowController extends BaseController
 {
     public function show(Comment $commentModel): void
     {
+        if (!isset($_SESSION['id'])) {
+            $this->redirect('/users/login.php');
+        }
         $comments = $commentModel->getComments();
 
         $this->view(__DIR__ . '/../../View/threads.php', [
