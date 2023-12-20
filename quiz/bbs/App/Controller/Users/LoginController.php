@@ -3,19 +3,18 @@
 namespace bbs\App\Controller;
 
 use bbs\App\Controller\BaseController;
-use bbs\App\Model\Login;
+use bbs\App\Model\Users;
 
 class LoginController extends BaseController
 {
-    public function login(Login $loginModel, Array $data): void
+    public function login(Users $usersModel, Array $data): void
     {
-        $email=$loginModel->email($data["mailAddress"]);
+        $email=$usersModel->searchEmail($data["mailAddress"]);
         if ($email!==null && $data["password"]==$email["password"]) {
-            session_start();
             $_SESSION['id'] = $email["id"];
-            header('Location:/quiz/bbs/public/comment/');
+            $this->redirect('/comment/');
         } else {
-            header('Location:quiz/bbs/public/users/login.php');
+            $this->redirect('/users/login.php');
         }
     }
     public function show()

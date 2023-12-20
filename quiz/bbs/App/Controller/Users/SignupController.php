@@ -4,20 +4,19 @@
 namespace bbs\App\Controller\Signup;
 
 use bbs\App\Controller\BaseController;
-use bbs\App\Model\Signup;
+use bbs\App\Model\Users;
 
 class SignupController extends BaseController
 {
-    public function create(signup $signupModel, Array $postData): void
+    public function create(Users $signupModel, array $postData): void
     {
         $signupModel->createAccount($postData);
-        session_start();
-        $Id = $signupModel->searchUserId($postData["mailAddress"]);
-        $_SESSION['id'] = $Id;
-        header('Location:/quiz/bbs/public/comment/');
+        $id = $signupModel->searchUserId($postData["mailAddress"]);
+        $_SESSION['id'] = $id;
+        $this->redirect('/comment/');
     }
 
-    public function show(signup $signupModel): void
+    public function show(Users $signupModel): void
     {
         $this->view(__DIR__ . '/../../View/signup.php');
     }

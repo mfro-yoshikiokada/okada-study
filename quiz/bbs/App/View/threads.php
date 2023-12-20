@@ -1,9 +1,3 @@
-<?php session_start();
-header("Cache-Control:no-cache, no-store,must-revalidate,max-age=0");
-header("Cache-Control:pre-check=0", "post-check=0", false);
-header("Pragma:no-cache");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,7 +67,5 @@ header("Pragma:no-cache");
     ?>
 
 </body>
-<script src="./../../style/js/bootstrap.bundle.min.js"
-       ></script>
 </html>
 

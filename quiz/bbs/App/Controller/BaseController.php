@@ -13,5 +13,6 @@ abstract class BaseController
     protected function redirect(string $path): void
     {
         header("Location:/quiz/bbs/public{$path}");
+        exit();
     }
 }

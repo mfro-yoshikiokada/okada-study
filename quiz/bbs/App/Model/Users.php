@@ -4,9 +4,26 @@ namespace bbs\App\Model;
 
 use PDO;
 
-class Signup extends Model
+class Users extends Model
 {
-    public function createAccount($body): void
+    protected PDO $pdo;
+
+    public function searchEmail(string $mail) :array|null
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+
+        $stmt->bindParam(':email', $mail);
+
+        $res = $stmt->execute();
+        if ($res) {
+            $data = $stmt->fetch();
+            return $data;
+        } else {
+            return null;
+        }
+    }
+
+    public function createAccount(array $body): void
     {
         $sql = 'insert into users (nickname, email, password) values (?, ?, ?)';
         $nickname = $body["nickname"];
@@ -16,7 +33,7 @@ class Signup extends Model
         $stmt->execute([$nickname, $mailAddress, $password]);
     }
 
-    public function searchUserId($mail)
+    public function searchUserId(string $mail) : string
     {
         $sql = 'SELECT * FROM users WHERE email = :email';
         $stmt = $this->pdo->prepare($sql);
