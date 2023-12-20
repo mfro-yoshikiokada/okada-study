@@ -18,6 +18,6 @@ class SignupController extends BaseController
 
     public function show(Users $signupModel): void
     {
-        $this->view(__DIR__ . '/../../View/signup.html');
+        $this->view(__DIR__ . '/../../View/signup.php');
     }
 }

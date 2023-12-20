@@ -7,18 +7,18 @@ use bbs\App\Model\Users;
 
 class LoginController extends BaseController
 {
-    public function login(Users $usersModel, Array $data): void
+    public function login(Users $usersModel, array $data): void
     {
         $email=$usersModel->searchEmail($data["mailAddress"]);
         if ($email!==null && $data["password"]==$email["password"]) {
             $_SESSION['id'] = $email["id"];
             $this->redirect('/comment/');
         } else {
-            $this->redirect('/users/login.html');
+            $this->redirect('/users/login.php');
         }
     }
     public function show()
     {
-        $this->view(__DIR__ . '/../../View/login.html');
+        $this->view(__DIR__ . '/../../View/login.php');
     }
 }

@@ -50,7 +50,7 @@
 </form>
  <p>コメントがたくさんのページだよー</p>
 
-    <?php echo "<p>ぽまえID".$_SESSION["id"]."番な</p>" ?>
+    <p>ぽまえID<?= $_SESSION["id"] ?>番な</p>
     <ol class="list-group list-group-numbered">
         <?php foreach ($comments as $pref) : ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">
