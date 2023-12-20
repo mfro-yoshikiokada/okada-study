@@ -14,11 +14,11 @@ class LoginController extends BaseController
             $_SESSION['id'] = $email["id"];
             $this->redirect('/comment/');
         } else {
-            $this->redirect('/users/login.php');
+            $this->redirect('/users/login.html');
         }
     }
     public function show()
     {
-        $this->view(__DIR__ . '/../../View/login.php');
+        $this->view(__DIR__ . '/../../View/login.html');
     }
 }

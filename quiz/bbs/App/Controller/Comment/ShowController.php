@@ -10,7 +10,7 @@ class ShowController extends BaseController
     public function show(Comment $commentModel): void
     {
         if (!isset($_SESSION['id'])) {
-            $this->redirect('/users/login.php');
+            $this->redirect('/users/login.html');
         }
         $comments = $commentModel->getComments();
 
