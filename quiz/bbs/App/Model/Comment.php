@@ -15,10 +15,10 @@ class Comment extends Model
         return  $aryItem;
     }
 
-    public function createComments(Array $body, int $id): void
+    public function createComments(Array $body, int $id, string $time): void
     {
-        $sql = 'INSERT INTO comments (user_id, comment_text) VALUES (?, ?);';
+        $sql = 'INSERT INTO comments (user_id, comment_text, created_at) VALUES (?, ?, ?);';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$id, $body["body"]]);
+        $stmt->execute([$id, $body["body"], $time]);
     }
 }

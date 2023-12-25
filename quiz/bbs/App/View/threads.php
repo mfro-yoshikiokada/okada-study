@@ -48,8 +48,8 @@
     <input type="text" name="body">
     <button type="submit">送信</button>
 </form>
- <p>コメントがたくさんのページだよー</p>
 
+ <p>コメントがたくさんのページだよー</p>
     <p>ぽまえID<?= $_SESSION["id"] ?>番な</p>
     <ol class="list-group list-group-numbered">
         <?php foreach ($comments as $pref) : ?>
