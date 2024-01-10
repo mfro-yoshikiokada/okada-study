@@ -14,11 +14,11 @@ class ShowController extends BaseController
         }
         $comment_id = $_GET['comment'];
         $comment = $replyModel->getComment($comment_id);
-        //$replies = $replyModel->getReplies();
+        $replies = $replyModel->getReplies($comment_id);
 
         $this->view(__DIR__ . '/../../View/reply.show.php', [
             'comment' => $comment,
-            //'replies' => $replies
+            'replies' => $replies
         ]);
     }
 }
