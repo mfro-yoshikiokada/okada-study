@@ -35,7 +35,8 @@ if (isset($_POST['submit'])) {
 ?>
 <form action="../../public/reply/create.php" method="POST">
     <input type="text" class="form-control" name="body">
-    <input type="text" class="form-control" name="comment_id" value="<?php echo $comment["id"]; ?>" style="display:none;">
+    <input type="text" class="form-control" name="comment_id"
+           value="<?php echo $comment["id"]; ?>" style="display:none;">
     <button type="submit" class="btn btn-primary" name="submit">送信</button>
 </form>
 

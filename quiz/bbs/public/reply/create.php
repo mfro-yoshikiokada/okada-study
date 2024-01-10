@@ -9,5 +9,3 @@ use bbs\App\Model\Reply;
 
 $controller = new CreateController();
 $controller->create(new Reply(), $_POST);
-
-
