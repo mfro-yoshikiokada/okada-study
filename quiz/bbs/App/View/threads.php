@@ -18,12 +18,16 @@
                     <div class="fw-bold"><?php echo $pref["nickname"]; ?></div>
                     <?php echo $pref["comment_text"]; ?>
                 </div>
+                <div>
                 <span class="badge bg-primary rounded-pill"><?php echo $pref["created_at"]; ?></span>
+                    <p><a class="link-opacity-100" href="../../public/reply/show.php?comment=<?php echo  $pref["id"]; ?>">返信を見る</a></p>
+                </div>
             </li>
         <?php endforeach; ?>
     </ol>
 
 </body>
 <?php include "footer.html" ?>
+<?php include "script.html" ?>
 </html>
 
