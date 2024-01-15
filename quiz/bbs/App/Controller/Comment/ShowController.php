@@ -14,7 +14,7 @@ class ShowController extends BaseController
         }
         $comments = $commentModel->getComments();
         $numberOfReplies = [];
-        for ($count = 1; $count < count($comments)+1; $count++){
+        for ($count = 1; $count < count($comments)+1; $count++) {
             array_push($numberOfReplies, $commentModel->numberOfReplies($count+4));
         }
         var_dump($numberOfReplies);
