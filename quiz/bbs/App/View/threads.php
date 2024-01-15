@@ -8,7 +8,6 @@
     <input class="form-control" type="text" name="body">
     <button class="btn btn-primary" type="submit">送信</button>
 </form>
-<?php  var_dump($numberOfReplies);?>
  <p>コメントがたくさんのページだよー</p>
     <p>ぽまえID<?= $_SESSION["id"] ?>番な</p>
     <ol class="list-group list-group-numbered">
@@ -23,7 +22,7 @@
                     <p>
                         <a class="link-opacity-100"
                            href="../../public/reply/show.php?comment=<?php echo  $pref["id"]; ?>">
-                            返信<?php echo  $numberOfReplies[$key]; ?>件
+                            返信<?php echo  $numberOfReplies[$pref["id"]]; ?>件
                         </a>
                     </p>
                 </div>

@@ -29,6 +29,13 @@ WHERE comment_id = :id
         $aryItem = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $aryItem;
     }
+    public function getAllIdReplies(): array
+    {
+        $stmt = $this->pdo->prepare("SELECT comment_id FROM replies;");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return  $result;
+    }
 
 
     public function getComment(int $comment_id): array|null
