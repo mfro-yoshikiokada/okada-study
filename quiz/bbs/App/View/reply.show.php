@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
 <div class="list-group list-group-numbered">
     <div class="ms-2 me-auto">
         <span class="badge bg-primary rounded-pill"><?php echo $comment["created_at"]; ?></span>
-    <h2 class="fw-bold"><?php echo $comment["id"]; ?></h2>
+
         <h3><?php echo  $comment["comment_text"]; ?></h3>
     </div>
 </div>

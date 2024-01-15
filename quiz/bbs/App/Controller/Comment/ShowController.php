@@ -13,9 +13,14 @@ class ShowController extends BaseController
             $this->redirect('/users/login.php');
         }
         $comments = $commentModel->getComments();
-
+        $numberOfReplies = [];
+        for ($count = 1; $count < count($comments)+1; $count++){
+            array_push($numberOfReplies, $commentModel->numberOfReplies($count+4));
+        }
+        var_dump($numberOfReplies);
         $this->view(__DIR__ . '/../../View/threads.php', [
-            'comments' => $comments
+            'comments' => $comments,
+            'numberOfReplies' =>  $numberOfReplies
         ]);
     }
 }

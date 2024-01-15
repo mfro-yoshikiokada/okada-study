@@ -9,7 +9,7 @@ class Reply extends Model
 {
     protected PDO $pdo;
 
-    public function createReply($user_id, $comment_id, $reply_text, $created_at): void
+    public function createReply(int $user_id, int $comment_id, string $reply_text, string $created_at): void
     {
         $sql = 'INSERT INTO replies (user_id, comment_id, reply_text, created_at) VALUES (?, ?, ?, ?);';
         $stmt = $this->pdo->prepare($sql);
@@ -23,7 +23,6 @@ SELECT nickname, reply_text, created_at
 FROM users JOIN replies ON users.id = replies.user_id 
 WHERE comment_id = :id
 ';
-
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $comment_id, PDO::PARAM_INT);
         $stmt->execute();
