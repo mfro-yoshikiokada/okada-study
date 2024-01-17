@@ -25,10 +25,12 @@ class ShowController extends BaseController
             $commentsId[] =  intval($pref["id"]);
         }
         $numberOfReplies = [];
-        for ($limit = min($commentsId); $limit <= max($commentsId); $limit++) {
-            $array_keys = array_keys($allReplyArray, $limit);
-            $numberOfReplies[$limit] = count($array_keys);
+        foreach ($comments as $key => $comment) {
+            $array_keys = array_keys($allReplyArray, $key);
+            $numberOfReplies[$key] = count($array_keys);
         }
+        var_dump(count($comments)); // int(6)
+        var_dump(count($numberOfReplies)); //int(11)
         $this->view(__DIR__ . '/../../View/threads.php', [
             'comments' => $comments,
             'numberOfReplies' =>  $numberOfReplies
