@@ -10,7 +10,7 @@
 </form>
  <p>コメントがたくさんのページだよー</p>
     <p>ぽまえID<?= $_SESSION["id"] ?>番な</p>
-    <ol class="list-group list-group-numbered">
+    <ol class="list-group list-group-numbered min-height">
         <?php foreach ($comments as $key => $pref) : ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">

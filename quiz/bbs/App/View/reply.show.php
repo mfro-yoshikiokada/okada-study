@@ -4,7 +4,7 @@
 <?php include "header.html" ?>
 
 <body>
-
+<a  href="../../public/comment/delete.php?id=<?php echo $comment["id"]; ?>" type="button" class="btn btn-danger">Danger</a>
 <form action="../../public/reply/create.php" method="POST">
     <input type="text" class="form-control" name="body">
     <input  type="hidden" class="form-control" name="comment_id"
@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<ol class="list-group list-group-numbered">
+<ol class="list-group list-group-numbered min-height">
     <?php foreach ($replies as $pref) : ?>
         <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">

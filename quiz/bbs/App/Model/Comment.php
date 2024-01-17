@@ -24,6 +24,13 @@ FROM users JOIN comments ON users.id = comments.user_id;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id, $body["body"], $time]);
     }
+
+    public function deleteComments(int $id): void
+    {
+        $sql = 'DELETE FROM comments WHERE id = ?;';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id]);
+    }
     public function getComment(int $commentId): array|null
     {
         $stmt = $this->pdo->prepare("SELECT * FROM comments WHERE id = :id");
