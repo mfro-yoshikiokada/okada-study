@@ -23,7 +23,7 @@
                         <a class="link-opacity-100"
                            href="../../public/reply/show.php?comment=<?php echo  $pref["id"]; ?>">
                             返信<?php echo
-                            ( empty( $numberOfReplies[$pref["id"]])) ? 0 : $numberOfReplies[$pref["id"]];
+                            (empty($numberOfReplies[$pref["id"]])) ? 0 : $numberOfReplies[$pref["id"]];
                             ?>件
                         </a>
                     </p>
