@@ -16,18 +16,18 @@ class ShowController extends BaseController
         $comments = $commentModel->getComments();
         $allReply = $replyModel->getAllIdReplies();
 
-        $allReplyArray =[];
+        $allReplyArray = [];
         foreach ($allReply as $pref) {
-            $allReplyArray[] = $pref["comment_id"];
+            $allReplyArray[] =  intval($pref["comment_id"]);
         }
-
+        $commentsId = [];
+        foreach ($comments as $pref) {
+            $commentsId[] =  intval($pref["id"]);
+        }
         $numberOfReplies = [];
-        $limit = 0;
-
-        while ($limit < count($comments)+5) {
+        for ($limit = min($commentsId); $limit <= max($commentsId); $limit++) {
             $array_keys = array_keys($allReplyArray, $limit);
             $numberOfReplies[$limit] = count($array_keys);
-            $limit++;
         }
         $this->view(__DIR__ . '/../../View/threads.php', [
             'comments' => $comments,

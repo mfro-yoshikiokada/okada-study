@@ -7,10 +7,10 @@
 
 <form action="../../public/reply/create.php" method="POST">
     <input type="text" class="form-control" name="body">
-    <input  input type="hidden" class="form-control" name="comment_id"
-           value="<?php echo $comment["id"]; ?>" style="display:none;">
-    <input  input type="hidden" class="form-control" name="user_id"
-           value="<?php echo $_SESSION['id']; ?>" style="display:none;">
+    <input  type="hidden" class="form-control" name="comment_id"
+           value="<?php echo $comment["id"]; ?>">
+    <input  type="hidden" class="form-control" name="user_id"
+           value="<?php echo $_SESSION['id']; ?>">
     <button type="submit" class="btn btn-primary" name="submit">送信</button>
 </form>
 
