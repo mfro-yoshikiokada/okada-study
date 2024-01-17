@@ -4,7 +4,11 @@
 <?php include "header.html" ?>
 
 <body>
-<a  href="../../public/comment/delete.php?id=<?php echo $comment["id"]; ?>" type="button" class="btn btn-danger">Danger</a>
+<?php
+if ($comment["user_id"] == $_SESSION["id"]) {
+    echo '<a href="../../public/comment/delete.php?id=' . $comment["id"] . '" type="button" class="btn btn-danger">Danger</a>';
+}
+?>
 <form action="../../public/reply/create.php" method="POST">
     <input type="text" class="form-control" name="body">
     <input  type="hidden" class="form-control" name="comment_id"
