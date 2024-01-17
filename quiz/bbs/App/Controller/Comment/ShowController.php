@@ -29,8 +29,6 @@ class ShowController extends BaseController
             $array_keys = array_keys($allReplyArray, $key);
             $numberOfReplies[$key] = count($array_keys);
         }
-        var_dump(count($comments)); // int(6)
-        var_dump(count($numberOfReplies)); //int(11)
         $this->view(__DIR__ . '/../../View/threads.php', [
             'comments' => $comments,
             'numberOfReplies' =>  $numberOfReplies
