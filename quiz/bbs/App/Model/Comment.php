@@ -16,13 +16,6 @@ FROM users JOIN comments ON users.id = comments.user_id;
         $aryItem = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return  $aryItem;
     }
-    public function numberOfReplies(int  $comment_id) :string
-    {
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM replies WHERE comment_id = ?;");
-        $stmt->execute(array($comment_id));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return  $result["COUNT(*)"];
-    }
 
 
     public function createComments(Array $body, int $id, string $time): void
@@ -30,5 +23,20 @@ FROM users JOIN comments ON users.id = comments.user_id;
         $sql = 'INSERT INTO comments (user_id, comment_text, created_at) VALUES (?, ?, ?);';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id, $body["body"], $time]);
+    }
+    public function getComment(int $commentId): array|null
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM comments WHERE id = :id");
+
+        $stmt->bindParam(':id', $commentId, PDO::PARAM_STR);
+
+        $res = $stmt->execute();
+
+        if ($res) {
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $data;
+        } else {
+            return null;
+        }
     }
 }
