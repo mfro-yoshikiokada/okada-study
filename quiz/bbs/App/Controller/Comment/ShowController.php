@@ -24,7 +24,7 @@ class ShowController extends BaseController
         $numberOfReplies = [];
         $limit = 0;
 
-        while ($limit < count($comments)+5){
+        while ($limit < count($comments)+5) {
             $array_keys = array_keys($allReplyArray, $limit);
             $numberOfReplies[$limit] = count($array_keys);
             $limit++;

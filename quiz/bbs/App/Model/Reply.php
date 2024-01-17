@@ -37,4 +37,3 @@ WHERE comment_id = :id
         return  $result;
     }
 }
-
