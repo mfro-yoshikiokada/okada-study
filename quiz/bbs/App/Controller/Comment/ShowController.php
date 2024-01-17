@@ -20,10 +20,6 @@ class ShowController extends BaseController
         foreach ($allReply as $pref) {
             $allReplyArray[] =  intval($pref["comment_id"]);
         }
-        $commentsId = [];
-        foreach ($comments as $pref) {
-            $commentsId[] =  intval($pref["id"]);
-        }
         $numberOfReplies = [];
         foreach ($comments as $key => $comment) {
             $array_keys = array_keys($allReplyArray, $key);
