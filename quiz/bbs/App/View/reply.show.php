@@ -15,7 +15,7 @@
             if ($comment["user_id"] == $_SESSION["id"]) {
                 echo '
                 <a 
-                href="../../public/comment/delete.php?id=' . $comment["id"] . '" 
+                href="../../public/comment/delete.php?id=' . $comment["id"] . '&user=' .$comment["user_id"].'"
                 type="button" 
                 class="btn btn-danger m-1"
                 >
