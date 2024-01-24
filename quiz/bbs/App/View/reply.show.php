@@ -4,28 +4,30 @@
 <?php include "header.html" ?>
 
 <body>
-<?php
-if ($comment["user_id"] == $_SESSION["id"]) {
-    echo '<a href="../../public/comment/delete.php?id=' . $comment["id"] . '" type="button" class="btn btn-danger">Danger</a>';
-}
-?>
-<form action="../../public/reply/create.php" method="POST">
-    <input type="text" class="form-control" name="body">
-    <input  type="hidden" class="form-control" name="comment_id"
-           value="<?php echo $comment["id"]; ?>">
-    <input  type="hidden" class="form-control" name="user_id"
-           value="<?php echo $_SESSION['id']; ?>">
-    <button type="submit" class="btn btn-primary" name="submit">送信</button>
-</form>
-
 <div class="list-group list-group-numbered">
-    <div class="ms-2 me-auto">
-        <span class="badge bg-primary rounded-pill"><?php echo $comment["created_at"]; ?></span>
+    <div class="m-2 me-auto">
+        <span class="d-block badge bg-primary rounded-pill"><?php echo $comment["created_at"]; ?></span>
 
-        <h3><?php echo  $comment["comment_text"]; ?></h3>
+        <h3 class="d-inline-block m-1"><?php echo  $comment["comment_text"]; ?></h3>
+        <div class="float-right m-2">
+
+            <?php
+            if ($comment["user_id"] == $_SESSION["id"]) {
+                echo '<a href="../../public/comment/delete.php?id=' . $comment["id"] . '" type="button" class="btn btn-danger m-1">DELETE</a>';
+                echo '<a href="../../public/comment/edit.show.php?id=' . $comment["id"] . '" type="button" class="btn btn-secondary">EDIT</a>';
+            }
+            ?>
+        </div>
     </div>
 </div>
-
+<form action="../../public/reply/create.php" method="POST" class="m-2">
+    <input type="text" class="d-inline-block w-75 form-control" name="body">
+    <input  type="hidden" class="form-control" name="comment_id"
+            value="<?php echo $comment["id"]; ?>">
+    <input  type="hidden" class="form-control" name="user_id"
+            value="<?php echo $_SESSION['id']; ?>">
+    <button type="submit" class="d-inline-block btn btn-primary" name="submit">送信</button>
+</form>
 <ol class="list-group list-group-numbered min-height">
     <?php foreach ($replies as $pref) : ?>
         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -40,4 +42,5 @@ if ($comment["user_id"] == $_SESSION["id"]) {
 
 </body>
 <?php include "footer.html" ?>
+<?php include "script.html" ?>
 </html>

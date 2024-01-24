@@ -10,7 +10,7 @@ class Comment extends Model
     {
         $sql = '
 SELECT nickname, comment_text , comments.id ,created_at 
-FROM users JOIN comments ON users.id = comments.user_id;
+FROM users JOIN comments ON users.id = comments.user_id  ORDER BY comments.id desc;
 ';
         $stmt = $this->pdo->query($sql);
         $aryItem = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -45,5 +45,11 @@ FROM users JOIN comments ON users.id = comments.user_id;
         } else {
             return null;
         }
+    }
+    public function editComments(string $text, int $id): void
+    {
+        $sql = 'update comments set comment_text= ? where id = ?;';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$text, $id]);
     }
 }
