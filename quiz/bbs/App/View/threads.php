@@ -4,8 +4,8 @@
 
 <body>
 
-<form action="../../public/comment/create.php" method="POST" class="inline-block">
-    <input class="form-control inline-block" type="text" name="body">
+<form action="../../public/comment/create.php" method="POST" class="inline-block m-2">
+    <input class="d-inline-block w-75 form-control" type="text" name="body">
     <button class="btn btn-primary" type="submit">送信</button>
 </form>
  <p>コメントがたくさんのページだよー</p>
