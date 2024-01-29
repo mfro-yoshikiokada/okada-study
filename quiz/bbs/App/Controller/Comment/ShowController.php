@@ -18,7 +18,7 @@ class ShowController extends BaseController
         $allReply = $replyModel->getAllIdReplies();
         $allReplyArray = [];
         foreach ($allReply as $pref) {
-            $allReplyArray[] = strval( $pref["comment_id"]);
+            $allReplyArray[] = strval($pref["comment_id"]);
         }
         $numberOfReplies = [];
         foreach ($comments as $comment) {
