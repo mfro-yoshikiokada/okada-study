@@ -11,28 +11,21 @@
         <h3 class="d-inline-block m-1"><?php echo  $comment["comment_text"]; ?></h3>
         <div class="float-right m-2">
 
-            <?php
-            if ($comment["user_id"] == $_SESSION["id"]) {
-                echo '
-                <a 
-                href="../../public/comment/delete.php?id=' . $comment["id"] . '&user=' .$comment["user_id"].'"
-                type="button" 
-                class="btn btn-danger m-1"
+            <?php if ($comment["user_id"] == $_SESSION["id"]) : ?>
+                <a href="../../public/comment/delete.php?id=<?= $comment["id"] ?>&user=<?= $comment["user_id"] ?>"
+                   type="button"
+                   class="btn btn-danger m-1"
                 >
                     DELETE
-                 </a>
-                 ';
-                echo '
-                <a 
-                href="../../public/comment/edit.show.php?id=' . $comment["id"] . '" 
-                type="button" 
-                class="btn btn-secondary"
+                </a>
+                <a href="../../public/comment/edit.show.php?id=<?= $comment["id"] ?>"
+                   type="button"
+                   class="btn btn-secondary"
                 >
                     EDIT
                 </a>
-                ';
-            }
-            ?>
+            <?php endif; ?>
+
         </div>
     </div>
 </div>
