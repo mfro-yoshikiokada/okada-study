@@ -8,17 +8,48 @@ class Comment extends Model
 {
     public function getComments(): array
     {
-        $sql = 'SELECT nickname, comment_text ,created_at FROM users JOIN comments ON users.id = comments.user_id;
-            ';
+        $sql = '
+SELECT nickname, comment_text , comments.id ,created_at 
+FROM users JOIN comments ON users.id = comments.user_id  ORDER BY comments.id desc;
+';
         $stmt = $this->pdo->query($sql);
         $aryItem = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return  $aryItem;
     }
 
-    public function createComments(Array $body, int $id): void
+
+    public function createComments(Array $body, int $id, string $time): void
     {
-        $sql = 'INSERT INTO comments (user_id, comment_text) VALUES (?, ?);';
+        $sql = 'INSERT INTO comments (user_id, comment_text, created_at) VALUES (?, ?, ?);';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$id, $body["body"]]);
+        $stmt->execute([$id, $body["body"], $time]);
+    }
+
+    public function deleteComments(int $id): void
+    {
+        $sql = 'DELETE FROM comments WHERE id = ?;';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id]);
+    }
+    public function getComment(int $commentId): array|null
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM comments WHERE id = :id");
+
+        $stmt->bindParam(':id', $commentId, PDO::PARAM_STR);
+
+        $res = $stmt->execute();
+
+        if ($res) {
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $data;
+        } else {
+            return null;
+        }
+    }
+    public function editComments(string $text, int $id): void
+    {
+        $sql = 'update comments set comment_text= ? where id = ?;';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$text, $id]);
     }
 }

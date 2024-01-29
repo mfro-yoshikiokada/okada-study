@@ -15,4 +15,12 @@ abstract class BaseController
         header("Location:/quiz/bbs/public{$path}");
         exit();
     }
+
+    protected function confirmLogin(int $id): void
+    {
+        if ((int) $_SESSION['id'] !== $id) {
+            header("Location:/quiz/bbs/public/index.php");
+            exit();
+        }
+    }
 }
