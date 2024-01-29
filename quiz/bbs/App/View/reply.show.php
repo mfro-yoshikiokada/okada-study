@@ -40,8 +40,6 @@
     <input type="text" class="d-inline-block w-75 form-control" name="body">
     <input  type="hidden" class="form-control" name="comment_id"
             value="<?php echo $comment["id"]; ?>">
-    <input  type="hidden" class="form-control" name="user_id"
-            value="<?php echo $_SESSION['id']; ?>">
     <button type="submit" class="d-inline-block btn btn-primary" name="submit">送信</button>
 </form>
 <ol class="list-group list-group-numbered min-height">

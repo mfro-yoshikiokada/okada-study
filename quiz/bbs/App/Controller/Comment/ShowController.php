@@ -13,17 +13,17 @@ class ShowController extends BaseController
         if (!isset($_SESSION['id'])) {
             $this->redirect('/users/login.php');
         }
+
         $comments = $commentModel->getComments();
         $allReply = $replyModel->getAllIdReplies();
-
         $allReplyArray = [];
         foreach ($allReply as $pref) {
-            $allReplyArray[] =  intval($pref["comment_id"]);
+            $allReplyArray[] = strval( $pref["comment_id"]);
         }
         $numberOfReplies = [];
-        foreach ($comments as $key => $comment) {
-            $array_keys = array_keys($allReplyArray, $key);
-            $numberOfReplies[$key] = count($array_keys);
+        foreach ($comments as $comment) {
+            $array_keys = array_keys($allReplyArray, $comment["id"]);
+            $numberOfReplies[$comment["id"]] = count($array_keys);
         }
         $this->view(__DIR__ . '/../../View/threads.php', [
             'comments' => $comments,

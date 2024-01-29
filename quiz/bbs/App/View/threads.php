@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <?php include "head.html" ?>
 <?php include "header.html" ?>
-
 <body>
 
 <form action="../../public/comment/create.php" method="POST" class="inline-block m-2">
-    <input class="d-inline-block w-75 form-control" type="text" name="body">
-    <button class="btn btn-primary" type="submit">送信</button>
+    <textarea name="body" rows="3" cols="33"class="d-inline-block w-75 form-control" style="resize: none;" required>
+
+</textarea>
+    <button class="btn btn-primary m-2 mb-5" type="submit">送信</button>
 </form>
  <p>コメントがたくさんのページだよー</p>
     <p>ぽまえID<?= $_SESSION["id"] ?>番な</p>

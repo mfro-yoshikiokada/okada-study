@@ -1,5 +1,4 @@
 <?php
-echo $_SESSION["id"];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
