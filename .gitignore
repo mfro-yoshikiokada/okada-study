@@ -1,3 +1,5 @@
 .idea/
 .phpmyadmin/
 vendor
+.env
+.env.example
