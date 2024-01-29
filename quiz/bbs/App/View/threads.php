@@ -15,8 +15,8 @@
         <?php foreach ($comments as $key => $pref) : ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
-                    <div class="fw-bold"><?php echo $pref["nickname"]; ?></div>
-                    <?php echo $pref["comment_text"]; ?>
+                    <div class="fw-bold"><?php echo htmlspecialchars( $pref["nickname"], ENT_QUOTES, 'UTF-8'); ?></div>
+                    <?php echo nl2br(htmlspecialchars($pref["comment_text"], ENT_QUOTES, 'UTF-8')); ?>
                 </div>
                 <div>
                 <span class="badge bg-primary rounded-pill"><?php echo $pref["created_at"]; ?></span>
