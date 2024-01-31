@@ -1,6 +1,9 @@
 # ベースとなるイメージを指定
 FROM php:8.2-apache
 
+# mod_rewriteを有効にする
+RUN a2enmod rewrite
+
 # 必要なパッケージのインストール
 RUN apt-get update && apt-get install -y libonig-dev unzip git \
     && docker-php-ext-install pdo_mysql mysqli mbstring

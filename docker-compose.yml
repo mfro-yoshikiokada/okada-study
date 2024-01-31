@@ -9,6 +9,7 @@ services:
       - .:/var/www/html
     ports:
       - 8000:80
+      - 5173:5173
     container_name: php8.2-trial2
 
   mysql:
