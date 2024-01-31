@@ -2,5 +2,3 @@
 .phpmyadmin/
 vendor
 node_modules
-.env
-.env.example
