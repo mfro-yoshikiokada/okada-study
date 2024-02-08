@@ -13,9 +13,17 @@
                             <br>
                             {{$stock->explain}} <br>
                         </div>
-
+                        <form action="addMyCart" method="post">
+                            @csrf
+                            <input type="hidden" name="stockId" value="{{ $stock->id }}">
+                            <input type="submit" value="カートに入れる">
+                        </form>
                     @endforeach
                     {{-- ここまで --}}
+                </div>
+                <div class="text-center" style="width: 200px;margin: 20px auto;">
+                    {{  $stocks->links()}}
+                </div>
                 </div>
                 {{-- 追加 --}}
                 <div class="text-center" style="width: 200px;margin: 20px auto;">
