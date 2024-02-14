@@ -9,7 +9,7 @@
                         <div class="mycart_box text-sm text-center rounded shadow-lg bg-white p-6">
                             {{$stock->name}} <br>
                             {{$stock->fee}}円<br>
-                            <img src="/image/{{$stock->imagePath}}" alt="" class="incart" >
+                            <img src="/laravel-tutorial/public/image/{{$stock->imagePath}}" alt="" class="incart" >
                             <br>
                             {{$stock->explain}} <br>
 

@@ -12,4 +12,18 @@ class UserStock extends Controller
         return view('myCart',compact('myCartStocks'));
 
     }
+    public function addMyCart($stockId)
+    {
+        $userId = Auth::id();
+        $cartAddInfo = $this->firstOrCreate(['stockId' => $stockId,'userId' => $userId]);
+
+        if($cartAddInfo->wasRecentlyCreated){
+            $message = 'カートに追加しました';
+        }
+        else{
+            $message = 'カートに登録済みです';
+        }
+
+        return $message;
+    }
 }

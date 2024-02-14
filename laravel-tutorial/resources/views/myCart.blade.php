@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <div class="container-fluid">
         <div class="mx-auto" style="max-width:1200px">
@@ -6,9 +7,22 @@
             <p class="text-center">{{ $message ?? '' }}</p><br>
             <div class="">
                 @foreach($myCartStocks as $stock)
-                    {{$stock->stockId}}<br>
-                    {{$stock->userId}}<br>
+                    <div class="text-center rounded shadow-lg bg-white p-6 m-4">
+                        {{$stock->stock->name}} <br>
+                        {{ number_format($stock->stock->fee)}}円 <br>
+                        <div class="incart flex justify-center p-4 m-4">
+                            <img src="/laravel-tutorial/public/image/{{$stock->stock->imagePath}}" alt=""  width="600">
+                        </div>
+                        <form action="./deleteMyCartStock" method="post">
+                            @csrf
+                            <input type="hidden" name="stockId" value="{{ $stock->stock->id }}">
+                            <input type="submit" value="カートから削除する">
+                        </form>
+                    </div>
                 @endforeach
+                    @if($myCartStocks->isEmpty())
+                        <p class="text-center">カートはからっぽです。</p>
+                    @endif
             </div>
         </div>
     </div>
