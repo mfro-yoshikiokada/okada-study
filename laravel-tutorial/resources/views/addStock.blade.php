@@ -9,15 +9,19 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                 <div class="mt-8">
-                    <form class="w-10/12 mx-auto md:max-w-md" action="./addStock" method="post">
+                    <form class="w-10/12 mx-auto md:max-w-md" action="./addStock" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-8">
                             <label for="name" class="text-sm block">名前</label>
-                            <input type="text" id="name" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
+                            <input type="text" name="name" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
+                        </div>
+                        <div class="mb-8">
+                            <label for="fee" class="text-sm block">値段</label>
+                            <input type="number" name="fee" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="値段">
                         </div>
                         <div class="">
                             <label for="other">説明</label>
-                            <textarea  id="explanation" cols="30" rows="8" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="説明"></textarea>
+                            <textarea  name="explanation" cols="30" rows="8" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="説明"></textarea>
                         </div>
                         <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
                         <div class="mb-3">
@@ -29,7 +33,7 @@
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 type="file"
-                                id="file" />
+                                name="file" />
                             <input class="btn btn-blue" type="submit" value="送信する">
                         </div>
                     </form>

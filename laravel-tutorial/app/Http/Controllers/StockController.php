@@ -27,19 +27,23 @@ class StockController extends Controller
     }
     public function addStock(Request $request)
     {
-        $formData = $request->all();
-
         $name = $request->input('name');
         $explanation = $request->input('explanation');
-        // 他の入力フィールドに対する処理
-        dd($formData);
+        $fee = (int) $request->input('fee');
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
-
-        $img_name = realpath("image").$img_name;
-        //var_dump( $img_name);
-        ///move_uploaded_file($_POST, $img_name);
-        return view('test', ['$post' => $_POST]);
+        $image_directory = "/var/www/html/laravel-tutorial/public/image/";
+        $tmp_file_path = $_FILES["file"]["tmp_name"];
+        $destination_path = $image_directory . $img_name . '.jpeg';
+        Stock::create([
+            'name' => $name,
+            'explain' => $explanation,
+            'fee' => $fee,
+            'imagePath' => $img_name . '.jpeg'
+        ]);
+        move_uploaded_file($tmp_file_path, $destination_path);
+        header("Location:laravel-tutorial/public/");
+        exit;
     }
 
     public function addMycart(Request $request,UserStock $userStock)
