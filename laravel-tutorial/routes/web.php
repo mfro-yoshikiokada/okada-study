@@ -20,6 +20,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [StockController::class, 'index'])->name('stock.index');
+    Route::get('/addStockPage', [StockController::class, 'addPage'])->name('stock.add.page');
+    Route::post('/addStock', [StockController::class, 'addStock'])->name('stock.add');
     Route::get('/myCart', [StockController::class, 'myCart'])->name('stock.myCart');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

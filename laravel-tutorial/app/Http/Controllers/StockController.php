@@ -20,6 +20,27 @@ class StockController extends Controller
         $myCartStocks = $userStock->showMyCart();
         return view('myCart',compact('myCartStocks'));
     }
+    public function addPage()
+    {
+        $img_name = realpath("image");
+        return view('addStock', ['img_name' => $img_name]);
+    }
+    public function addStock(Request $request)
+    {
+        $formData = $request->all();
+
+        $name = $request->input('name');
+        $explanation = $request->input('explanation');
+        // 他の入力フィールドに対する処理
+        dd($formData);
+        $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
+        $img_name = substr(str_shuffle($str), 0, 10);
+
+        $img_name = realpath("image").$img_name;
+        //var_dump( $img_name);
+        ///move_uploaded_file($_POST, $img_name);
+        return view('test', ['$post' => $_POST]);
+    }
 
     public function addMycart(Request $request,UserStock $userStock)
     {
