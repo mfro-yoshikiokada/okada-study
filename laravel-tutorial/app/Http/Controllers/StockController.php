@@ -33,13 +33,12 @@ class StockController extends Controller
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
         $tmp_file_path = $_FILES["file"]["tmp_name"];
         $destination_path = $image_directory . $img_name . '.jpeg';
-        $insert = [
-            'name' => $request->input('name'),
-            'explain' => $request->input('explanation'),
-            'fee' => (int) $request->input('fee'),
-            'imagePath' => $img_name . '.jpeg'
-        ];
-        Stock::create($insert);
+        $name = (string) $request->input('name');
+        $exlanation = (string) $request->input('explanation');
+        $fee = (int) $request->input('fee');
+        $img = (string) $img_name . '.jpeg';
+
+        Stock::insert($name, $exlanation,$fee,$img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
         return redirect('/');
     }
