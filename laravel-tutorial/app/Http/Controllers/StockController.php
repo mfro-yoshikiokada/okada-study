@@ -36,9 +36,8 @@ class StockController extends Controller
         $name = (string) $request->input('name');
         $exlanation = (string) $request->input('explanation');
         $fee = (int) $request->input('fee');
-        $img = (string) $img_name . '.jpeg';
-
-        Stock::insert($name, $exlanation,$fee,$img_name . '.jpeg');
+        $stock = new Stock();
+        $stock->insert($name, $exlanation, $fee,$img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
         return redirect('/');
     }
