@@ -28,5 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/addMyCart', [StockController::class, 'addMyCart'])->name('stock.addMyCartStock');
     Route::post('/deleteMyCartStock', [StockController::class, 'deleteMyCartStock'])->name('stock.deleteMyCartStock');
+    Route::get('/addStockError', [StockController::class, 'addStockError'])->name('stock.add.error');
 });
 require __DIR__.'/auth.php';

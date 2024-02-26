@@ -7,6 +7,7 @@ use App\Models\UserStock; //追加
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class StockController extends Controller
 {
     public function index()
@@ -26,21 +27,84 @@ class StockController extends Controller
         return view('addStock');
     }
 
-    public function addStock(Request $request)
+    public function addStock2(Request $request)
     {
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
         $tmp_file_path = $_FILES["file"]["tmp_name"];
         $destination_path = $image_directory . $img_name . '.jpeg';
-        $name = (string) $request->input('name');
-        $exlanation = (string) $request->input('explanation');
-        $fee = (int) $request->input('fee');
         $stock = new Stock();
-        $stock->insert($name, $exlanation, $fee,$img_name . '.jpeg');
+        $stock->insert($request,$img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
         return redirect('/');
     }
+
+    public function addStock3(Request $request)
+    {
+        // バリデーションルールを指定
+        $request->validate([
+            'name' => ['string', 'max:25'],
+            'explain' =>['string', 'max:600'],
+            'fee' => ['numeric', 'digits:1,6'],
+        ]);
+
+        // バリデーションが成功した場合の処理
+        $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
+        $img_name = substr(str_shuffle($str), 0, 10);
+        $image_directory = "/var/www/html/laravel-tutorial/public/image/";
+        $tmp_file_path = $_FILES["file"]["tmp_name"];
+        $destination_path = $image_directory . $img_name . '.jpeg';
+
+        $stock = new Stock();
+
+        // Stockモデルのinsertメソッド内で$requestを使用すると仮定
+        $stock->insert($request, $img_name . '.jpeg');
+
+        move_uploaded_file($tmp_file_path, $destination_path);
+
+        return redirect('/');
+    }
+    public function addStock(Request $request)
+    {
+        // バリデーションルールを指定
+        $request->validate([
+            'name' => ['string', 'max:25'],
+            'explain' => ['string', 'max:600'],
+            'fee' => ['numeric', 'digits:1,6'],
+
+        ]);
+
+        try {
+            // バリデーションが成功した場合の処理
+            $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
+            $img_name = substr(str_shuffle($str), 0, 10);
+            $image_directory = "/var/www/html/laravel-tutorial/public/image/";
+            $tmp_file_path = $_FILES["file"]["tmp_name"];
+            $destination_path = $image_directory . $img_name . '.jpeg';
+
+            $stock = new Stock();
+
+            $stock->insert($request, $img_name . '.jpeg');
+
+            move_uploaded_file($tmp_file_path, $destination_path);
+
+            return redirect('/');
+        } catch (\Exception $e) {
+            return redirect('addStockError')
+                ->withErrors($e)
+                ->withInput();
+        }
+
+    }
+
+// StockController.php 内
+
+    public function addStockError()
+    {
+        return view('addStockError');
+    }
+
 
     public function addMycart(Request $request,UserStock $userStock)
     {
