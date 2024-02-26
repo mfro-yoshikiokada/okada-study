@@ -12,8 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3>An error occurred</h3>
-                    <p>{{ $error }}</p>
-                    <a href="/">Go back to the home page</a>
+                    <a href="./">Go back to the home page</a>
                 </div>
             </div>
         </div>

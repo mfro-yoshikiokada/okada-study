@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock; //追加
 use App\Models\UserStock; //追加
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,35 +68,40 @@ class StockController extends Controller
     }
     public function addStock(Request $request)
     {
-        // バリデーションルールを指定
-        $request->validate([
-            'name' => ['string', 'max:25'],
-            'explain' => ['string', 'max:600'],
-            'fee' => ['numeric', 'digits:1,6'],
-
-        ]);
 
         try {
-            // バリデーションが成功した場合の処理
-            $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
-            $img_name = substr(str_shuffle($str), 0, 10);
-            $image_directory = "/var/www/html/laravel-tutorial/public/image/";
-            $tmp_file_path = $_FILES["file"]["tmp_name"];
-            $destination_path = $image_directory . $img_name . '.jpeg';
-
-            $stock = new Stock();
-
-            $stock->insert($request, $img_name . '.jpeg');
-
-            move_uploaded_file($tmp_file_path, $destination_path);
-
-            return redirect('/');
+            $this->insertStock($request);
         } catch (\Exception $e) {
             return redirect('addStockError')
-                ->withErrors($e)
+                ->withErrors($e->getMessage())
                 ->withInput();
         }
 
+        return redirect('/');
+
+    }
+    private function insertStock(Request $request)
+    {
+        // バリデーションに成功したデータを取得
+        $validatedData = $request->validated();
+
+        // ここで $validatedData を使って処理を行う
+        // 例: $validatedData['name'], $validatedData['explain'], $validatedData['fee'] など
+
+        $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
+        $img_name = substr(str_shuffle($str), 0, 10);
+        $image_directory = "/var/www/html/laravel-tutorial/public/image/";
+        $tmp_file_path = $request->file('file')->getPathname(); // ファイルのパスを取得する方法に修正
+        $destination_path = $image_directory . $img_name . '.jpeg';
+
+        $stock = new Stock();
+
+        // Stockモデルのinsertメソッド内で$requestを使用すると仮定
+        $stock->insert($request, $img_name . '.jpeg');
+
+        move_uploaded_file($tmp_file_path, $destination_path);
+
+        return redirect('/');
     }
 
 // StockController.php 内
