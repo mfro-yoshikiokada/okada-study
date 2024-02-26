@@ -28,44 +28,6 @@ class StockController extends Controller
         return view('addStock');
     }
 
-    public function addStock2(Request $request)
-    {
-        $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
-        $img_name = substr(str_shuffle($str), 0, 10);
-        $image_directory = "/var/www/html/laravel-tutorial/public/image/";
-        $tmp_file_path = $_FILES["file"]["tmp_name"];
-        $destination_path = $image_directory . $img_name . '.jpeg';
-        $stock = new Stock();
-        $stock->insert($request,$img_name . '.jpeg');
-        move_uploaded_file($tmp_file_path, $destination_path);
-        return redirect('/');
-    }
-
-    public function addStock3(Request $request)
-    {
-        // バリデーションルールを指定
-        $request->validate([
-            'name' => ['string', 'max:25'],
-            'explain' =>['string', 'max:600'],
-            'fee' => ['numeric', 'digits:1,6'],
-        ]);
-
-        // バリデーションが成功した場合の処理
-        $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
-        $img_name = substr(str_shuffle($str), 0, 10);
-        $image_directory = "/var/www/html/laravel-tutorial/public/image/";
-        $tmp_file_path = $_FILES["file"]["tmp_name"];
-        $destination_path = $image_directory . $img_name . '.jpeg';
-
-        $stock = new Stock();
-
-        // Stockモデルのinsertメソッド内で$requestを使用すると仮定
-        $stock->insert($request, $img_name . '.jpeg');
-
-        move_uploaded_file($tmp_file_path, $destination_path);
-
-        return redirect('/');
-    }
     public function addStock(Request $request)
     {
 
