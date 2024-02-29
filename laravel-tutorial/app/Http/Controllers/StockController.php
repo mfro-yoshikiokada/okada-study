@@ -45,7 +45,6 @@ class StockController extends Controller
     }
     private function insertStock(ProfileUpdateRequest $request)
     {
-        // バリデーションに成功したデータを取得
         $validatedData = $request->validated();
 
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
