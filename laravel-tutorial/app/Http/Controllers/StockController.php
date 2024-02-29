@@ -6,6 +6,8 @@ use App\Models\Stock; //追加
 use App\Models\UserStock; //追加
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -28,7 +30,7 @@ class StockController extends Controller
         return view('addStock');
     }
 
-    public function addStock(Request $request)
+    public function addStock(StorePostRequest $request)
     {
 
         try {
@@ -42,7 +44,7 @@ class StockController extends Controller
         return redirect('/');
 
     }
-    private function insertStock(Request $request)
+    private function insertStock(StorePostRequest $request)
     {
         $validatedData = $request->validated();
 
