@@ -6,6 +6,7 @@ use App\Models\Stock; //追加
 use App\Models\UserStock; //追加
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -28,27 +29,24 @@ class StockController extends Controller
         return view('addStock');
     }
 
-    public function addStock(Request $request)
+    public function addStock(ProfileUpdateRequest $request)
     {
 
         try {
             $this->insertStock($request);
         } catch (\Exception $e) {
             return redirect('addStockError')
-                ->withErrors($e->getMessage())
+                ->withErrors([$e->getMessage()])
                 ->withInput();
         }
 
         return redirect('/');
 
     }
-    private function insertStock(Request $request)
+    private function insertStock(ProfileUpdateRequest $request)
     {
         // バリデーションに成功したデータを取得
         $validatedData = $request->validated();
-
-        // ここで $validatedData を使って処理を行う
-        // 例: $validatedData['name'], $validatedData['explain'], $validatedData['fee'] など
 
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
@@ -58,9 +56,7 @@ class StockController extends Controller
 
         $stock = new Stock();
 
-        // Stockモデルのinsertメソッド内で$requestを使用すると仮定
-        $stock->insert($request, $img_name . '.jpeg');
-
+        $stock->insert($validatedData, $img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
 
         return redirect('/');
