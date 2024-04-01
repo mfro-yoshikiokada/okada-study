@@ -29,7 +29,6 @@ class StockController extends Controller
 
     public function addStock(Request $request)
     {
-        //var_dump($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'fee' => 'required',
