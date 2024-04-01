@@ -6,6 +6,7 @@ use App\Models\Stock; //追加
 use App\Models\UserStock; //追加
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class StockController extends Controller
 {
@@ -28,6 +29,15 @@ class StockController extends Controller
 
     public function addStock(Request $request)
     {
+        //var_dump($request);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'fee' => 'required',
+            'explanation' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/addStockPage');
+        }
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
