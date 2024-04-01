@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock; //追加
 use App\Models\UserStock; //追加
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
 
 class StockController extends Controller
 {
@@ -31,9 +27,8 @@ class StockController extends Controller
         return view('addStock');
     }
 
-    public function addStock(StorePostRequest $request)
+    public function addStock(Request $request)
     {
-<<<<<<< HEAD
         //var_dump($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -43,50 +38,19 @@ class StockController extends Controller
         if ($validator->fails()) {
             return redirect('/addStockPage');
         }
-=======
-
-        try {
-            $this->insertStock($request);
-        } catch (\Exception $e) {
-            return redirect('addStockError')
-                ->withErrors($e->getMessage())
-                ->withInput();
-        }
-
-        return redirect('/');
-
-    }
-    private function insertStock(StorePostRequest $request)
-    {
-        $validatedData = $request->validated();
-
-        // ここで $validatedData を使って処理を行う
-        // 例: $validatedData['name'], $validatedData['explain'], $validatedData['fee'] など
-
->>>>>>> origin/laravel-tutorial3
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
-        $tmp_file_path = $request->file('file')->getPathname(); // ファイルのパスを取得する方法に修正
+        $tmp_file_path = $_FILES["file"]["tmp_name"];
         $destination_path = $image_directory . $img_name . '.jpeg';
-
+        $name = (string) $request->input('name');
+        $exlanation = (string) $request->input('explanation');
+        $fee = (int) $request->input('fee');
         $stock = new Stock();
-
-        // Stockモデルのinsertメソッド内で$requestを使用すると仮定
-        $stock->insert($request, $img_name . '.jpeg');
-
+        $stock->insert($name, $exlanation, $fee,$img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
-
         return redirect('/');
     }
-
-// StockController.php 内
-
-    public function addStockError()
-    {
-        return view('addStockError');
-    }
-
 
     public function addMycart(Request $request,UserStock $userStock)
     {
