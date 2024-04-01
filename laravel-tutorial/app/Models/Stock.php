@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Stock extends Model
 {
     protected $guarded = ['id'];
 
-    public function insert(string $name, string $explain, int $fee, string $imagePath)
+    public function insert(Request $request, string $imagePath)
     {
         $insert = [
-            'name' => $name,
-            'explain' => $explain,
-            'fee' => $fee,
+            'name' => (string) $request->input('name'),
+            'explain' => (string) $request->input('explanation'),
+            'fee' =>(int) $request->input('fee'),
             'imagePath' => $imagePath
         ];
 
