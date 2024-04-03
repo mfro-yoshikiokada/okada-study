@@ -14,7 +14,8 @@
                         <div class="mb-8">
                             <label for="name" class="text-sm block">名前</label>
 
-                            <input type="text" id="name" name="name" value="{{ old("name") }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
+                            <input type="text" id="name" name="name" value="{{ old("
+name") }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
                         </div>
                         <div class="mb-8">
                             <label for="fee" class="text-sm block">値段</label>
