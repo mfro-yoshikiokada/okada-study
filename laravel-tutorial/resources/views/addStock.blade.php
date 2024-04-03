@@ -14,15 +14,15 @@
                         <div class="mb-8">
                             <label for="name" class="text-sm block">名前</label>
 
-                            <input type="text" id="name" name="name" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
+                            <input type="text" id="name" name="name" value="{{ old("name") }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
                         </div>
                         <div class="mb-8">
                             <label for="fee" class="text-sm block">値段</label>
-                            <input type="number" id="fee" name="fee" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="値段">
+                            <input type="number" id="fee" name="fee"  value="{{ old('fee') }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="値段">
                         </div>
                         <div class="">
                             <label for="other">説明</label>
-                            <textarea  id="explanation" name="explanation" cols="30" rows="8" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="説明"></textarea>
+                            <textarea  id="explanation" name="explanation" cols="30" rows="8" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="説明">{{ old('explanation') }}</textarea>
                         </div>
                         <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
                         <div class="mb-3">
@@ -33,13 +33,14 @@
                             >
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
+                                value="{{ old('file') }}"
                                 type="file"
                                 name="file" />
                             <input class="btn btn-blue" id="image" type="submit" value="送信する">
                         </div>
                     </form>
                 </div>
-
+{{ var_dump(session()->get('explanation')) }}
             </div>
         </div>
     </div>
@@ -65,7 +66,7 @@
         if (getParam('fee') !== null) document.querySelector('#fee').insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">※値段を入力して下さい。</h6>');
         if (getParam('explanation') !== null) document.querySelector('#explanation').insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">※説明欄を入力して下さい。</h6>');
         if (getParam('image') !== null) document.querySelector('#image').insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">※写真を入力して下さい。</h6>');
-
+        console.log(old('explanation') );
     </script>
 
 </x-app-layout>
