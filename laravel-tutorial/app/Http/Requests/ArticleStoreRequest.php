@@ -24,7 +24,8 @@ class ArticleStoreRequest extends FormRequest
         return [
             'name' => 'required',
             'fee' => 'required',
-            'explanation' => 'required'
+            'explanation' => 'required',
+            'image' => ['required','mimes:jpeg,png,jpg']
         ];
     }
     public function attributes()
@@ -32,7 +33,8 @@ class ArticleStoreRequest extends FormRequest
         return [
             "name" => "名前",
             "fee" => "値段",
-            "explanation" => "説明欄"
+            "explanation" => "説明欄",
+            'image' => "写真"
         ];
     }
 }

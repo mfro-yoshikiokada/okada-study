@@ -4,7 +4,7 @@
 {{ __('Dashboard') }}
 </h2>
 </x-slot>
-
+{{ var_dump($errors->all()) }}
 <div class="py-12 px-3">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
@@ -30,13 +30,15 @@
                             <label
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
-                            >写真</label
+                            >写真 (jpeg,png,jpg 形式のみ)</label
                             >
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 value="{{ old('file') }}"
                                 type="file"
-                                name="file" />
+                                name="file"
+                                id="file"
+                            />
                             <input class="btn btn-blue" id="image" type="submit" value="送信する">
                         </div>
                     </form>
@@ -69,11 +71,13 @@
             let testReg = new RegExp(regName);
             let selector = "#" + selecter;
             let test = testReg.test(error);
+            if (test) console.log(selector);
             if (test) document.querySelector(selector).insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">' + error +'</h6>');
+            if (test) console.log(error);
         }
         const errors =  @json($errors->all());
-        const selectorNames = ["name", "fee", "explanation"];
-        const regName = ["名前","値段","説明欄"];
+        const selectorNames = ["name", "fee", "explanation","file"];
+        const regName = ["名前","値段","説明欄","写真"];
         regName.forEach((name, num) => {
             errors.forEach(function(err) {
                 errorOutput(name , err, selectorNames[num]);
