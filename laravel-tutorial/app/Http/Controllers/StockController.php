@@ -7,6 +7,8 @@ use App\Models\UserStock; //追加
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+use App\Http\Requests\ArticleStoreRequest;
 
 class StockController extends Controller
 {
@@ -27,44 +29,21 @@ class StockController extends Controller
         return view('addStock');
     }
 
-    public function addStock(Request $request)
+    public function addStock(ArticleStoreRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'fee' => 'required',
-            'explanation' => 'required'
-        ]);
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
         $tmp_file_path = $_FILES["file"]["tmp_name"];
-        if ($validator->fails()) {
-            $errorsMessage = $validator->errors()->messages();
-            $errorCode = "";
-            if (isset($errorsMessage["name"][0])) {
-                $errorCode = $errorCode."name=".$errorsMessage["name"][0]."&";
-            }
-            if (isset($errorsMessage["fee"][0])) {
-                $errorCode = $errorCode."fee=".$errorsMessage["fee"][0]."&";
-            }
-            if (isset($errorsMessage["explanation"][0])) {
-                $errorCode = $errorCode."explanation=".$errorsMessage["explanation"][0]."&";
-            }
-            if ($tmp_file_path === "") {
-                $errorCode = $errorCode."image=The image field is required.";
-            };
-            return redirect('/addStockPage?'.$errorCode);
-        }
 
-        if ($tmp_file_path === "") {
-            return redirect('/addStockPage?image=The image field is required.');
-        };
         $destination_path = $image_directory . $img_name . '.jpeg';
-        //$name = (string) $request->input('name');
-        //$exlanation = (string) $request->input('explanation');
-        //$fee = (int) $request->input('fee');
-        //$stock = new Stock();
-        //$stock->insert($name, $exlanation, $fee,$img_name . '.jpeg');
+
+
+        $name = (string) $request->input('name');
+        $exlanation = (string) $request->input('explanation');
+        $fee = (int) $request->input('fee');
+        $stock = new Stock();
+        $stock->insert($name, $exlanation,$fee,$img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
         return redirect('/');
     }

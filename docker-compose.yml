@@ -11,6 +11,7 @@ services:
       - 8000:80
       - 5173:5173
     container_name: php8.2-trial2
+    cpu_quota: 70000
 
   mysql:
     platform: linux/x86_64 #Mac M1

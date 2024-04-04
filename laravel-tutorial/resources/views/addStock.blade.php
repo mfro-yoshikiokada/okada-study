@@ -14,8 +14,8 @@
                         <div class="mb-8">
                             <label for="name" class="text-sm block">名前</label>
 
-                            <input type="text" id="name" name="name" value="{{ old("
-name") }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
+                            <input type="text" id="name" name="name"
+                                   value="{{ old("name") }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
                         </div>
                         <div class="mb-8">
                             <label for="fee" class="text-sm block">値段</label>
@@ -40,8 +40,8 @@ name") }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus
                             <input class="btn btn-blue" id="image" type="submit" value="送信する">
                         </div>
                     </form>
+
                 </div>
-{{ var_dump(session()->get('explanation')) }}
             </div>
         </div>
     </div>
@@ -63,11 +63,22 @@ name") }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
-        if (getParam('name') !== null) document.querySelector('#name').insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">※名前を入力して下さい。</h6>');
-        if (getParam('fee') !== null) document.querySelector('#fee').insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">※値段を入力して下さい。</h6>');
-        if (getParam('explanation') !== null) document.querySelector('#explanation').insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">※説明欄を入力して下さい。</h6>');
-        if (getParam('image') !== null) document.querySelector('#image').insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">※写真を入力して下さい。</h6>');
-        console.log(old('explanation') );
+
+
+        function  errorOutput(regName, error, selecter) {
+            let testReg = new RegExp(regName);
+            let selector = "#" + selecter;
+            let test = testReg.test(error);
+            if (test) document.querySelector(selector).insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">' + error +'</h6>');
+        }
+        const errors =  @json($errors->all());
+        const selectorNames = ["name", "fee", "explanation"];
+        const regName = ["名前","値段","説明欄"];
+        regName.forEach((name, num) => {
+            errors.forEach(function(err) {
+                errorOutput(name , err, selectorNames[num]);
+            });
+        });
     </script>
 
 </x-app-layout>

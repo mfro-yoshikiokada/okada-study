@@ -10,12 +10,12 @@ class Stock extends Model
 {
     protected $guarded = ['id'];
 
-    public function insert(Request $request, string $imagePath)
+    public function insert(string $name, string $explanation ,int $fee, string $imagePath)
     {
         $insert = [
-            'name' => (string) $request->input('name'),
-            'explain' => (string) $request->input('explanation'),
-            'fee' =>(int) $request->input('fee'),
+            'name' => $name,
+            'explain' => $explanation,
+            'fee' =>$fee,
             'imagePath' => $imagePath
         ];
 
