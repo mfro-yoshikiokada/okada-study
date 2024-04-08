@@ -55,13 +55,14 @@ class StockController extends Controller
         $stock = new Stock();
         $stockId=(int) $stock->insert($name, $exlanation, $fee, $genre,$img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
-        Log::debug($subFiles);
 
         if ($subFiles!== null) {
-            foreach ($subFiles as $file) {
+            for ($num = 0; $num < 4; $num++){
+                $file = $subFiles[$num];
                 $path = $file["photo"]->getClientOriginalName();
                 $this->addSubImage($stockId, $path);
             }
+
         }
         return redirect('/');
     }

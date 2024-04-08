@@ -33,17 +33,17 @@
                             <label for="fee" class="text-sm block">値段</label>
                             <input type="number" id="fee" name="fee"  value="{{ old('fee') }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="値段">
                         </div>
-                        <div class="">
+                        <div class="mb-8">
                             <label for="other">説明</label>
                             <textarea  id="explanation" name="explanation" cols="30" rows="8" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="説明">{{ old('explanation') }}</textarea>
                         </div>
                         <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
-                        <div class="mb-3">
+                        <div class="mb-8">
                             <label
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
-                            >写真 (jpeg,png,jpg 形式のみ)</label
-                            >
+                            >メイン写真 (jpeg,png,jpg 形式のみ)</label>
+                            <img id="file-img">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 value="{{ old('file') }}"
@@ -52,6 +52,13 @@
                                 name="file"
                                 id="file"
                             />
+                        </div>
+                        <div class="mb-8">
+                            <label
+                                for="formFile"
+                                class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+                            >サブ写真 (jpeg,png,jpg 形式のみ４枚まで)</label>
+                            <div id="sub-file-img"></div>
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 value="{{ old('sub-file') }}"
@@ -105,6 +112,39 @@
                 errorOutput(name , err, selectorNames[num]);
             });
         });
+
+    </script>
+    <script>
+        document.querySelector('#file').addEventListener('change', (event) => {
+            const file = event.target.files[0]
+            if (!file) return
+            const reader = new FileReader()
+            reader.onload = (event) => {
+                document.querySelector('#file-img').src = event.target.result
+            }
+            reader.readAsDataURL(file)
+        })
+
+        document.querySelector('#sub-file').addEventListener('change', (event) => {
+            const files = event.target.files
+            console.log(files);
+            if (!files) return;
+            let element = document.getElementById('sub-file-img');
+            console.log(element);
+            while( element.lastElementChild ){
+                element.removeChild(element.lastElementChild);
+            }
+            for (let i = 0; i < files.length; i++){
+                const reader = new FileReader();
+                const file = files[i];
+                const imgId = `sub-file-img-${i}`;
+                element.insertAdjacentHTML('beforeend',`<img id= ${imgId}>`);
+                reader.onload = (event) => {
+                    document.querySelector(`#${imgId}`).src = event.target.result
+                }
+                reader.readAsDataURL(file)
+            }
+        })
     </script>
 
 </x-app-layout>
