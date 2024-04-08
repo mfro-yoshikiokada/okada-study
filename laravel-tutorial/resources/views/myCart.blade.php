@@ -16,7 +16,7 @@
                         <form action="./deleteMyCartStock" method="post">
                             @csrf
                             <input type="hidden" name="stockId" value="{{ $stock->stock->id }}">
-                            <input type="submit" value="カートから削除する">
+                            <input type="submit" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" value="カートから削除する">
                         </form>
                     </div>
                 @endforeach
