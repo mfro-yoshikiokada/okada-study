@@ -18,6 +18,7 @@ class StockTableSeeder extends Seeder
             'name' => 'フィルムカメラ',
             'explain' => '1960年式のカメラです',
             'fee' => 200000,
+            'genre' =>'antique',
             'imagePath' => 'filmcamera.jpg',
         ]);
 
@@ -25,6 +26,7 @@ class StockTableSeeder extends Seeder
             'name' => 'イヤホン',
             'explain' => 'ノイズキャンセリングがついてます',
             'fee' => 20000,
+            'genre' =>'electrical-products',
             'imagePath' => 'iyahon.jpg',
         ]);
 
@@ -32,6 +34,7 @@ class StockTableSeeder extends Seeder
             'name' => '時計',
             'explain' => '1980年式の掛け時計です',
             'fee' => 120000,
+            'genre' =>'antique',
             'imagePath' => 'clock.jpg',
         ]);
 
@@ -39,6 +42,7 @@ class StockTableSeeder extends Seeder
             'name' => '地球儀',
             'explain' => '珍しい商品です',
             'fee' => 120000,
+            'genre' =>'antique',
             'imagePath' => 'earth.jpg',
         ]);
 
@@ -47,6 +51,7 @@ class StockTableSeeder extends Seeder
             'name' => '腕時計',
             'explain' => 'プレゼントにどうぞ',
             'fee' => 9800,
+            'genre' =>'electrical-products',
             'imagePath' => 'watch.jpg',
         ]);
 
@@ -54,6 +59,7 @@ class StockTableSeeder extends Seeder
             'name' => 'カメラレンズ35mm',
             'explain' => '最新式です',
             'fee' => 79800,
+            'genre' =>'parts',
             'imagePath' => 'lens.jpg',
         ]);
 
@@ -61,6 +67,7 @@ class StockTableSeeder extends Seeder
             'name' => 'シャンパン',
             'explain' => 'パーティにどうぞ',
             'fee' => 800,
+            'genre' =>'drink',
             'imagePath' => 'shanpan.jpg',
         ]);
 
@@ -68,6 +75,7 @@ class StockTableSeeder extends Seeder
             'name' => 'ビール',
             'explain' => '大量生産されたビールです',
             'fee' => 200,
+            'genre' =>'drink',
             'imagePath' => 'beer.jpg',
         ]);
 
@@ -75,6 +83,7 @@ class StockTableSeeder extends Seeder
             'name' => 'やかん',
             'explain' => 'かなり珍しいやかんです',
             'fee' => 1200,
+            'genre' =>'antique',
             'imagePath' => 'yakan.jpg',
         ]);
 
@@ -82,6 +91,7 @@ class StockTableSeeder extends Seeder
             'name' => '精米',
             'explain' => '米30Kgです',
             'fee' => 11200,
+            'genre' =>'food',
             'imagePath' => 'kome.jpg',
         ]);
 
@@ -89,6 +99,7 @@ class StockTableSeeder extends Seeder
             'name' => 'パソコン',
             'explain' => 'ジャンク品です',
             'fee' => 11200,
+            'genre' =>'electrical-products',
             'imagePath' => 'pc.jpg',
         ]);
 
@@ -96,6 +107,7 @@ class StockTableSeeder extends Seeder
             'name' => 'アコースティックギター',
             'explain' => 'ヤマハ製のエントリーモデルです',
             'fee' => 25600,
+            'genre' =>'antique',
             'imagePath' => 'aguiter.jpg',
         ]);
 
@@ -103,6 +115,7 @@ class StockTableSeeder extends Seeder
             'name' => 'エレキギター',
             'explain' => '初心者向けのエントリーモデルです',
             'fee' => 15600,
+            'genre' =>'antique',
             'imagePath' => 'eguiter.jpg',
         ]);
 
@@ -110,6 +123,7 @@ class StockTableSeeder extends Seeder
             'name' => '加湿器',
             'explain' => '乾燥する季節の必需品',
             'fee' => 3200,
+            'genre' =>'antique',
             'imagePath' => 'steamer.jpeg',
         ]);
 
@@ -117,6 +131,7 @@ class StockTableSeeder extends Seeder
             'name' => 'マウス',
             'explain' => 'ゲーミングマウスです',
             'fee' => 4200,
+            'genre' =>'electrical-products',
             'imagePath' => 'mouse.jpeg',
         ]);
 
@@ -124,6 +139,7 @@ class StockTableSeeder extends Seeder
             'name' => 'Android Garxy10',
             'explain' => '中古美品です',
             'fee' => 84200,
+            'genre' =>'electrical-products',
             'imagePath' => 'mobile.jpg',
         ]);
     }
