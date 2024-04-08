@@ -57,7 +57,6 @@ class StockController extends Controller
         $fee = (int) $request->input('fee');
         $stock = new Stock();
         $stockId=(int) $stock->insert($name, $exlanation, $fee, $genre,$img_name . '.jpeg');
-        Log::debug($stockId);
         move_uploaded_file($tmp_file_path, $destination_path);
 
         foreach ($subFiles as $file) {
