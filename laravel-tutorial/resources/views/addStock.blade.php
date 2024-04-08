@@ -5,6 +5,18 @@
 </h2>
 </x-slot>
 <div class="py-12 px-3">
+    <style>
+        #sub-file-img {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .sub-img {
+            max-width: 50%;
+            padding: 2px;
+            object-fit: cover;
+        }
+    </style>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                 <div class="mt-8">
@@ -58,7 +70,7 @@
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                             >サブ写真 (jpeg,png,jpg 形式のみ４枚まで)</label>
-                            <div id="sub-file-img"></div>
+                            <div id="sub-file-img" class="flex"></div>
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 value="{{ old('sub-file') }}"
@@ -138,7 +150,7 @@
                 const reader = new FileReader();
                 const file = files[i];
                 const imgId = `sub-file-img-${i}`;
-                element.insertAdjacentHTML('beforeend',`<img id= ${imgId}>`);
+                element.insertAdjacentHTML('beforeend',`<img id= ${imgId}  class="sub-img">`);
                 reader.onload = (event) => {
                     document.querySelector(`#${imgId}`).src = event.target.result
                 }
