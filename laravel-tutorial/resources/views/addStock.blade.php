@@ -39,7 +39,16 @@
                                 name="file"
                                 id="file"
                             />
-                            <input class="btn btn-blue" id="image" type="submit" value="送信する">
+                            <input
+                                class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
+                                value="{{ old('sub-file') }}"
+                                accept=".jpeg,.png,.jpg"
+                                type="file"
+                                name="sub-files[][photo]"
+                                id="sub-file"
+                                multiple
+                            />
+                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="image" type="submit" value="送信する">
                         </div>
                     </form>
 

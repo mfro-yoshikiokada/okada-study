@@ -25,7 +25,8 @@ class ArticleStoreRequest extends FormRequest
             'name' => 'required',
             'fee' => 'required',
             'explanation' => 'required',
-            'file' => 'required'
+            'file' => 'required',
+            'sub-files.*.photo' => 'image|mimes:jpeg,bmp,png',
         ];
     }
     public function attributes()

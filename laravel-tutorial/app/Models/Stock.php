@@ -19,8 +19,7 @@ class Stock extends Model
             'imagePath' => $imagePath
         ];
 
-        // 直接 create メソッドを呼び出す
-        $this->create($insert);
+        return self::insertGetId($insert);
     }
 }
 
