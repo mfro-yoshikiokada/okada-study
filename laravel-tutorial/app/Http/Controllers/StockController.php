@@ -46,7 +46,6 @@ class StockController extends Controller
         $subFiles =$request['sub-files'];
 
         $imageFiles = $request->file('files');
-        //Log::debug($imageFiles);
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
@@ -54,9 +53,10 @@ class StockController extends Controller
         $destination_path = $image_directory . $img_name . '.jpeg';
         $name = (string) $request->input('name');
         $exlanation = (string) $request->input('explanation');
+        $genre = (string) $request->input('genre');
         $fee = (int) $request->input('fee');
         $stock = new Stock();
-        $stockId=(int) $stock->insert($name, $exlanation,$fee,$img_name . '.jpeg');
+        $stockId=(int) $stock->insert($name, $exlanation, $fee, $genre,$img_name . '.jpeg');
         Log::debug($stockId);
         move_uploaded_file($tmp_file_path, $destination_path);
 

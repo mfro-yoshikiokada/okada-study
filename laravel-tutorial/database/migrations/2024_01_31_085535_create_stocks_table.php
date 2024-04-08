@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name','100');
             $table->string('explain','500');
             $table->integer('fee');
+            $table->string('genre');
             $table->string('imagePath','200');
         });
     }

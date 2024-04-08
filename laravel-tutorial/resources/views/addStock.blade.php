@@ -17,6 +17,19 @@
                                    value="{{ old("name") }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="名前">
                         </div>
                         <div class="mb-8">
+                            <label for="genre" class="text-sm block">ジャンル</label>
+                            <select name="genre" id="genre">
+                                <option value="electrical-products">電気製品</option>
+                                <option value="antique">骨董品</option>
+                                <option value="parts">部品</option>
+                                <option value="drink">飲み物</option>
+                                <option value="food">食品</option>
+                                <option value="tool">道具</option>
+                                <option value="instrument">楽器</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        <div class="mb-8">
                             <label for="fee" class="text-sm block">値段</label>
                             <input type="number" id="fee" name="fee"  value="{{ old('fee') }}" class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50" placeholder="値段">
                         </div>
