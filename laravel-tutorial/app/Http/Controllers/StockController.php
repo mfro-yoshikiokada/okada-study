@@ -42,10 +42,7 @@ class StockController extends Controller
     }
     public function addStock(ArticleStoreRequest $request)
     {
-
         $subFiles =$request['sub-files'];
-
-        $imageFiles = $request->file('files');
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
@@ -58,12 +55,13 @@ class StockController extends Controller
         $stock = new Stock();
         $stockId=(int) $stock->insert($name, $exlanation, $fee, $genre,$img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
+        Log::debug($subFiles);
 
-        foreach ($subFiles as $file) {
-
-            $path = $file["photo"]->getClientOriginalName();
-
-            $this->addSubImage($stockId, $path);
+        if ($subFiles!== null) {
+            foreach ($subFiles as $file) {
+                $path = $file["photo"]->getClientOriginalName();
+                $this->addSubImage($stockId, $path);
+            }
         }
         return redirect('/');
     }
@@ -94,4 +92,6 @@ class StockController extends Controller
         return view('myCart',compact('myCartStocks' , 'message'));
 
     }
+
+
 }
