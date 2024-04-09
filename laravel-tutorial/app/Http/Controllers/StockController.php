@@ -42,7 +42,6 @@ class StockController extends Controller
     }
     public function addStock(ArticleStoreRequest $request)
     {
-        $subFiles =$request['sub-files'];
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
@@ -55,15 +54,20 @@ class StockController extends Controller
         $stock = new Stock();
         $stockId=(int) $stock->insert($name, $exlanation, $fee, $genre,$img_name . '.jpeg');
         move_uploaded_file($tmp_file_path, $destination_path);
-
-        if ($subFiles!== null) {
-            for ($num = 0; $num < 4; $num++){
-                if (empty($subFiles[$num])) break;
-                $file = $subFiles[$num];
-                $path = $file["photo"]->getClientOriginalName();
-                $this->addSubImage($stockId, $path);
-            }
-
+        if ($request['sub-file-1'] !== null) {
+            $file1 = $request['sub-file-1'];
+            $path = $file1->getClientOriginalName();
+            $this->addSubImage($stockId, $path);
+        }
+        if ($request['sub-file-2'] !== null) {
+            $file = $request['sub-file-2'];
+            $path = $file->getClientOriginalName();
+            $this->addSubImage($stockId, $path);
+        }
+        if ($request['sub-file-3'] !== null) {
+            $file = $request['sub-file-3'];
+            $path = $file->getClientOriginalName();
+            $this->addSubImage($stockId, $path);
         }
         return redirect('/');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\MaxWordCountValidation;
 
 class ArticleStoreRequest extends FormRequest
 {
@@ -22,9 +23,9 @@ class ArticleStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'fee' => 'required',
-            'explanation' => 'required',
+            'name' => ['required', new MaxWordCountValidation(10)],
+            'fee' => ['required', 'max:8'],
+            'explanation' => ['required', new MaxWordCountValidation(200)],
             'file' => 'required',
             'sub-files.*.photo' => 'image|mimes:jpeg,bmp,png',
         ];

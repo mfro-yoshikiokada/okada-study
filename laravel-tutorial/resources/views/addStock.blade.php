@@ -70,16 +70,32 @@
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                             >サブ写真 (jpeg,png,jpg 形式のみ４枚まで)</label>
-                            <div id="sub-file-img" class="flex"></div>
-                            <div id="sub-file-error"></div>
+                            <img id="sub-file-1-img">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
-                                value="{{ old('sub-file') }}"
+                                value="{{ old('sub-file-1') }}"
                                 accept=".jpeg,.png,.jpg"
                                 type="file"
-                                name="sub-files[][photo]"
-                                id="sub-file"
-                                multiple
+                                name="sub-file-1"
+                                id="sub-file-1"
+                            />
+                            <img id="sub-file-2-img">
+                            <input
+                                class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
+                                value="{{ old('sub-file-2') }}"
+                                accept=".jpeg,.png,.jpg"
+                                type="file"
+                                name="sub-file-2"
+                                id="sub-file-2"
+                            />
+                            <img id="sub-file-3-img">
+                            <input
+                                class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
+                                value="{{ old('sub-file-3') }}"
+                                accept=".jpeg,.png,.jpg"
+                                type="file"
+                                name="sub-file-3"
+                                id="sub-file-3"
                             />
                             <div id="button">
                                 <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="送信する">
@@ -116,9 +132,7 @@
             let testReg = new RegExp(regName);
             let selector = "#" + selecter;
             let test = testReg.test(error);
-            if (test) console.log(selector);
             if (test) document.querySelector(selector).insertAdjacentHTML('beforebegin', '<h6 style=" color: red;">' + error +'</h6>');
-            if (test) console.log(error);
         }
         const errors =  @json($errors->all());
         const selectorNames = ["name", "fee", "explanation","file"];
@@ -131,42 +145,45 @@
 
     </script>
     <script>
+
         document.querySelector('#file').addEventListener('change', (event) => {
-            const file = event.target.files[0]
+            const file = event.target.files[0];
+            const reader = new FileReader();
             if (!file) return
-            const reader = new FileReader()
             reader.onload = (event) => {
                 document.querySelector('#file-img').src = event.target.result
             }
             reader.readAsDataURL(file)
         })
 
-        document.querySelector('#sub-file').addEventListener('change', (event) => {
-            const files = event.target.files
-            if (!files) return;
-            if (files.length　<= 4) {
-                document.getElementById('sub-file-error').innerHTML= '<h6 id="sub-file-error"></h6>';
-                document.getElementById('button').innerHTML= '<input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="送信する">';
-                const element = document.getElementById('sub-file-img');
-                while( element.lastElementChild ){
-                    element.removeChild(element.lastElementChild);
-                }
-                for (let i = 0; i < files.length; i++){
-                    document.getElementById('sub-file-error').innerHTML= '<h6 id="sub-file-error"></h6>';
-                    const reader = new FileReader();
-                    const file = files[i];
-                    const imgId = `sub-file-img-${i}`;
-                    element.insertAdjacentHTML('beforeend',`<img id= ${imgId}  class="sub-img">`);
-                    reader.onload = (event) => {
-                        document.querySelector(`#${imgId}`).src = event.target.result
-                    }
-                    reader.readAsDataURL(file);
-                }
-            } else {
-                document.getElementById('sub-file-error').innerHTML= '<h6 id="sub-file-error"style=" color: red;">４枚まで掲載可能です。</h6>';
-                document.getElementById('button').innerHTML= '<input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded opacity-50 cursor-not-allowed" style="background-color: rgb(185 215 251);" id="button" type="submit" value="送信する" disabled="disabled">';
+        document.querySelector('#sub-file-1').addEventListener('change', (event) => {
+            const file = event.target.files[0]
+            if (!file) return
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                document.querySelector('#sub-file-1-img').src = event.target.result;
             }
+            reader.readAsDataURL(file)
         })
+        document.querySelector('#sub-file-2').addEventListener('change', (event) => {
+            const file = event.target.files[0]
+            if (!file) return
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                document.querySelector('#sub-file-2-img').src = event.target.result
+            }
+            reader.readAsDataURL(file)
+        })
+        document.querySelector('#sub-file-3').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                document.querySelector('#sub-file-3-img').src = event.target.result
+            }
+            reader.readAsDataURL(file)
+        })
+
     </script>
 
 </x-app-layout>
