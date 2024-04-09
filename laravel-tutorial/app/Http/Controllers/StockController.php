@@ -58,6 +58,7 @@ class StockController extends Controller
 
         if ($subFiles!== null) {
             for ($num = 0; $num < 4; $num++){
+                if (empty($subFiles[$num])) break;
                 $file = $subFiles[$num];
                 $path = $file["photo"]->getClientOriginalName();
                 $this->addSubImage($stockId, $path);

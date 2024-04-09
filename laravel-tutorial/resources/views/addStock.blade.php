@@ -71,6 +71,7 @@
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                             >サブ写真 (jpeg,png,jpg 形式のみ４枚まで)</label>
                             <div id="sub-file-img" class="flex"></div>
+                            <div id="sub-file-error"></div>
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 value="{{ old('sub-file') }}"
@@ -80,7 +81,10 @@
                                 id="sub-file"
                                 multiple
                             />
-                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="image" type="submit" value="送信する">
+                            <div id="button">
+                                <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="送信する">
+                            </div>
+
                         </div>
                     </form>
 
@@ -139,22 +143,28 @@
 
         document.querySelector('#sub-file').addEventListener('change', (event) => {
             const files = event.target.files
-            console.log(files);
             if (!files) return;
-            let element = document.getElementById('sub-file-img');
-            console.log(element);
-            while( element.lastElementChild ){
-                element.removeChild(element.lastElementChild);
-            }
-            for (let i = 0; i < files.length; i++){
-                const reader = new FileReader();
-                const file = files[i];
-                const imgId = `sub-file-img-${i}`;
-                element.insertAdjacentHTML('beforeend',`<img id= ${imgId}  class="sub-img">`);
-                reader.onload = (event) => {
-                    document.querySelector(`#${imgId}`).src = event.target.result
+            if (files.length　<= 4) {
+                document.getElementById('sub-file-error').innerHTML= '<h6 id="sub-file-error"></h6>';
+                document.getElementById('button').innerHTML= '<input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="送信する">';
+                const element = document.getElementById('sub-file-img');
+                while( element.lastElementChild ){
+                    element.removeChild(element.lastElementChild);
                 }
-                reader.readAsDataURL(file)
+                for (let i = 0; i < files.length; i++){
+                    document.getElementById('sub-file-error').innerHTML= '<h6 id="sub-file-error"></h6>';
+                    const reader = new FileReader();
+                    const file = files[i];
+                    const imgId = `sub-file-img-${i}`;
+                    element.insertAdjacentHTML('beforeend',`<img id= ${imgId}  class="sub-img">`);
+                    reader.onload = (event) => {
+                        document.querySelector(`#${imgId}`).src = event.target.result
+                    }
+                    reader.readAsDataURL(file);
+                }
+            } else {
+                document.getElementById('sub-file-error').innerHTML= '<h6 id="sub-file-error"style=" color: red;">４枚まで掲載可能です。</h6>';
+                document.getElementById('button').innerHTML= '<input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded opacity-50 cursor-not-allowed" style="background-color: rgb(185 215 251);" id="button" type="submit" value="送信する" disabled="disabled">';
             }
         })
     </script>
