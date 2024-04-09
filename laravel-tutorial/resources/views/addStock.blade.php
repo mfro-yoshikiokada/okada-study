@@ -69,7 +69,7 @@
                             <label
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
-                            >サブ写真 (jpeg,png,jpg 形式のみ４枚まで)</label>
+                            >サブ写真 (jpeg,png,jpg 形式のみ３枚まで)</label>
                             <img id="sub-file-1-img">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
