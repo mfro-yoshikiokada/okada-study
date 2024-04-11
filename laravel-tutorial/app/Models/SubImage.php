@@ -19,4 +19,9 @@ class SubImage extends Model
         ];
         $this->create($insert);
     }
+    public function show($stockId)
+    {
+        return $this->where('stockId', $stockId)->get();
+        
+    }
 }

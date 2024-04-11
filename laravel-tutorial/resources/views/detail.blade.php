@@ -36,12 +36,14 @@
                         </div>
                         <div class="mb-8">
                             <img src="/laravel-tutorial/public/image/{{ $stack["imagePath"] }}" alt="">
+                            @foreach($subImages as $subImage)
+                                <img src="/laravel-tutorial/public/image/{{ $subImage["imagePath"] }}" alt="">
+                            @endforeach
                         </div><div class="mb-8">
                             <h3>ジャンル : {{$genre[$stack["genre"]]}}</h3>
                         </div>
                         <div class="mb-8">
                             <h3>{{ $stack["explain"] }}</h3>
-
                         </div>
                         <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
 

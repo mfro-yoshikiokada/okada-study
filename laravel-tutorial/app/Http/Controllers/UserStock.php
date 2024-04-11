@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Auth;
-use Illuminate\Http\Request;
 
 class UserStock extends Controller
 {
