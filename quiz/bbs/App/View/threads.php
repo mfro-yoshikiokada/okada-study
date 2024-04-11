@@ -71,7 +71,7 @@ header("Pragma:no-cache");
     var_dump($_SESSION);
 echo '<ul>';
 foreach ($comments as $pref) {
-    echo 
+    echo
     '<li>
       <p>id:'.$pref ["user_id"].'</p>
       <p>'.$pref ["comment_text"].'</p>
