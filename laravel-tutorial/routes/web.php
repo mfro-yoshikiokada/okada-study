@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StockController;//追加
+use App\Http\Controllers\DetailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,5 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/addMyCart', [StockController::class, 'addMyCart'])->name('stock.addMyCartStock');
     Route::post('/deleteMyCartStock', [StockController::class, 'deleteMyCartStock'])->name('stock.deleteMyCartStock');
     Route::get('/addStockError', [StockController::class, 'addStockError'])->name('stock.add.error');
+    Route::get('/detail/{id}', [DetailController::class, 'index'])->name('.product.detail');
 });
 require __DIR__.'/auth.php';

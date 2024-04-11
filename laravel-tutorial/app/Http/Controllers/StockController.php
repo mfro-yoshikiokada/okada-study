@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Stock; //追加
+use App\Models\Stock;
 use App\Models\UserStock; //追加
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;

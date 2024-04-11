@@ -22,5 +22,9 @@ class Stock extends Model
 
         return self::insertGetId($insert);
     }
+    public function showDetail($stockId)
+    {
+        return $this->where('id', $stockId)->first()->getOriginal();
+    }
 }
 
