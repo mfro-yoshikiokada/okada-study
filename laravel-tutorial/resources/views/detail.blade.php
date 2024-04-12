@@ -24,7 +24,7 @@
                     
                     <div id="button">
                         <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="編集する">
-                        <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" value="削除する">
+                        <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" onclick="DeleteClick();"value="削除する">
                     </div>
                     <form class="w-10/12 mx-auto md:max-w-md" action="./addStock" method="post" enctype="multipart/form-data">
                         @csrf
@@ -55,4 +55,13 @@
         </div>
     </div>
     </div>
+    <script>
+        function DeleteClick () {
+            const result = confirm('次の処理を続けますか？');
+            const id = {{ $stack["id"] }}
+            if(result) {
+                window.location.href = `./delete/${id}`;
+            }
+        }
+    </script>
 </x-app-layout>

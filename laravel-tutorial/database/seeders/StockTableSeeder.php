@@ -20,6 +20,7 @@ class StockTableSeeder extends Seeder
             'fee' => 200000,
             'genre' =>'antique',
             'imagePath' => 'filmcamera.jpg',
+            'userId' => 1,
         ]);
 
         DB::table('stocks')->insert([
@@ -28,6 +29,7 @@ class StockTableSeeder extends Seeder
             'fee' => 20000,
             'genre' =>'electrical-products',
             'imagePath' => 'iyahon.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -36,6 +38,7 @@ class StockTableSeeder extends Seeder
             'fee' => 120000,
             'genre' =>'antique',
             'imagePath' => 'clock.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -44,6 +47,7 @@ class StockTableSeeder extends Seeder
             'fee' => 120000,
             'genre' =>'antique',
             'imagePath' => 'earth.jpg',
+            'userId' => 1
         ]);
 
 
@@ -53,6 +57,7 @@ class StockTableSeeder extends Seeder
             'fee' => 9800,
             'genre' =>'electrical-products',
             'imagePath' => 'watch.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -61,6 +66,7 @@ class StockTableSeeder extends Seeder
             'fee' => 79800,
             'genre' =>'parts',
             'imagePath' => 'lens.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -69,6 +75,7 @@ class StockTableSeeder extends Seeder
             'fee' => 800,
             'genre' =>'drink',
             'imagePath' => 'shanpan.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -77,6 +84,7 @@ class StockTableSeeder extends Seeder
             'fee' => 200,
             'genre' =>'drink',
             'imagePath' => 'beer.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -85,6 +93,7 @@ class StockTableSeeder extends Seeder
             'fee' => 1200,
             'genre' =>'antique',
             'imagePath' => 'yakan.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -93,6 +102,7 @@ class StockTableSeeder extends Seeder
             'fee' => 11200,
             'genre' =>'food',
             'imagePath' => 'kome.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -101,6 +111,7 @@ class StockTableSeeder extends Seeder
             'fee' => 11200,
             'genre' =>'electrical-products',
             'imagePath' => 'pc.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -109,6 +120,7 @@ class StockTableSeeder extends Seeder
             'fee' => 25600,
             'genre' =>'antique',
             'imagePath' => 'aguiter.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -117,6 +129,7 @@ class StockTableSeeder extends Seeder
             'fee' => 15600,
             'genre' =>'antique',
             'imagePath' => 'eguiter.jpg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -125,6 +138,7 @@ class StockTableSeeder extends Seeder
             'fee' => 3200,
             'genre' =>'antique',
             'imagePath' => 'steamer.jpeg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -133,6 +147,7 @@ class StockTableSeeder extends Seeder
             'fee' => 4200,
             'genre' =>'electrical-products',
             'imagePath' => 'mouse.jpeg',
+            'userId' => 1
         ]);
 
         DB::table('stocks')->insert([
@@ -141,6 +156,7 @@ class StockTableSeeder extends Seeder
             'fee' => 84200,
             'genre' =>'electrical-products',
             'imagePath' => 'mobile.jpg',
+            'userId' => 1
         ]);
     }
 }

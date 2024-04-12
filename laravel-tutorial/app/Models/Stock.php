@@ -26,5 +26,9 @@ class Stock extends Model
     {
         return $this->where('id', $stockId)->first()->getOriginal();
     }
+    public function deleteDetail($id)
+    {
+        return $this->where('id', $id)->delete();
+    }
 }
 

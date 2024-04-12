@@ -31,5 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/deleteMyCartStock', [StockController::class, 'deleteMyCartStock'])->name('stock.deleteMyCartStock');
     Route::get('/addStockError', [StockController::class, 'addStockError'])->name('stock.add.error');
     Route::get('/detail/{id}', [DetailController::class, 'index'])->name('.product.detail');
+    Route::get('/detail/delete/{id}', [DetailController::class, 'delete'])->name('.product.detail.delete');
 });
 require __DIR__.'/auth.php';

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use App\Models\SubImage;
-use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class DetailController extends Controller
 {
@@ -24,5 +23,19 @@ class DetailController extends Controller
         ];
         $subImages = $subImage->show($stockId);
         return view('detail',['stack' => $stackData, 'genre' => $genre, 'subImages'=> $subImages]);
+    }
+    public function delete ($stockId, Stock $stock) {
+        $stackData = $stock->showDetail($stockId);
+        $userId = Auth::id();
+        if ($stackData['userId']==$userId) {
+            $res = $stock->deleteDetail($stockId);
+            if ($res) {
+                return redirect('/');
+            } else {
+                return redirect('/detail/'. $stockId);
+            }
+        }else {
+            return redirect('/detail/'. $stockId);
+        }
     }
 }
