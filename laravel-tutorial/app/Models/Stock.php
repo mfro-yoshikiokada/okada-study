@@ -10,14 +10,15 @@ class Stock extends Model
 {
     protected $guarded = ['id'];
 
-    public function insert(string $name, string $explanation , int $fee, string $genre, string $imagePath)
+    public function insert(string $name, string $explanation , int $fee, string $genre, string $imagePath, int $userId)
     {
         $insert = [
             'name' => $name,
             'explain' => $explanation,
             'fee' => $fee,
             'genre' => $genre,
-            'imagePath' => $imagePath
+            'imagePath' => $imagePath,
+            'userId' =>$userId
         ];
 
         return self::insertGetId($insert);
@@ -25,6 +26,7 @@ class Stock extends Model
     public function showDetail($stockId)
     {
         return $this->where('id', $stockId)->first()->getOriginal();
+
     }
     public function deleteDetail($id)
     {

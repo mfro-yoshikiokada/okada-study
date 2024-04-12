@@ -52,7 +52,8 @@ class StockController extends Controller
         $genre = (string) $request->input('genre');
         $fee = (int) $request->input('fee');
         $stock = new Stock();
-        $stockId=(int) $stock->insert($name, $exlanation, $fee, $genre,$img_name . '.jpeg');
+        $userId = (int)Auth::id();
+        $stockId=(int) $stock->insert($name, $exlanation, $fee, $genre,$img_name . '.jpeg', $userId);
        move_uploaded_file($tmp_file_path, $destination_path);
         if ($request['sub-file-1'] !== null) {
             $file1 = $request['sub-file-1'];

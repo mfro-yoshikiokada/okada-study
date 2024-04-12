@@ -22,6 +22,5 @@ class SubImage extends Model
     public function show($stockId)
     {
         return $this->where('stockId', $stockId)->get();
-        
     }
 }
