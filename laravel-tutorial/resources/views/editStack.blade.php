@@ -65,6 +65,7 @@
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
+                                value="{{ old('sub-file-1') }}"
                                 type="file"
                                 name="sub-file-1"
                                 id="sub-file-1"
@@ -73,6 +74,7 @@
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
+                                value="{{ old('sub-file-2') }}"
                                 type="file"
                                 name="sub-file-2"
                                 id="sub-file-2"
@@ -81,6 +83,7 @@
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
+                                value="{{ old('sub-file-3') }}"
                                 type="file"
                                 name="sub-file-3"
                                 id="sub-file-3"

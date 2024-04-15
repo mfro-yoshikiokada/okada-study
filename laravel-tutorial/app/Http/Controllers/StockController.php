@@ -73,6 +73,24 @@ class StockController extends Controller
         }
         return redirect('/');
     }
+
+    private function updateSubImage($stockId, $path, $imgNum, Stock $stock) {
+        $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
+        $img_name = substr(str_shuffle($str), 0, 10);
+        $image_directory = "/var/www/html/laravel-tutorial/public/image/";
+        $tmp_file_path = $_FILES[$path]["tmp_name"];
+        $destination_path = $image_directory . $img_name . '.jpeg';
+        $subImage = new SubImage();
+        $stackData = $subImage->search($stockId, $imgNum);
+        //dd($stackData->isEmpty());
+        if ($stackData->isEmpty()) {
+            $this->addSubImage($stockId, $path, $imgNum);
+        } else {
+            $subImage->updateSubImg($stockId, $img_name . '.jpeg', $imgNum);
+            move_uploaded_file($tmp_file_path, $destination_path);
+        }
+        
+    }
     public function update($editId, Request $request, Stock $stock) {
         $tmp_file_path = $_FILES["file"]["tmp_name"];
         $img_name = null;
@@ -81,13 +99,22 @@ class StockController extends Controller
             $img_name = substr(str_shuffle($str), 0, 10) . '.jpeg';
             $image_directory = "/var/www/html/laravel-tutorial/public/image/";
             $destination_path = $image_directory . $img_name;
-
             move_uploaded_file($tmp_file_path, $destination_path);
         }
         
         $stock = new Stock();
-        $userId = (int)Auth::id();
-        $stockId=(int) $stock->updateStock($editId, $request, $img_name);
+        $stock->updateStock($editId, $request, $img_name);
+        if ($request['sub-file-1'] !== null) {
+           $this->updateSubImage($editId,'sub-file-1', 1, $stock);
+        }
+        if ($request['sub-file-2'] !== null) {
+            $this->updateSubImage($editId,'sub-file-2', 2, $stock);
+        }
+        if ($request['sub-file-3'] !== null) {
+            $this->updateSubImage($editId,'sub-file-3', 3, $stock);
+        }
+        
+
         return redirect('/');
     }
 

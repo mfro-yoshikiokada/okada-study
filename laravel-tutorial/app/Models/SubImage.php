@@ -24,4 +24,14 @@ class SubImage extends Model
     {
         return $this->where('stockId', $stockId)->get();
     }
+
+    public function updateSubImg(int $stockId, string $imgPath, int $imgNum) {
+       $value = $this->where('stockId', $stockId)->where('imageNumber', $imgNum)->update([  
+        "imagePath" =>  $imgPath
+    ]); 
+    }
+    public function search($stockId, $imageNum)
+    {
+        return $this->where('stockId', $stockId)->where('imageNumber', $imageNum)->get();
+    }
 }
