@@ -34,4 +34,8 @@ class SubImage extends Model
     {
         return $this->where('stockId', $stockId)->where('imageNumber', $imageNum)->get();
     }
+    public function deleteSubImg($stockId, $imageNum)
+    {
+        return $this->where('stockId', $stockId)->where('imageNumber', $imageNum)->delete();
+    }
 }

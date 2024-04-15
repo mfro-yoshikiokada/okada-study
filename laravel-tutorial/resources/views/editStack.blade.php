@@ -1,10 +1,32 @@
 <x-app-layout>
+    <style>
+        #sub-file-img {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .sub-img {
+            max-width: 50%;
+            padding: 2px;
+            object-fit: cover;
+        }
+        .delete {
+            background-color: rgb(248 113 113);
+        }
+        .delete:hover {
+            background-color: rgb(185 28 28);
+        }
+    </style>
 <div class="py-12 px-3">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                 <div class="mt-8">
+                    <form class="w-10/12 mx-auto md:max-w-md" action="../../detail/delete/{{ $stack["id"] }}" method="get" enctype="multipart/form-data">
+                        <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" onclick="DeletePageClick();" type="submit" value="送信する">
+                    </form>
                     <form class="w-10/12 mx-auto md:max-w-md" action="../../detail/update/{{ $stack["id"] }}" method="post" enctype="multipart/form-data">
                         @csrf
+
                         <div class="mb-8">
                             <label for="name" class="text-sm block">名前</label>
 
@@ -61,7 +83,7 @@
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                             >サブ写真 (jpeg,png,jpg 形式のみ３枚まで)</label>
                             <img id="sub-file-1-img" {{ isset($subImages[0]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[0]->imagePath : '' }}>
-                      
+                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" onclick="DeleteClick1();"value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
@@ -70,7 +92,9 @@
                                 name="sub-file-1"
                                 id="sub-file-1"
                             />
+                            <input type="hidden" name="sub-file-1-delete" value="Active">
                             <img id="sub-file-2-img" {{ isset($subImages[1]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[1]->imagePath : '' }}>
+                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" onclick="DeleteClick2();"value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
@@ -79,7 +103,9 @@
                                 name="sub-file-2"
                                 id="sub-file-2"
                             />
+                            <input type="hidden" name="sub-file--delete" value="Active">
                             <img id="sub-file-3-img" {{ isset($subImages[2]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[2]->imagePath : '' }}>
+                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" onclick="DeleteClick3();"value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
@@ -88,6 +114,7 @@
                                 name="sub-file-3"
                                 id="sub-file-3"
                             />
+                            <input type="hidden" name="sub-file-3-delete" value="Active">
                             <div id="button">
                                 <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="送信する">
                             </div>
@@ -116,6 +143,12 @@
             if (!results) return null;
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        function DeletePageClick() {
+        const result = confirm('次の処理を続けますか？');
+            if(result) {
+                
+            }
         }
 
         function  errorOutput(regName, error, selecter) {
@@ -173,6 +206,14 @@
             }
             reader.readAsDataURL(file)
         })
+    </script>
+    <script>
+       
+        let subFile1 = {{ isset($subImages[1]->imagePath) ? $subImages[1]->imagePath : '' }};
+        let subFile2 = {{ isset($subImages[2]->imagePath) ? $subImages[2]->imagePath : '' }};
+        let subFile3 = {{ isset($subImages[3]->imagePath) ? $subImages[3]->imagePath : '' }};
+
+
 
     </script>
 

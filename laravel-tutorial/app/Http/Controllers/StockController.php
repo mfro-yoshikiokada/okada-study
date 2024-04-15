@@ -104,6 +104,7 @@ class StockController extends Controller
         
         $stock = new Stock();
         $stock->updateStock($editId, $request, $img_name);
+        //dd($request['sub-file-1-delete']);
         if ($request['sub-file-1'] !== null) {
            $this->updateSubImage($editId,'sub-file-1', 1, $stock);
         }
@@ -113,11 +114,30 @@ class StockController extends Controller
         if ($request['sub-file-3'] !== null) {
             $this->updateSubImage($editId,'sub-file-3', 3, $stock);
         }
-        
+
+        $subImage = new SubImage();
+        if ($request['sub-file-1-delete'] !== null) {
+            $subImage->deleteSubImg($editId, 1);
+        }
+        if ($request['sub-file-2-delete'] !== null) {
+            $subImage->deleteSubImg($editId, 2);
+
+        }
+        if ($request['sub-file-3-delete'] !== null) {
+            $subImage->deleteSubImg($editId, 3);
+        }
 
         return redirect('/');
     }
+    public function delete($stockId, Stock $stock) {
+        $stackData = $stock->showDetail($stockId);
+        $userId = Auth::id();
 
+        if ($stackData['userId']==$userId) {
+            $stock->deleteStock($stockId);
+        }
+        return redirect('/');
+    }
     public function addMycart(Request $request,UserStock $userStock)
     {
         $stockId=$request->stockId;

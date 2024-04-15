@@ -49,9 +49,9 @@ class Stock extends Model
         }
         
     }
-    public function deleteDetail($id)
+    public function deleteStock($id)
     {
-        return $this->where('id', $id)->delete();
+        return $this->find($id)->delete();
     }
 }
 
