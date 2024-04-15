@@ -48,7 +48,7 @@
                             <img id="sub-file-1-img" src="/laravel-tutorial/public/image/{{  $stack["imagePath"] }}">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
-                                value="{{ old('file') }}"
+                                value="/laravel-tutorial/public/image/{{ $stack["imagePath"] }}"
                                 accept=".jpeg,.png,.jpg"
                                 type="file"
                                 name="file"
@@ -60,29 +60,26 @@
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                             >サブ写真 (jpeg,png,jpg 形式のみ３枚まで)</label>
-                            <img id="sub-file-1-img" src="/laravel-tutorial/public/image/{{ $subImages[0]->getAttributes()["imagePath"] }}">
+                            <img id="sub-file-1-img" {{ isset($subImages[0]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[0]->imagePath : '' }}>
                       
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
-                                value="{{ old('sub-file-1') }}"
                                 accept=".jpeg,.png,.jpg"
                                 type="file"
                                 name="sub-file-1"
                                 id="sub-file-1"
                             />
-                            <img id="sub-file-2-img" src="/laravel-tutorial/public/image/{{ $subImages[1]->getAttributes()["imagePath"] }}">
+                            <img id="sub-file-2-img" {{ isset($subImages[1]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[1]->imagePath : '' }}>
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
-                                value="{{ old('sub-file-2') }}"
                                 accept=".jpeg,.png,.jpg"
                                 type="file"
                                 name="sub-file-2"
                                 id="sub-file-2"
                             />
-                            <img id="sub-file-3-img" src="/laravel-tutorial/public/image/{{ $subImages[2]->getAttributes()["imagePath"] }}">
+                            <img id="sub-file-3-img" {{ isset($subImages[2]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[2]->imagePath : '' }}>
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
-                                value="{{ old('sub-file-3') }}"
                                 accept=".jpeg,.png,.jpg"
                                 type="file"
                                 name="sub-file-3"

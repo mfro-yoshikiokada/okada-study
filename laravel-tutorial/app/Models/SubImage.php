@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Auth;
 class SubImage extends Model
 {
     use HasFactory;
-    protected $fillable = ['stockId', 'imagePath']; //保存したいカラム名が1つの場合
+    protected $fillable = ['stockId', 'imagePath', 'imageNumber']; 
     protected $table = 'sub_image_table';
-    public function insert(int $stockId, string $path)
+    public function insert(int $stockId, string $path, int $imgNum)
     {
         $insert = [
+            'imageNumber' => $imgNum,
             'stockId' => $stockId,
             'imagePath' => $path
         ];
