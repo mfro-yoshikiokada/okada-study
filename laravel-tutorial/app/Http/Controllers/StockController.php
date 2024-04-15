@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stock;
-use App\Models\UserStock; //追加
+use App\Models\UserStock;
+use App\Models\SubImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Models\SubImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\ArticleStoreRequest;
+use App\Http\Requests\Updaterequest;
 
 class StockController extends Controller
 {
@@ -70,6 +71,23 @@ class StockController extends Controller
             $path = $file->getClientOriginalName();
             $this->addSubImage($stockId, 'sub-file-3', 3);
         }
+        return redirect('/');
+    }
+    public function update($editId, Request $request, Stock $stock) {
+        $tmp_file_path = $_FILES["file"]["tmp_name"];
+        $img_name = null;
+        if($tmp_file_path!=="") {
+            $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
+            $img_name = substr(str_shuffle($str), 0, 10) . '.jpeg';
+            $image_directory = "/var/www/html/laravel-tutorial/public/image/";
+            $destination_path = $image_directory . $img_name;
+
+            move_uploaded_file($tmp_file_path, $destination_path);
+        }
+        
+        $stock = new Stock();
+        $userId = (int)Auth::id();
+        $stockId=(int) $stock->updateStock($editId, $request, $img_name);
         return redirect('/');
     }
 

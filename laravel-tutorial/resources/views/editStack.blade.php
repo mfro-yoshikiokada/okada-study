@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                 <div class="mt-8">
-                    <form class="w-10/12 mx-auto md:max-w-md" action="./addStock" method="post" enctype="multipart/form-data">
+                    <form class="w-10/12 mx-auto md:max-w-md" action="../../detail/update/{{ $stack["id"] }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-8">
                             <label for="name" class="text-sm block">名前</label>

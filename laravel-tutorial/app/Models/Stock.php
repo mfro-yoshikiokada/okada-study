@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Http\Requests\ArticleStoreRequest;
 
 class Stock extends Model
 {
@@ -27,6 +28,26 @@ class Stock extends Model
     {
         return $this->where('id', $stockId)->first()->getOriginal();
 
+    }
+    public function updateStock($editId, $request, $img_name) {
+        $id =self::find($editId); 
+        if ($img_name == null ) {
+            $id->update([
+                "name" =>(string) $request->input('name'),
+                "explain" => (string) $request->input('explanation'),
+                "genre" => (string) $request->input('genre'),
+                "fee" => (int) $request->input('fee')
+            ]); 
+        } else {
+            $id->update([
+                "name" =>(string) $request->input('name'),
+                "explain" => (string) $request->input('explanation'),
+                "genre" => (string) $request->input('genre'),
+                "fee" => (int) $request->input('fee'),
+                "imagePath" => $img_name,
+            ]); 
+        }
+        
     }
     public function deleteDetail($id)
     {

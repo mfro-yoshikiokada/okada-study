@@ -33,5 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/detail/{id}', [DetailController::class, 'index'])->name('.product.detail');
     Route::get('/detail/delete/{id}', [DetailController::class, 'delete'])->name('.product.detail.delete');
     Route::get('/detail/edit/{id}', [DetailController::class, 'edit'])->name('.product.detail.edit');
+    Route::post('/detail/update/{id}', [StockController::class, 'update'])->name('.product.detail.update');
 });
 require __DIR__.'/auth.php';
