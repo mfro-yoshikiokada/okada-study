@@ -84,6 +84,7 @@ class StockController extends Controller
         $subImage = new SubImage();
         $stackData = $subImage->search($stockId, $imgNum);
 
+        
         if ($stackData->isEmpty()) {
             $this->addSubImage($stockId,  $path, $imgNum);
         } else {
@@ -92,7 +93,7 @@ class StockController extends Controller
         }
         
     }
-    public function update($editId, Request $request, Stock $stock) {
+    public function update($editId, Updaterequest $request, Stock $stock) {
         $tmp_file_path = $_FILES["file"]["tmp_name"];
         $img_name = null;
         if ($request['sub-file-3'] !== null) {

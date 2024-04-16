@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('sub_image_table', function (Blueprint $table) {
-            //
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->integer('userId');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('sub_image_table', function (Blueprint $table) {
-            //
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->dropColumn('userId');
         });
     }
 };
