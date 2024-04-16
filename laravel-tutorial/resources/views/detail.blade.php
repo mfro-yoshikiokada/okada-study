@@ -21,11 +21,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                 <div class="mt-8">
-                    
-                    <div id="button">
-                        <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="編集する">
-                        <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" onclick="DeleteClick();"value="削除する">
-                    </div>
                     <form class="w-10/12 mx-auto md:max-w-md" action="./addStock" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="">
