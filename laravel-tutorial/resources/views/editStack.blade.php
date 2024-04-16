@@ -235,4 +235,5 @@
             element.remove();
         })
     </script>
+
 </x-app-layout>
