@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
 class SubImage extends Model
 {
     use HasFactory;
@@ -18,7 +18,14 @@ class SubImage extends Model
             'stockId' => $stockId,
             'imagePath' => $path
         ];
-        $this->create($insert);
+
+
+        $subImage = $this->create($insert);
+    
+        // 挿入したレコードの情報をログに記録
+        dd($subImage);
+        return $subImage; // 挿入したレコードのインスタンスを返す
+
     }
     public function show($stockId)
     {
@@ -29,13 +36,15 @@ class SubImage extends Model
        $value = $this->where('stockId', $stockId)->where('imageNumber', $imgNum)->update([  
         "imagePath" =>  $imgPath
     ]); 
+
     }
     public function search($stockId, $imageNum)
     {
         return $this->where('stockId', $stockId)->where('imageNumber', $imageNum)->get();
     }
     public function deleteSubImg($stockId, $imageNum)
-    {
+    {   
+    
         return $this->where('stockId', $stockId)->where('imageNumber', $imageNum)->delete();
     }
 }

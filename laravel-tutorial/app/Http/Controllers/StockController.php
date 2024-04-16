@@ -35,11 +35,18 @@ class StockController extends Controller
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
+        //dd($_FILES[$path]["tmp_name"]);
         $tmp_file_path = $_FILES[$path]["tmp_name"];
         $destination_path = $image_directory . $img_name . '.jpeg';
         $subImage = new SubImage();
-        $subImage->insert($stockId, $img_name . '.jpeg', $imgNum);
-        move_uploaded_file($tmp_file_path, $destination_path);
+        $a=$subImage->insert($stockId, $img_name . '.jpeg', $imgNum);
+        Log::debug("addSubImage");
+        Log::debug($a);
+        $a=move_uploaded_file($tmp_file_path, $destination_path);
+        Log::debug($a);
+        
+        
+
     }
     public function addStock(ArticleStoreRequest $request)
     {
@@ -74,7 +81,7 @@ class StockController extends Controller
         return redirect('/');
     }
 
-    private function updateSubImage($stockId, $path, $imgNum, Stock $stock) {
+    private function updateSubImage($stockId, $path, $imgNum) {
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
@@ -82,9 +89,12 @@ class StockController extends Controller
         $destination_path = $image_directory . $img_name . '.jpeg';
         $subImage = new SubImage();
         $stackData = $subImage->search($stockId, $imgNum);
-        //dd($stackData->isEmpty());
+        Log::debug($path);
+        Log::debug($stackData);
+        
         if ($stackData->isEmpty()) {
-            $this->addSubImage($stockId, $path, $imgNum);
+            Log::debug("addSubImage");
+            $this->addSubImage($stockId,  $path, $imgNum);
         } else {
             $subImage->updateSubImg($stockId, $img_name . '.jpeg', $imgNum);
             move_uploaded_file($tmp_file_path, $destination_path);
@@ -94,6 +104,17 @@ class StockController extends Controller
     public function update($editId, Request $request, Stock $stock) {
         $tmp_file_path = $_FILES["file"]["tmp_name"];
         $img_name = null;
+        if ($request['sub-file-3'] !== null) {
+            $this->updateSubImage($editId,'sub-file-3', 3);
+        }
+        if ($request['sub-file-1'] !== null) {
+            $this->updateSubImage($editId,'sub-file-1', 1);
+        }
+         
+        if ($request['sub-file-2'] !== null) {
+            $this->updateSubImage($editId,'sub-file-2', 2);
+        }
+
         if($tmp_file_path!=="") {
             $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
             $img_name = substr(str_shuffle($str), 0, 10) . '.jpeg';
@@ -104,17 +125,11 @@ class StockController extends Controller
         
         $stock = new Stock();
         $stock->updateStock($editId, $request, $img_name);
-        dd($request['sub-file-1-delete']);
-        if ($request['sub-file-1'] !== null) {
-           $this->updateSubImage($editId,'sub-file-1', 1, $stock);
-        }
-        if ($request['sub-file-2'] !== null) {
-            $this->updateSubImage($editId,'sub-file-2', 2, $stock);
-        }
-        if ($request['sub-file-3'] !== null) {
-            $this->updateSubImage($editId,'sub-file-3', 3, $stock);
-        }
-        dd($request['sub-file-1-delete']);
+        //dd($request->hasFile('sub-file-1'));
+ 
+        $tmp_file_path = $_FILES["file"]["tmp_name"];
+
+
         $subImage = new SubImage();
 
         if ($request['sub-file-1-delete'] !== null) {

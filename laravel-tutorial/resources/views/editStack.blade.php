@@ -96,7 +96,7 @@
                                 id="sub-file-1"
                             />
                             <input type="hidden" id="sub-file-1-delete" value="Active">
-
+                            <input type="hidden" name="sub-file-3-delete" value="Active">
 
                             <img id="sub-file-2-img" {{ isset($subImages[1]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[1]->imagePath : '' }}>
                             <input type="button" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" onclick="DeleteClick2();" value="削除する">
@@ -138,17 +138,17 @@
     <script>
         function DeleteClick1() {
             const element = document.getElementById("sub-file-1-img");
-            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-1-delete" value="Active">');
+            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-1-delete" name="sub-file-1-delete" value="Active">');
             element.setAttribute('src', '');
         }
         function DeleteClick2() {
             const element = document.getElementById("sub-file-2-img");
-            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-2-delete" value="Active">');
+            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-2-delete" name="sub-file-2-delete" value="Active">');
             element.setAttribute('src', '');
         }
         function DeleteClick3() {
             const element = document.getElementById("sub-file-3-img");
-            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-3-delete" value="Active">');
+            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-3-delete" name="sub-file-3-delete" value="Active">');
             element.setAttribute('src', '');
         }
         /**
