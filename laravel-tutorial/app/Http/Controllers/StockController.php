@@ -35,17 +35,11 @@ class StockController extends Controller
         $str = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPUQRSTUVWXYZ';
         $img_name = substr(str_shuffle($str), 0, 10);
         $image_directory = "/var/www/html/laravel-tutorial/public/image/";
-        //dd($_FILES[$path]["tmp_name"]);
         $tmp_file_path = $_FILES[$path]["tmp_name"];
         $destination_path = $image_directory . $img_name . '.jpeg';
         $subImage = new SubImage();
-        $a=$subImage->insert($stockId, $img_name . '.jpeg', $imgNum);
-        Log::debug("addSubImage");
-        Log::debug($a);
-        $a=move_uploaded_file($tmp_file_path, $destination_path);
-        Log::debug($a);
-        
-        
+        $subImage->insert($stockId, $img_name . '.jpeg', $imgNum);
+        move_uploaded_file($tmp_file_path, $destination_path);
 
     }
     public function addStock(ArticleStoreRequest $request)
@@ -89,11 +83,8 @@ class StockController extends Controller
         $destination_path = $image_directory . $img_name . '.jpeg';
         $subImage = new SubImage();
         $stackData = $subImage->search($stockId, $imgNum);
-        Log::debug($path);
-        Log::debug($stackData);
-        
+
         if ($stackData->isEmpty()) {
-            Log::debug("addSubImage");
             $this->addSubImage($stockId,  $path, $imgNum);
         } else {
             $subImage->updateSubImg($stockId, $img_name . '.jpeg', $imgNum);
@@ -125,11 +116,7 @@ class StockController extends Controller
         
         $stock = new Stock();
         $stock->updateStock($editId, $request, $img_name);
-        //dd($request->hasFile('sub-file-1'));
- 
         $tmp_file_path = $_FILES["file"]["tmp_name"];
-
-
         $subImage = new SubImage();
 
         if ($request['sub-file-1-delete'] !== null) {
@@ -137,12 +124,10 @@ class StockController extends Controller
         }
         if ($request['sub-file-2-delete'] !== null) {
             $subImage->deleteSubImg($editId, 2);
-
         }
         if ($request['sub-file-3-delete'] !== null) {
             $subImage->deleteSubImg($editId, 3);
         }
-
         return redirect('/');
     }
     public function delete($stockId, Stock $stock) {

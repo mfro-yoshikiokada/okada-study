@@ -18,14 +18,9 @@ class SubImage extends Model
             'stockId' => $stockId,
             'imagePath' => $path
         ];
-
-
         $subImage = $this->create($insert);
-    
-        // 挿入したレコードの情報をログに記録
-        dd($subImage);
-        return $subImage; // 挿入したレコードのインスタンスを返す
 
+        return $subImage;
     }
     public function show($stockId)
     {
@@ -33,9 +28,9 @@ class SubImage extends Model
     }
 
     public function updateSubImg(int $stockId, string $imgPath, int $imgNum) {
-       $value = $this->where('stockId', $stockId)->where('imageNumber', $imgNum)->update([  
-        "imagePath" =>  $imgPath
-    ]); 
+        $this->where('stockId', $stockId)->where('imageNumber', $imgNum)->update([  
+            "imagePath" =>  $imgPath
+        ]); 
 
     }
     public function search($stockId, $imageNum)

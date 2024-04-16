@@ -63,7 +63,7 @@
                             placeholder="説明"
                             >{{ $stack["explain"] }}</textarea>
                         </div>
-                        <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
+                        
                         <div class="mb-8">
                             <label
                                 for="formFile"
@@ -79,13 +79,14 @@
                                 id="file"
                             />
                         </div>
+                        
                         <div class="mb-8">
                             <label
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                             >サブ写真 (jpeg,png,jpg 形式のみ３枚まで)</label>
 
-                            <img id="sub-file-1-img" {{ isset($subImages[0]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[0]->imagePath : '' }}>
+                            <img id="sub-file-1-img" {{ isset($subImages[1][0]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[1][0]->imagePath : '' }}>
                             <input type="button" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" onclick="DeleteClick1();" value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
@@ -95,10 +96,9 @@
                                 name="sub-file-1"
                                 id="sub-file-1"
                             />
-                            <input type="hidden" id="sub-file-1-delete" value="Active">
-                            <input type="hidden" name="sub-file-3-delete" value="Active">
 
-                            <img id="sub-file-2-img" {{ isset($subImages[1]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[1]->imagePath : '' }}>
+
+                            <img id="sub-file-2-img" {{ isset($subImages[2][0]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[2][0]->imagePath : '' }}>
                             <input type="button" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" onclick="DeleteClick2();" value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
@@ -110,8 +110,8 @@
                             />
 
 
-                            <img id="sub-file-3-img" {{ isset($subImages[2]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[2]->imagePath : '' }}>
-                            <input type="hidden" id="sub-file-3-delete" value="Active">
+                            <img id="sub-file-3-img" {{ isset($subImages[3][0]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[3][0]->imagePath : '' }}>
+
                             <input type="button" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" onclick="DeleteClick3();" value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
@@ -126,7 +126,6 @@
                             <div id="button">
                                 <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="送信する">
                             </div>
-
                         </div>
                     </form>
 
@@ -236,13 +235,4 @@
             element.remove();
         })
     </script>
-    <script>
-       
-        let subFile1 = {{ isset($subImages[1]->imagePath) ? $subImages[1]->imagePath : '' }};
-        let subFile2 = {{ isset($subImages[2]->imagePath) ? $subImages[2]->imagePath : '' }};
-        let subFile3 = {{ isset($subImages[3]->imagePath) ? $subImages[3]->imagePath : '' }};
-
-
-    </script>
-
 </x-app-layout>

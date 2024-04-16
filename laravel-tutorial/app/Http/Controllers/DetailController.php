@@ -42,7 +42,10 @@ class DetailController extends Controller
     }
     public function edit ($stockId, Stock $stock, SubImage $subImage) {
         $stockData = $stock->showDetail($stockId);
-        $subImages = $subImage->where('stockId', $stockId)->get();
+        //$subImages = $subImage->where('stockId', $stockId)->get();
+        $subImages[1] = $subImage->where('stockId', $stockId)->where('imageNumber', 1)->get();
+        $subImages[2] = $subImage->where('stockId', $stockId)->where('imageNumber', 2)->get();
+        $subImages[3] = $subImage->where('stockId', $stockId)->where('imageNumber', 3)->get();
         return view('editStack',['stack'=> $stockData,  'subImages'=> $subImages]);
     }
 }
