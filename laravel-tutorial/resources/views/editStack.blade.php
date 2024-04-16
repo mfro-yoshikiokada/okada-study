@@ -20,10 +20,12 @@
 <div class="py-12 px-3">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
-                <div class="mt-8">
-                    <form class="w-10/12 mx-auto md:max-w-md" action="../../detail/delete/{{ $stack["id"] }}" method="get" enctype="multipart/form-data">
-                        <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" onclick="DeletePageClick();" type="submit" value="送信する">
-                    </form>
+                    <div class="mt-8">
+                        <div class="mb-8">
+                        <form class="w-10/12 mx-auto md:max-w-md" action="../../detail/delete/{{ $stack["id"] }}" method="get" enctype="multipart/form-data">
+                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button" onclick="DeletePageClick();" type="submit" value="ページごと削除する">
+                        </form>
+                    </div>
                     <form class="w-10/12 mx-auto md:max-w-md" action="../../detail/update/{{ $stack["id"] }}" method="post" enctype="multipart/form-data">
                         @csrf
 
@@ -67,7 +69,7 @@
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                             >メイン写真 (jpeg,png,jpg 形式のみ)</label>
-                            <img id="sub-file-1-img" src="/laravel-tutorial/public/image/{{  $stack["imagePath"] }}">
+                            <img id="file-img" src="/laravel-tutorial/public/image/{{  $stack["imagePath"] }}">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 value="/laravel-tutorial/public/image/{{ $stack["imagePath"] }}"
@@ -82,8 +84,9 @@
                                 for="formFile"
                                 class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
                             >サブ写真 (jpeg,png,jpg 形式のみ３枚まで)</label>
+
                             <img id="sub-file-1-img" {{ isset($subImages[0]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[0]->imagePath : '' }}>
-                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" onclick="DeleteClick1();"value="削除する">
+                            <input type="button" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" onclick="DeleteClick1();" value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
@@ -92,9 +95,11 @@
                                 name="sub-file-1"
                                 id="sub-file-1"
                             />
-                            <input type="hidden" name="sub-file-1-delete" value="Active">
+                            <input type="hidden" id="sub-file-1-delete" value="Active">
+
+
                             <img id="sub-file-2-img" {{ isset($subImages[1]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[1]->imagePath : '' }}>
-                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" onclick="DeleteClick2();"value="削除する">
+                            <input type="button" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" onclick="DeleteClick2();" value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
@@ -103,9 +108,11 @@
                                 name="sub-file-2"
                                 id="sub-file-2"
                             />
-                            <input type="hidden" name="sub-file--delete" value="Active">
+
+
                             <img id="sub-file-3-img" {{ isset($subImages[2]->imagePath) ? 'src=/laravel-tutorial/public/image/'.$subImages[2]->imagePath : '' }}>
-                            <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" id="button2" type="submit" onclick="DeleteClick3();"value="削除する">
+                            <input type="hidden" id="sub-file-3-delete" value="Active">
+                            <input type="button" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded delete" onclick="DeleteClick3();" value="削除する">
                             <input
                                 class="w-full py-2 border-b focus:outline-none focus:border-b-2 focus:border-indigo-500 placeholder-gray-500 placeholder-opacity-50"
                                 accept=".jpeg,.png,.jpg"
@@ -114,7 +121,8 @@
                                 name="sub-file-3"
                                 id="sub-file-3"
                             />
-                            <input type="hidden" name="sub-file-3-delete" value="Active">
+
+
                             <div id="button">
                                 <input class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded" id="button" type="submit" value="送信する">
                             </div>
@@ -128,7 +136,21 @@
     </div>
 </div>
     <script>
-
+        function DeleteClick1() {
+            const element = document.getElementById("sub-file-1-img");
+            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-1-delete" value="Active">');
+            element.setAttribute('src', '');
+        }
+        function DeleteClick2() {
+            const element = document.getElementById("sub-file-2-img");
+            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-2-delete" value="Active">');
+            element.setAttribute('src', '');
+        }
+        function DeleteClick3() {
+            const element = document.getElementById("sub-file-3-img");
+            element.insertAdjacentHTML('beforebegin','<input type="hidden" id="sub-file-3-delete" value="Active">');
+            element.setAttribute('src', '');
+        }
         /**
          * Get the URL parameter value
          *
@@ -186,7 +208,10 @@
             reader.onload = (event) => {
                 document.querySelector('#sub-file-1-img').src = event.target.result;
             }
-            reader.readAsDataURL(file)
+            reader.readAsDataURL(file);
+            let element = document.getElementById("sub-file-1-delete");
+            element.remove();
+            
         })
         document.querySelector('#sub-file-2').addEventListener('change', (event) => {
             const file = event.target.files[0]
@@ -195,7 +220,9 @@
             reader.onload = (event) => {
                 document.querySelector('#sub-file-2-img').src = event.target.result
             }
-            reader.readAsDataURL(file)
+            reader.readAsDataURL(file);
+            let element = document.getElementById("sub-file-2-delete");
+            element.remove();
         })
         document.querySelector('#sub-file-3').addEventListener('change', (event) => {
             const file = event.target.files[0];
@@ -204,7 +231,9 @@
             reader.onload = (event) => {
                 document.querySelector('#sub-file-3-img').src = event.target.result
             }
-            reader.readAsDataURL(file)
+            reader.readAsDataURL(file);
+            let element = document.getElementById("sub-file-3-delete");
+            element.remove();
         })
     </script>
     <script>
@@ -212,7 +241,6 @@
         let subFile1 = {{ isset($subImages[1]->imagePath) ? $subImages[1]->imagePath : '' }};
         let subFile2 = {{ isset($subImages[2]->imagePath) ? $subImages[2]->imagePath : '' }};
         let subFile3 = {{ isset($subImages[3]->imagePath) ? $subImages[3]->imagePath : '' }};
-
 
 
     </script>

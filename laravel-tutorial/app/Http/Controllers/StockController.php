@@ -104,7 +104,7 @@ class StockController extends Controller
         
         $stock = new Stock();
         $stock->updateStock($editId, $request, $img_name);
-        //dd($request['sub-file-1-delete']);
+        dd($request['sub-file-1-delete']);
         if ($request['sub-file-1'] !== null) {
            $this->updateSubImage($editId,'sub-file-1', 1, $stock);
         }
@@ -114,8 +114,9 @@ class StockController extends Controller
         if ($request['sub-file-3'] !== null) {
             $this->updateSubImage($editId,'sub-file-3', 3, $stock);
         }
-
+        dd($request['sub-file-1-delete']);
         $subImage = new SubImage();
+
         if ($request['sub-file-1-delete'] !== null) {
             $subImage->deleteSubImg($editId, 1);
         }
